@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starboard – GitHub Stars Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>⭐ Starboard</h1>
+    <p class="subtitle">Your GitHub starred repositories, at a glance.</p>
+  </header>
+
+  <section id="stats" class="stats-bar">
+    <div class="stat-card">
+      <span class="stat-value" id="stat-total">–</span>
+      <span class="stat-label">Total Stars</span>
+    </div>
+    <div class="stat-card highlight-recent">
+      <span class="stat-value" id="stat-recent">–</span>
+      <span class="stat-label">Recent Stars</span>
+    </div>
+    <div class="stat-card highlight-active">
+      <span class="stat-value" id="stat-active">–</span>
+      <span class="stat-label">Active Repos</span>
+    </div>
+    <div class="stat-card highlight-cleanup">
+      <span class="stat-value" id="stat-cleanup">–</span>
+      <span class="stat-label">Cleanup Candidates</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-value" id="stat-archived">–</span>
+      <span class="stat-label">Archived</span>
+    </div>
+  </section>
+
+  <section class="controls">
+    <div class="filter-group">
+      <label for="filter-language">Language</label>
+      <select id="filter-language">
+        <option value="">All</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="filter-archived">Status</label>
+      <select id="filter-archived">
+        <option value="">All</option>
+        <option value="false">Not archived</option>
+        <option value="true">Archived</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="filter-activity">Activity</label>
+      <select id="filter-activity">
+        <option value="">All</option>
+        <option value="recent">Recently pushed</option>
+        <option value="stale">Stale</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="filter-highlight">Highlight</label>
+      <select id="filter-highlight">
+        <option value="">All</option>
+        <option value="recent_star">Recent Stars</option>
+        <option value="watch_candidate">Watch Candidates</option>
+        <option value="cleanup_candidate">Cleanup Candidates</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="sort-by">Sort by</label>
+      <select id="sort-by">
+        <option value="starred_at">Starred At</option>
+        <option value="stargazers_count">Stars</option>
+        <option value="updated_at">Updated At</option>
+      </select>
+    </div>
+
+    <div class="filter-group search-group">
+      <label for="search-input">Search</label>
+      <input type="text" id="search-input" placeholder="name, description, topic…" />
+    </div>
+  </section>
+
+  <div id="result-count" class="result-count"></div>
+
+  <main id="repo-grid" class="repo-grid">
+    <p class="loading">Loading…</p>
+  </main>
+
+  <footer>
+    <p>
+      Built with <a href="https://github.com/nsalvacao/starboard" target="_blank" rel="noopener">Starboard</a>.
+      Data refreshed automatically via GitHub Actions.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
