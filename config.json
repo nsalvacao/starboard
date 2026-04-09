@@ -1,0 +1,30 @@
+{
+  "heuristics": {
+    "recent_star_days": 30,
+    "recent_activity_days": 90,
+    "stale_days": 365
+  },
+  "models": {
+    "allowlist": [
+      "gpt-4o-mini",
+      "meta-llama-3.1-8b-instruct",
+      "mistral-small",
+      "gpt-4o"
+    ],
+    "max_retries_per_item": 3
+  },
+  "llm_category_taxonomy": [
+    "AI/ML",
+    "DevOps/Infra",
+    "Web/Frontend",
+    "Backend/API",
+    "Data/Analytics",
+    "Security",
+    "CLI/Tooling",
+    "Language/Framework",
+    "Learning/Docs",
+    "Game/Graphics",
+    "Mobile",
+    "Other"
+  ]
+}
