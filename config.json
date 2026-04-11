@@ -5,13 +5,30 @@
     "stale_days": 365
   },
   "models": {
-    "allowlist": [
-      "openai/gpt-4o-mini",
-      "openai/gpt-4o",
-      "meta/llama-3.3-70b-instruct",
-      "mistral-ai/mistral-small"
+    "chain": [
+      {"id": "openai/gpt-4o",                                    "family": "openai"},
+      {"id": "openai/gpt-4.1-mini",                              "family": "openai"},
+      {"id": "openai/gpt-4.1-nano",                              "family": "openai"},
+      {"id": "openai/gpt-4o-mini",                               "family": "openai"},
+      {"id": "openai/gpt-4.1",                                   "family": "openai"},
+      {"id": "meta/llama-4-scout-17b-16e-instruct",              "family": "azure_ml"},
+      {"id": "meta/llama-4-maverick-17b-128e-instruct-fp8",      "family": "azure_ml"},
+      {"id": "meta/llama-3.3-70b-instruct",                      "family": "azure_ml"},
+      {"id": "deepseek/deepseek-v3-0324",                        "family": "azure_ml"},
+      {"id": "cohere/cohere-command-r-plus-08-2024",             "family": "azure_ml"},
+      {"id": "mistral-ai/mistral-medium-2505",                   "family": "azure_ml"},
+      {"id": "mistral-ai/mistral-small-2503",                    "family": "azure_ml"},
+      {"id": "microsoft/phi-4",                                  "family": "azure_ml"},
+      {"id": "cohere/cohere-command-a",                          "family": "azure_ml"},
+      {"id": "microsoft/phi-4-mini-instruct",                    "family": "azure_ml"},
+      {"id": "xai/grok-3",                                       "family": "azure_ml"},
+      {"id": "xai/grok-3-mini",                                  "family": "azure_ml"},
+      {"id": "openai/o4-mini",                                   "family": "reasoning"},
+      {"id": "openai/o3-mini",                                   "family": "reasoning"}
     ],
-    "max_retries_per_item": 3
+    "max_tokens": 256,
+    "request_delay_seconds": 1.0,
+    "per_minute_threshold_seconds": 120
   },
   "llm_category_taxonomy": [
     "AI/ML",
