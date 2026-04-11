@@ -13,3 +13,6 @@ venv/
 # Editor / OS
 .DS_Store
 *.swp
+/.remember
+/.dev
+/.claude
