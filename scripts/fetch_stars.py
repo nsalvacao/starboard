@@ -200,6 +200,8 @@ def main() -> None:
     session = requests.Session()
     session.headers.update(build_headers(token))
 
+    _reprocess_reasons: dict[str, int] = {}  # tracks why repos will be re-enriched
+
     url = f"{GITHUB_API}/user/starred?per_page={PER_PAGE}&direction=desc"
     all_repos: list[dict] = []
     page_num = 0
@@ -212,10 +214,25 @@ def main() -> None:
         for item in items:
             repo = normalize_repo(item)
             repo = apply_heuristics(repo, cfg)
-            # Restore prior LLM enrichment if available
+            # Smart re-enrichment: preserve LLM data only if content unchanged AND < 30 days old
             if repo["full_name"] in existing_llm:
-                repo.update(existing_llm[repo["full_name"]])
+                stored = existing_llm[repo["full_name"]]
+                fresh = content_hash(repo)
+                preserve, reason = _should_preserve_llm(fresh, stored, max_age_days=30)
+                if preserve:
+                    repo.update(stored)
+                else:
+                    _reprocess_reasons[reason] = _reprocess_reasons.get(reason, 0) + 1
+            # Always write the current content hash (reflects today's GitHub API data)
+            repo["llm_content_hash"] = content_hash(repo)
             all_repos.append(repo)
+
+    if _reprocess_reasons:
+        total = sum(_reprocess_reasons.values())
+        breakdown = ", ".join(f"{v} {k}" for k, v in sorted(_reprocess_reasons.items()))
+        print(f"Re-enrichment queued: {total} repos ({breakdown})")
+    else:
+        print("All enriched repos preserved (no content changes, all < 30 days old).")
 
     # Sort by starred_at descending (most recently starred first)
     all_repos.sort(key=lambda r: r.get("starred_at") or "", reverse=True)
