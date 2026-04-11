@@ -45,12 +45,14 @@ def load_prompt_template() -> str:
 
 
 def build_prompt(repo: dict, taxonomy: list[str], template: str) -> str:
-    return template.format(
-        name=repo["full_name"].split("/")[-1],
-        description=repo.get("description") or "(none)",
-        language=repo.get("language") or "(unknown)",
-        topics=", ".join(repo.get("topics") or []) or "(none)",
-        taxonomy=", ".join(taxonomy),
+    # Use str.replace instead of .format() to avoid KeyError on JSON braces in the template
+    return (
+        template
+        .replace("{name}", repo["full_name"].split("/")[-1])
+        .replace("{description}", repo.get("description") or "(none)")
+        .replace("{language}", repo.get("language") or "(unknown)")
+        .replace("{topics}", ", ".join(repo.get("topics") or []) or "(none)")
+        .replace("{taxonomy}", ", ".join(taxonomy))
     )
 
 
