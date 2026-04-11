@@ -18,13 +18,18 @@ from openai import OpenAI, RateLimitError, APIStatusError, APIConnectionError
 STARS_PATH = Path(__file__).parent.parent / "data" / "stars.json"
 CONFIG_PATH = Path(__file__).parent.parent / "config.json"
 PROMPT_PATH = Path(__file__).parent.parent / "prompts" / "enrich.txt"
-GITHUB_MODELS_BASE_URL = "https://models.inference.ai.azure.com"
+GITHUB_MODELS_BASE_URL = "https://models.github.ai/inference"
 
 
 def get_token() -> str:
-    token = os.environ.get("GITHUB_TOKEN", "")
+    """Return the GitHub Models PAT (GH_MODELS_PAT), falling back to GH_STARS_PAT/GITHUB_TOKEN."""
+    token = (
+        os.environ.get("GH_MODELS_PAT")
+        or os.environ.get("GH_STARS_PAT")
+        or os.environ.get("GITHUB_TOKEN", "")
+    )
     if not token:
-        print("ERROR: GITHUB_TOKEN environment variable is not set.", file=sys.stderr)
+        print("ERROR: GH_MODELS_PAT environment variable is not set.", file=sys.stderr)
         sys.exit(1)
     return token
 

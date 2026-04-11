@@ -31,12 +31,13 @@ jobs:
 
       - name: Fetch starred repositories
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_STARS_PAT: ${{ secrets.GH_STARS_PAT }}
         run: python scripts/fetch_stars.py
 
       - name: Enrich with GitHub Models
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_STARS_PAT: ${{ secrets.GH_STARS_PAT }}
+          GH_MODELS_PAT: ${{ secrets.GH_MODELS_PAT }}
         run: python scripts/enrich_stars.py
 
       - name: Build site

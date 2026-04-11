@@ -20,9 +20,9 @@ PER_PAGE = 100
 
 
 def get_token() -> str:
-    token = os.environ.get("GITHUB_TOKEN", "")
+    token = os.environ.get("GH_STARS_PAT") or os.environ.get("GITHUB_TOKEN", "")
     if not token:
-        print("ERROR: GITHUB_TOKEN environment variable is not set.", file=sys.stderr)
+        print("ERROR: GH_STARS_PAT (or GITHUB_TOKEN) environment variable is not set.", file=sys.stderr)
         sys.exit(1)
     return token
 

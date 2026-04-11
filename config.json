@@ -6,10 +6,10 @@
   },
   "models": {
     "allowlist": [
-      "gpt-4o-mini",
-      "meta-llama-3.1-8b-instruct",
-      "mistral-small",
-      "gpt-4o"
+      "openai/gpt-4o-mini",
+      "openai/gpt-4o",
+      "meta/llama-3.3-70b-instruct",
+      "mistral-ai/mistral-small"
     ],
     "max_retries_per_item": 3
   },
