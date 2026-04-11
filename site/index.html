@@ -1,104 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Starboard – GitHub Stars Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Starboard</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>⭐ Starboard</h1>
-    <p class="subtitle">Your GitHub starred repositories, at a glance.</p>
-  </header>
+  <div id="app">
 
-  <section id="stats" class="stats-bar">
-    <div class="stat-card">
-      <span class="stat-value" id="stat-total">–</span>
-      <span class="stat-label">Total Stars</span>
-    </div>
-    <div class="stat-card highlight-recent">
-      <span class="stat-value" id="stat-recent">–</span>
-      <span class="stat-label">Recent Stars</span>
-    </div>
-    <div class="stat-card highlight-active">
-      <span class="stat-value" id="stat-active">–</span>
-      <span class="stat-label">Active Repos</span>
-    </div>
-    <div class="stat-card highlight-cleanup">
-      <span class="stat-value" id="stat-cleanup">–</span>
-      <span class="stat-label">Cleanup Candidates</span>
-    </div>
-    <div class="stat-card">
-      <span class="stat-value" id="stat-archived">–</span>
-      <span class="stat-label">Archived</span>
-    </div>
-  </section>
+    <!-- ── Topbar ── -->
+    <header id="topbar">
+      <span class="brand">Starboard</span>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search repos, summaries…" autocomplete="off">
+      </div>
+      <div class="topbar-meta">
+        <span id="sync-info"></span>
+        <span id="repo-count"></span>
+      </div>
+    </header>
 
-  <section class="controls">
-    <div class="filter-group">
-      <label for="filter-language">Language</label>
-      <select id="filter-language">
-        <option value="">All</option>
-      </select>
-    </div>
+    <div id="layout">
 
-    <div class="filter-group">
-      <label for="filter-archived">Status</label>
-      <select id="filter-archived">
-        <option value="">All</option>
-        <option value="false">Not archived</option>
-        <option value="true">Archived</option>
-      </select>
-    </div>
+      <!-- ── Sidebar ── -->
+      <nav id="sidebar">
+        <ul class="nav-list" id="nav-fixed"></ul>
+        <div class="nav-divider"></div>
+        <h3 class="nav-heading">Categories</h3>
+        <ul class="nav-list" id="nav-categories"></ul>
+      </nav>
 
-    <div class="filter-group">
-      <label for="filter-activity">Activity</label>
-      <select id="filter-activity">
-        <option value="">All</option>
-        <option value="recent">Recently pushed</option>
-        <option value="stale">Stale</option>
-      </select>
-    </div>
+      <!-- ── Main ── -->
+      <main id="main">
 
-    <div class="filter-group">
-      <label for="filter-highlight">Highlight</label>
-      <select id="filter-highlight">
-        <option value="">All</option>
-        <option value="recent_star">Recent Stars</option>
-        <option value="watch_candidate">Watch Candidates</option>
-        <option value="cleanup_candidate">Cleanup Candidates</option>
-      </select>
-    </div>
+        <!-- Filter bar -->
+        <div id="filter-bar">
+          <select id="filter-category" aria-label="Category"></select>
+          <select id="filter-language" aria-label="Language"></select>
+          <select id="filter-status" aria-label="Status"></select>
+          <select id="filter-stars" aria-label="Stars"></select>
+          <span id="result-count" class="result-count"></span>
+        </div>
 
-    <div class="filter-group">
-      <label for="sort-by">Sort by</label>
-      <select id="sort-by">
-        <option value="starred_at">Starred At</option>
-        <option value="stargazers_count">Stars</option>
-        <option value="updated_at">Updated At</option>
-      </select>
-    </div>
+        <!-- Table -->
+        <div id="table-wrap">
+          <table id="repo-table">
+            <thead>
+              <tr>
+                <th class="col-check"><input type="checkbox" id="select-all" title="Select visible"></th>
+                <th class="col-repo sortable" data-sort="full_name">Repo <span class="sort-ind"></span></th>
+                <th class="col-category sortable" data-sort="llm_category">Category <span class="sort-ind"></span></th>
+                <th class="col-lang sortable" data-sort="language">Lang <span class="sort-ind"></span></th>
+                <th class="col-stars sortable" data-sort="stargazers_count">&#x2605; <span class="sort-ind"></span></th>
+                <th class="col-status">Status</th>
+                <th class="col-date sortable" data-sort="days_since_push">Pushed <span class="sort-ind"></span></th>
+              </tr>
+            </thead>
+            <tbody id="repo-tbody"></tbody>
+          </table>
+        </div>
 
-    <div class="filter-group search-group">
-      <label for="search-input">Search</label>
-      <input type="text" id="search-input" placeholder="name, description, topic…" />
-    </div>
-  </section>
+        <!-- Empty state -->
+        <div id="empty-state" class="hidden">
+          <p>No repositories match the current filters.</p>
+        </div>
 
-  <div id="result-count" class="result-count"></div>
+        <!-- Compare panel (collapsible bottom section) -->
+        <div id="compare-panel" class="hidden">
+          <div class="compare-header">
+            <h2>Compare: <span id="compare-title"></span></h2>
+            <button id="compare-close" type="button">&#x2715; Close</button>
+          </div>
+          <div id="compare-cards"></div>
+          <div id="compare-aggregate"></div>
+        </div>
 
-  <main id="repo-grid" class="repo-grid">
-    <p class="loading">Loading…</p>
-  </main>
+      </main>
+    </div><!-- #layout -->
 
-  <footer>
-    <p>
-      Built with <a href="https://github.com/nsalvacao/starboard" target="_blank" rel="noopener">Starboard</a>.
-      Data refreshed automatically via GitHub Actions.
-    </p>
-  </footer>
+    <!-- Floating compare button (appears when 2-4 rows selected) -->
+    <button id="compare-btn" type="button" class="hidden"></button>
 
+  </div><!-- #app -->
   <script src="app.js"></script>
 </body>
 </html>
