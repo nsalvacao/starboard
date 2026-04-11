@@ -5,6 +5,7 @@ Writes data/stars.json as the canonical source of truth.
 Includes public, private, and internal repos accessible to the token.
 """
 
+import hashlib
 import json
 import os
 import sys
@@ -17,6 +18,47 @@ import requests
 GITHUB_API = "https://api.github.com"
 STARS_PATH = Path(__file__).parent.parent / "data" / "stars.json"
 PER_PAGE = 100
+
+
+def content_hash(repo: dict) -> str:
+    """Return an MD5 hex digest of the fields that influence LLM enrichment output.
+
+    Only description, topics (sorted), language, and archived are included.
+    Other fields (stargazers, pushed_at, etc.) are intentionally excluded — they
+    change frequently but don't meaningfully change what an LLM would say about
+    the repo's purpose or category.
+    """
+    relevant = {
+        "description": repo.get("description") or "",
+        "topics": sorted(repo.get("topics") or []),
+        "language": repo.get("language") or "",
+        "archived": repo.get("archived", False),
+    }
+    return hashlib.md5(json.dumps(relevant, sort_keys=True).encode()).hexdigest()
+
+
+def _should_preserve_llm(fresh_hash: str, stored: dict, max_age_days: int = 30) -> tuple[bool, str]:
+    """Decide whether stored LLM enrichment data should be preserved for a repo.
+
+    Returns (should_preserve: bool, reason: str) where reason is one of:
+        "ok"              — preserve: hash matches and data is fresh
+        "content_changed" — re-enrich: description/topics/language/archived changed
+        "no_date"         — re-enrich: no llm_enriched_at timestamp stored
+        "aged_Nd"         — re-enrich: data is N days old (>= max_age_days)
+    """
+    if stored.get("llm_content_hash") != fresh_hash:
+        return False, "content_changed"
+
+    enriched_at_str = stored.get("llm_enriched_at")
+    if not enriched_at_str:
+        return False, "no_date"
+
+    enriched_dt = datetime.fromisoformat(enriched_at_str.replace("Z", "+00:00"))
+    days_since = (datetime.now(timezone.utc) - enriched_dt).days
+    if days_since >= max_age_days:
+        return False, f"aged_{days_since}d"
+
+    return True, "ok"
 
 
 def get_token() -> str:
@@ -97,6 +139,7 @@ def normalize_repo(item: dict) -> dict:
         "llm_model": None,
         "llm_status": None,
         "llm_enriched_at": None,
+        "llm_content_hash": None,
     }
 
 
@@ -129,7 +172,7 @@ def load_config() -> dict:
         return json.load(f)
 
 
-LLM_FIELDS = ("llm_category", "llm_summary", "llm_watch_note", "llm_model", "llm_status", "llm_enriched_at")
+LLM_FIELDS = ("llm_category", "llm_summary", "llm_watch_note", "llm_model", "llm_status", "llm_enriched_at", "llm_content_hash")
 
 
 def load_existing_llm_data() -> dict[str, dict]:
