@@ -129,9 +129,30 @@ def load_config() -> dict:
         return json.load(f)
 
 
+LLM_FIELDS = ("llm_category", "llm_summary", "llm_watch_note", "llm_model", "llm_status", "llm_enriched_at")
+
+
+def load_existing_llm_data() -> dict[str, dict]:
+    """Load LLM enrichment fields from the existing stars.json, keyed by full_name."""
+    if not STARS_PATH.exists():
+        return {}
+    with open(STARS_PATH, encoding="utf-8") as f:
+        existing = json.load(f)
+    return {
+        r["full_name"]: {k: r.get(k) for k in LLM_FIELDS}
+        for r in existing
+        if r.get("llm_status") == "ok"
+    }
+
+
 def main() -> None:
     token = get_token()
     cfg = load_config()
+
+    # Preserve existing LLM enrichment so enrich_stars.py only processes new/unenriched repos
+    existing_llm = load_existing_llm_data()
+    if existing_llm:
+        print(f"Loaded existing LLM data for {len(existing_llm)} repos (will be preserved).")
 
     session = requests.Session()
     session.headers.update(build_headers(token))
@@ -148,6 +169,9 @@ def main() -> None:
         for item in items:
             repo = normalize_repo(item)
             repo = apply_heuristics(repo, cfg)
+            # Restore prior LLM enrichment if available
+            if repo["full_name"] in existing_llm:
+                repo.update(existing_llm[repo["full_name"]])
             all_repos.append(repo)
 
     # Sort by starred_at descending (most recently starred first)
