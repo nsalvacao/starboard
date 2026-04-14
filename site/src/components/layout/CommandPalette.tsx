@@ -4,6 +4,7 @@ import { Command } from 'lucide-react';
 
 export function CommandPalette() {
   const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState('');
   const { setViewMode } = useStore();
 
   useEffect(() => {
@@ -39,6 +40,8 @@ export function CommandPalette() {
           <Command className="w-4 h-4 text-[var(--color-gh-muted)] mr-3" />
           <input 
             autoFocus
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             className="flex-1 bg-transparent border-none outline-none text-white placeholder:text-[var(--color-gh-muted)]"
             placeholder="Type a command or navigate..."
           />
@@ -51,18 +54,19 @@ export function CommandPalette() {
             { label: 'Go to Discover', mode: 'discover' as const },
             { label: 'Go to Compare', mode: 'compare' as const },
             { label: 'Go to Cleanup', mode: 'cleanup' as const },
-          ].map((item) => (
+          ].filter(item => item.label.toLowerCase().includes(query.toLowerCase())).map((item) => (
             <button
-              key={item.mode}
-              onClick={() => {
-                setViewMode(item.mode);
-                setIsOpen(false);
-              }}
-              className="w-full flex items-center px-3 py-2 text-sm text-[var(--color-gh-text)] rounded-md hover:bg-[var(--color-gh-accent)] hover:text-white transition-colors text-left"
-            >
-              {item.label}
-            </button>
-          ))}
+               key={item.mode}
+               onClick={() => {
+                 setViewMode(item.mode);
+                 setIsOpen(false);
+                 setQuery('');
+               }}
+               className="w-full flex items-center px-3 py-2 text-sm text-[var(--color-gh-text)] rounded-md hover:bg-[var(--color-gh-accent)] hover:text-white transition-colors text-left"
+             >
+               {item.label}
+             </button>
+           ))}
         </div>
       </div>
     </>

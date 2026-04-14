@@ -54,6 +54,7 @@ export function TopNavigationBar() {
             <div className="relative w-full max-w-sm group">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-[var(--color-gh-muted)] group-focus-within:text-[var(--color-gh-accent)]" />
               <input
+                id="search"
                 type="text"
                 placeholder="Search repos, summaries... (Press / to focus)"
                 value={searchQuery}

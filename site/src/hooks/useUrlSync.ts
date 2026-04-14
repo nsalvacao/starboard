@@ -18,8 +18,7 @@ export function useUrlSync() {
     const categories = searchParams.get('categories');
     if (categories) setFilter('category', categories.split(','));
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only run once on mount
+  }, [searchParams, setViewMode, setSearchQuery, setFilter]); // Sync when URL changes externally
 
   // Write to URL on state change
   useEffect(() => {

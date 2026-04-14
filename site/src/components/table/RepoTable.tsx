@@ -46,7 +46,7 @@ export function RepoTable() {
       <div className="grid grid-cols-[auto_2fr_1fr_1fr_100px_100px] gap-4 p-4 border-b border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-xs font-semibold text-[var(--color-gh-muted)] uppercase tracking-wider">
         <div className="w-8 flex items-center justify-center">
           <input type="checkbox" 
-            checked={filteredRepos.length > 0 && filteredRepos.every(r => selectedRepos.includes(r.full_name))}
+            checked={filteredRepos.length > 0 && filteredRepos.slice(0, 6).every(r => selectedRepos.includes(r.full_name))}
             onChange={(e) => {
               if (e.target.checked) {
                 filteredRepos.slice(0, 6).forEach(r => {
