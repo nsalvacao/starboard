@@ -31,7 +31,14 @@ export function useUrlSync() {
       setFilter('category', []);
     }
 
-  }, [searchParams, setViewMode, setSearchQuery, setFilter, viewMode, searchQuery, filters.category]);
+    const languages = searchParams.get('languages');
+    if (languages) {
+      if (languages !== filters.language.join(',')) setFilter('language', languages.split(','));
+    } else if (filters.language.length > 0) {
+      setFilter('language', []);
+    }
+
+  }, [searchParams, setViewMode, setSearchQuery, setFilter, viewMode, searchQuery, filters.category, filters.language]);
 
   // Write to URL on state change
   useEffect(() => {
@@ -40,9 +47,10 @@ export function useUrlSync() {
     if (viewMode !== 'all') newParams.set('nav', viewMode);
     if (searchQuery) newParams.set('q', searchQuery);
     if (filters.category.length > 0) newParams.set('categories', filters.category.join(','));
+    if (filters.language.length > 0) newParams.set('languages', filters.language.join(','));
     
     if (searchParams.toString() !== newParams.toString()) {
       setSearchParams(newParams, { replace: true });
     }
-  }, [viewMode, searchQuery, filters.category, setSearchParams, searchParams]);
+  }, [viewMode, searchQuery, filters.category, filters.language, setSearchParams, searchParams]);
 }
