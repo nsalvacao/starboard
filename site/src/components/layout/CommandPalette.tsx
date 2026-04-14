@@ -16,9 +16,13 @@ export function CommandPalette() {
       }
       
       // '/' to focus search globally
-      if (e.key === '/' && !isOpen && document.activeElement?.tagName !== 'INPUT') {
-        e.preventDefault();
-        document.getElementById('search')?.focus();
+      if (e.key === '/' && !isOpen) {
+        const tag = document.activeElement?.tagName;
+        const isEditable = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (document.activeElement as HTMLElement)?.isContentEditable;
+        if (!isEditable) {
+          e.preventDefault();
+          document.getElementById('search')?.focus();
+        }
       }
 
       if (e.key === 'Escape' && isOpen) {

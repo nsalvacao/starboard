@@ -56,6 +56,7 @@ export function RepoTable() {
               }
             }}
             title="Select visible (up to 6)"
+            aria-label="Select up to 6 visible repositories"
             className="rounded border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-[var(--color-gh-accent)] focus:ring-[var(--color-gh-accent)]" 
           />
         </div>
@@ -95,6 +96,7 @@ export function RepoTable() {
                     type="checkbox" 
                     checked={selectedRepos.includes(repo.full_name)}
                     onChange={() => toggleSelection(repo.full_name)}
+                    aria-label={`Select ${repo.full_name} for comparison`}
                     className="rounded border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] focus:ring-[var(--color-gh-accent)]" 
                   />
                 </div>

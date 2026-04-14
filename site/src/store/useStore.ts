@@ -34,6 +34,8 @@ interface AppState {
   clearSelection: () => void;
 }
 
+let _fetchInFlight = false;
+
 export const useStore = create<AppState>()(
   persist(
     (set) => ({
@@ -41,6 +43,8 @@ export const useStore = create<AppState>()(
       isLoading: true,
       error: null,
       fetchRepos: async () => {
+        if (_fetchInFlight) return;
+        _fetchInFlight = true;
         set({ isLoading: true, error: null });
         try {
           const res = await fetch(`${import.meta.env.BASE_URL}data/stars.json`);
@@ -50,6 +54,8 @@ export const useStore = create<AppState>()(
         } catch (err: unknown) {
           const errorMessage = err instanceof Error ? err.message : 'Failed to fetch stars data';
           set({ error: errorMessage, isLoading: false });
+        } finally {
+          _fetchInFlight = false;
         }
       },
 
