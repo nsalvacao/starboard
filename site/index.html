@@ -1,88 +1,13 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Starboard</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div id="app">
-
-    <!-- ── Topbar ── -->
-    <header id="topbar">
-      <span class="brand">Starboard</span>
-      <div class="search-wrap">
-        <input type="search" id="search" placeholder="Search repos, summaries…" autocomplete="off">
-      </div>
-      <div class="topbar-meta">
-        <span id="sync-info"></span>
-        <span id="repo-count"></span>
-      </div>
-    </header>
-
-    <div id="layout">
-
-      <!-- ── Sidebar ── -->
-      <nav id="sidebar">
-        <ul class="nav-list" id="nav-fixed"></ul>
-        <div class="nav-divider"></div>
-        <h3 class="nav-heading">Categories</h3>
-        <ul class="nav-list" id="nav-categories"></ul>
-      </nav>
-
-      <!-- ── Main ── -->
-      <main id="main">
-
-        <!-- Filter bar -->
-        <div id="filter-bar">
-          <select id="filter-category" aria-label="Category"></select>
-          <select id="filter-language" aria-label="Language"></select>
-          <select id="filter-status" aria-label="Status"></select>
-          <select id="filter-stars" aria-label="Stars"></select>
-          <span id="result-count" class="result-count"></span>
-        </div>
-
-        <!-- Table -->
-        <div id="table-wrap">
-          <table id="repo-table">
-            <thead>
-              <tr>
-                <th class="col-check"><input type="checkbox" id="select-all" title="Select visible"></th>
-                <th class="col-repo sortable" data-sort="full_name">Repo <span class="sort-ind"></span></th>
-                <th class="col-category sortable" data-sort="llm_category">Category <span class="sort-ind"></span></th>
-                <th class="col-lang sortable" data-sort="language">Lang <span class="sort-ind"></span></th>
-                <th class="col-stars sortable" data-sort="stargazers_count">&#x2605; <span class="sort-ind"></span></th>
-                <th class="col-status">Status</th>
-                <th class="col-date sortable" data-sort="days_since_push">Pushed <span class="sort-ind"></span></th>
-              </tr>
-            </thead>
-            <tbody id="repo-tbody"></tbody>
-          </table>
-        </div>
-
-        <!-- Empty state -->
-        <div id="empty-state" class="hidden">
-          <p>No repositories match the current filters.</p>
-        </div>
-
-        <!-- Compare panel (collapsible bottom section) -->
-        <div id="compare-panel" class="hidden">
-          <div class="compare-header">
-            <h2>Compare: <span id="compare-title"></span></h2>
-            <button id="compare-close" type="button">&#x2715; Close</button>
-          </div>
-          <div id="compare-cards"></div>
-          <div id="compare-aggregate"></div>
-        </div>
-
-      </main>
-    </div><!-- #layout -->
-
-    <!-- Floating compare button (appears when 2-4 rows selected) -->
-    <button id="compare-btn" type="button" class="hidden"></button>
-
-  </div><!-- #app -->
-  <script src="app.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>temp-vite</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

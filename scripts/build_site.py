@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
 SRC = ROOT / "data" / "stars.json"
-DST = ROOT / "site" / "data" / "stars.json"
+DST = ROOT / "site" / "public" / "data" / "stars.json"
 
 
 def main() -> None:
