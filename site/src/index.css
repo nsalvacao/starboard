@@ -31,3 +31,13 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-gh-muted);
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

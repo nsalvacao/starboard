@@ -15,7 +15,7 @@ export function CommandPalette() {
         setIsOpen((open) => !open);
       }
       
-      // '/' to focus search (handled globally, but closing palette if open)
+      // '/' to focus search globally
       if (e.key === '/' && !isOpen && document.activeElement?.tagName !== 'INPUT') {
         e.preventDefault();
         document.getElementById('search')?.focus();

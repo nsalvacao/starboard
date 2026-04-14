@@ -22,7 +22,7 @@ export function RepoTable() {
 
       // 3. Category/Language Filters
       if (filters.category.length > 0 && !filters.category.includes(repo.llm_category)) return false;
-      if (filters.language.length > 0 && repo.language && !filters.language.includes(repo.language)) return false;
+      if (filters.language.length > 0 && (!repo.language || !filters.language.includes(repo.language))) return false;
 
       return true;
     });

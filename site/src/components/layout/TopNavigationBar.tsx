@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { useStore } from '../../store/useStore';
 import { Search, GitMerge, LayoutGrid, Eye, Sparkles, Trash2, GitCompare } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -6,7 +7,7 @@ import type { ViewMode } from '../../types';
 export function TopNavigationBar() {
   const { viewMode, setViewMode, searchQuery, setSearchQuery, repos } = useStore();
 
-  const tabs: { id: ViewMode; label: string; icon: React.ReactNode; count?: number }[] = [
+  const tabs: { id: ViewMode; label: string; icon: ReactNode; count?: number }[] = [
     { id: 'all', label: 'All Repos', icon: <LayoutGrid className="w-4 h-4" />, count: repos.length },
     { id: 'watch', label: 'Watch', icon: <Eye className="w-4 h-4" />, count: repos.filter(r => r.watch_candidate).length },
     { id: 'discover', label: 'Discover', icon: <Sparkles className="w-4 h-4" /> },

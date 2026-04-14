@@ -46,8 +46,9 @@ export const useStore = create<AppState>()(
           if (!res.ok) throw new Error(`Failed to fetch stars data: ${res.status} ${res.statusText}`);
           const data = await res.json();
           set({ repos: data, isLoading: false, error: null });
-        } catch (err: any) {
-          set({ error: err.message, isLoading: false });
+        } catch (err: unknown) {
+          const errorMessage = err instanceof Error ? err.message : 'Failed to fetch stars data';
+          set({ error: errorMessage, isLoading: false });
         }
       },
 
