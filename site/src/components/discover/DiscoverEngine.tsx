@@ -55,7 +55,11 @@ export function DiscoverEngine() {
         <div className="bg-[var(--color-gh-card)] min-h-[400px] border border-[var(--color-gh-border)] rounded-xl p-6 shadow-sm flex flex-col transition-all hover:shadow-lg">
           <div className="mb-6">
             <h3 className="text-lg font-bold text-white mb-1">Topic Expansion</h3>
-            <p className="text-sm text-[var(--color-gh-muted)]">Because you recently starred {topCategories.join(' and ')}.</p>
+            <p className="text-sm text-[var(--color-gh-muted)]">
+              {topCategories.length > 0
+                ? <>Because you recently starred {topCategories.join(' and ')}.</>
+                : <>Recommendations based on recent activity and repository metadata.</>}
+            </p>
           </div>
           <div className="flex-1 space-y-4">
              {topicExpansion.map((repo) => (

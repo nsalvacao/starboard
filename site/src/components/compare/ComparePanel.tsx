@@ -30,7 +30,7 @@ export function ComparePanel() {
             onClick={clearSelection}
             className="text-xs font-semibold text-[var(--color-gh-muted)] hover:text-white hover:bg-[var(--color-gh-bg)] px-3 py-1 rounded transition-colors"
           >
-            Clear All & Close
+            Clear All
           </button>
         </div>
 

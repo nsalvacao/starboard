@@ -21,7 +21,7 @@ export interface Repository {
   cleanup_candidate: boolean;
   llm_category: string;
   llm_summary: string;
-  llm_watch_note: string;
+  llm_watch_note: string | null;
   llm_model: string;
   llm_status: 'ok' | 'failed' | null;
   llm_enriched_at: string;
