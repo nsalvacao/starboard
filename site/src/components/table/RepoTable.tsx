@@ -101,7 +101,14 @@ export function RepoTable() {
                 
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <img src={`https://github.com/${repo.full_name.split('/')[0]}.png?size=20`} alt="" className="w-5 h-5 rounded-full" />
+                    <img
+                      src={`https://github.com/${repo.full_name.split('/')[0]}.png?size=20`}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      referrerPolicy="no-referrer"
+                      className="w-5 h-5 rounded-full"
+                    />
                     <a href={repo.html_url} target="_blank" rel="noreferrer" className="text-sm font-semibold text-[var(--color-gh-accent)] hover:underline truncate">
                       {repo.full_name}
                     </a>

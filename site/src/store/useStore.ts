@@ -41,6 +41,7 @@ export const useStore = create<AppState>()(
       isLoading: true,
       error: null,
       fetchRepos: async () => {
+        set({ isLoading: true, error: null });
         try {
           const res = await fetch(`${import.meta.env.BASE_URL}data/stars.json`);
           if (!res.ok) throw new Error(`Failed to fetch stars data: ${res.status} ${res.statusText}`);

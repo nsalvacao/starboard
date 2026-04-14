@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { useMemo } from 'react';
 import { useStore } from '../../store/useStore';
 import { Search, GitMerge, LayoutGrid, Eye, Sparkles, Trash2, GitCompare } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -7,12 +8,15 @@ import type { ViewMode } from '../../types';
 export function TopNavigationBar() {
   const { viewMode, setViewMode, searchQuery, setSearchQuery, repos } = useStore();
 
+  const watchCount = useMemo(() => repos.filter(r => r.watch_candidate).length, [repos]);
+  const cleanupCount = useMemo(() => repos.filter(r => r.cleanup_candidate).length, [repos]);
+
   const tabs: { id: ViewMode; label: string; icon: ReactNode; count?: number }[] = [
     { id: 'all', label: 'All Repos', icon: <LayoutGrid className="w-4 h-4" />, count: repos.length },
-    { id: 'watch', label: 'Watch', icon: <Eye className="w-4 h-4" />, count: repos.filter(r => r.watch_candidate).length },
+    { id: 'watch', label: 'Watch', icon: <Eye className="w-4 h-4" />, count: watchCount },
     { id: 'discover', label: 'Discover', icon: <Sparkles className="w-4 h-4" /> },
     { id: 'compare', label: 'Compare', icon: <GitCompare className="w-4 h-4" /> },
-    { id: 'cleanup', label: 'Cleanup', icon: <Trash2 className="w-4 h-4" />, count: repos.filter(r => r.cleanup_candidate).length },
+    { id: 'cleanup', label: 'Cleanup', icon: <Trash2 className="w-4 h-4" />, count: cleanupCount },
   ];
 
   return (
