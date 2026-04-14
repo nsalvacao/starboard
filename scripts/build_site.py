@@ -1,7 +1,7 @@
 """
-build_site.py – Copy data/stars.json to site/data/stars.json for static publishing.
+build_site.py – Copy data/stars.json to site/public/data/stars.json for static publishing.
 
-The dashboard reads data at runtime from site/data/stars.json.
+The dashboard reads data at runtime from site/public/data/stars.json.
 This script ensures the published copy is in sync with the source of truth.
 """
 
@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
 SRC = ROOT / "data" / "stars.json"
-DST = ROOT / "site" / "data" / "stars.json"
+DST = ROOT / "site" / "public" / "data" / "stars.json"
 
 
 def main() -> None:

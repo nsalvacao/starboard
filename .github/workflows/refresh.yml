@@ -42,21 +42,30 @@ jobs:
           GH_MODELS_PAT: ${{ secrets.GH_MODELS_PAT }}
         run: python scripts/enrich_stars.py
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Build site
-        run: python scripts/build_site.py
+        run: |
+          python scripts/build_site.py
+          cd site
+          npm ci
+          npm run build
 
       - name: Commit updated data
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/stars.json site/data/stars.json
+          git add data/stars.json site/public/data/stars.json
           git diff --cached --quiet || git commit -m "chore: refresh stars data [skip ci]"
           git push
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5.0.0
         with:
-          path: site/
+          path: site/dist/
 
       - name: Deploy to GitHub Pages
         id: deploy
