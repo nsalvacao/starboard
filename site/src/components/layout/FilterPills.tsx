@@ -89,7 +89,7 @@ export function FilterPills() {
           className="ml-auto flex items-center gap-1 px-2 py-1 text-xs text-[var(--color-gh-danger)] hover:bg-[var(--color-gh-danger)]/10 rounded transition-colors"
         >
           <X className="w-3 h-3" />
-          Clear rules
+          Clear filters
         </button>
       )}
     </div>

@@ -3,8 +3,10 @@ import { RepoTable } from '../table/RepoTable';
 import { DiscoverEngine } from '../discover/DiscoverEngine';
 import { ComparePanel } from '../compare/ComparePanel';
 import { Loader2 } from 'lucide-react';
+import { useUrlSync } from '../../hooks/useUrlSync';
 
 export function MainWorkspace({ isLoading }: { isLoading: boolean }) {
+  useUrlSync();
   const { viewMode, error } = useStore();
 
   if (error) {

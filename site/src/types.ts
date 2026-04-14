@@ -23,7 +23,7 @@ export interface Repository {
   llm_summary: string;
   llm_watch_note: string;
   llm_model: string;
-  llm_status: 'success' | 'error' | 'pending';
+  llm_status: 'ok' | 'failed' | null;
   llm_enriched_at: string;
   llm_content_hash: string;
 }

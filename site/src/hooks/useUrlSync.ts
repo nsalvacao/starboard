@@ -10,7 +10,9 @@ export function useUrlSync() {
   // Read from URL on mount
   useEffect(() => {
     const nav = searchParams.get('nav');
-    if (nav) setViewMode(nav as ViewMode);
+    if (nav && ['all', 'watch', 'discover', 'compare', 'cleanup'].includes(nav)) {
+      setViewMode(nav as ViewMode);
+    }
 
     const q = searchParams.get('q');
     if (q) setSearchQuery(q);

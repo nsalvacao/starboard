@@ -42,6 +42,11 @@ jobs:
           GH_MODELS_PAT: ${{ secrets.GH_MODELS_PAT }}
         run: python scripts/enrich_stars.py
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Build site
         run: |
           python scripts/build_site.py

@@ -43,7 +43,7 @@ export const useStore = create<AppState>()(
       fetchRepos: async () => {
         try {
           const res = await fetch(`${import.meta.env.BASE_URL}data/stars.json`);
-          if (!res.ok) throw new Error('Failed to fetch stats');
+          if (!res.ok) throw new Error(`Failed to fetch stars data: ${res.status} ${res.statusText}`);
           const data = await res.json();
           set({ repos: data, isLoading: false, error: null });
         } catch (err: any) {
@@ -76,7 +76,7 @@ export const useStore = create<AppState>()(
         set((state) => {
           const sel = state.selectedRepos;
           if (sel.includes(repoId)) return { selectedRepos: sel.filter((id) => id !== repoId) };
-          if (sel.length >= 6) return state; // max 6 slots for comparison
+          if (sel.length >= 6) return {}; // max 6 slots for comparison
           return { selectedRepos: [...sel, repoId] };
         }),
       clearSelection: () => set({ selectedRepos: [] }),

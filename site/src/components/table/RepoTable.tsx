@@ -3,11 +3,8 @@ import { useMemo, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { Star, GitFork, Clock, AlertCircle } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { useUrlSync } from '../../hooks/useUrlSync';
 
 export function RepoTable() {
-  useUrlSync(); // Mount URL sync listener
-  
   const { repos, viewMode, filters, searchQuery, selectedRepos, toggleSelection } = useStore();
 
   const filteredRepos = useMemo(() => {
