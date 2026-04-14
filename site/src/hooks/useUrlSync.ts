@@ -1,56 +1,54 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import type { ViewMode } from '../types';
 
+const VALID_MODES: ViewMode[] = ['all', 'watch', 'discover', 'compare', 'cleanup'];
+
 export function useUrlSync() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { viewMode, setViewMode, filters, setFilter, searchQuery, setSearchQuery } = useStore();
+  const writingRef = useRef(false);
 
-  // Read from URL — sync state when URL changes externally
+  // Read from URL — only reacts to actual URL changes (back/forward, external navigation)
   useEffect(() => {
-    const validModes: ViewMode[] = ['all', 'watch', 'discover', 'compare', 'cleanup'];
+    // Skip if the URL change originated from our own write effect
+    if (writingRef.current) {
+      writingRef.current = false;
+      return;
+    }
+
     const nav = searchParams.get('nav');
-    if (nav && validModes.includes(nav as ViewMode)) {
-      if (nav !== viewMode) setViewMode(nav as ViewMode);
-    } else if (viewMode !== 'all') {
+    if (nav && VALID_MODES.includes(nav as ViewMode)) {
+      setViewMode(nav as ViewMode);
+    } else {
       setViewMode('all');
     }
 
     const q = searchParams.get('q');
-    if (q !== null) {
-      if (q !== searchQuery) setSearchQuery(q);
-    } else if (searchQuery) {
-      setSearchQuery('');
-    }
+    setSearchQuery(q ?? '');
 
     const categories = searchParams.get('categories');
-    if (categories) {
-      if (categories !== filters.category.join(',')) setFilter('category', categories.split(','));
-    } else if (filters.category.length > 0) {
-      setFilter('category', []);
-    }
+    setFilter('category', categories ? categories.split(',') : []);
 
     const languages = searchParams.get('languages');
-    if (languages) {
-      if (languages !== filters.language.join(',')) setFilter('language', languages.split(','));
-    } else if (filters.language.length > 0) {
-      setFilter('language', []);
-    }
+    setFilter('language', languages ? languages.split(',') : []);
 
-  }, [searchParams, setViewMode, setSearchQuery, setFilter, viewMode, searchQuery, filters.category, filters.language]);
+  }, [searchParams, setViewMode, setSearchQuery, setFilter]);
 
   // Write to URL on state change
   useEffect(() => {
     const newParams = new URLSearchParams();
-    
+
     if (viewMode !== 'all') newParams.set('nav', viewMode);
     if (searchQuery) newParams.set('q', searchQuery);
     if (filters.category.length > 0) newParams.set('categories', filters.category.join(','));
     if (filters.language.length > 0) newParams.set('languages', filters.language.join(','));
-    
-    if (searchParams.toString() !== newParams.toString()) {
+
+    const current = new URLSearchParams(window.location.search);
+    if (current.toString() !== newParams.toString()) {
+      writingRef.current = true;
       setSearchParams(newParams, { replace: true });
     }
-  }, [viewMode, searchQuery, filters.category, filters.language, setSearchParams, searchParams]);
+  }, [viewMode, searchQuery, filters.category, filters.language, setSearchParams]);
 }
