@@ -1,9 +1,10 @@
 import { useStore } from '../../store/useStore';
 import { X, Filter, ChevronDown } from 'lucide-react';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 export function FilterPills() {
   const { viewMode, filters, setFilter, clearFilters, repos } = useStore();
+  const [openDropdown, setOpenDropdown] = useState<'category' | 'language' | null>(null);
 
   const categories = useMemo(() => Array.from(new Set(repos.map(r => r.llm_category).filter((c): c is string => Boolean(c)))), [repos]);
   const languages = useMemo(() => Array.from(new Set(repos.map(r => r.language).filter((l): l is string => Boolean(l)))), [repos]);
@@ -22,13 +23,19 @@ export function FilterPills() {
       </div>
 
       {/* Category Dropdown/Pill */}
-      <div className="relative group">
-        <button className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--color-gh-bg)] border border-[var(--color-gh-border)] rounded-md text-sm hover:border-[var(--color-gh-muted)] transition-colors">
+      <div className="relative">
+        <button 
+          onClick={() => setOpenDropdown(openDropdown === 'category' ? null : 'category')}
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--color-gh-bg)] border border-[var(--color-gh-border)] rounded-md text-sm hover:border-[var(--color-gh-muted)] transition-colors"
+        >
           Category 
           {filters.category.length > 0 && <span className="bg-[var(--color-gh-accent)] text-white text-xs px-1.5 rounded-full">{filters.category.length}</span>}
           <ChevronDown className="w-3 h-3 text-[var(--color-gh-muted)]" />
         </button>
-        <div className="absolute top-full left-0 mt-1 w-56 max-h-64 overflow-y-auto bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+        {openDropdown === 'category' && (
+          <div className="fixed inset-0 z-40" onClick={() => setOpenDropdown(null)}></div>
+        )}
+        <div className={`absolute top-full left-0 mt-1 w-56 max-h-64 overflow-y-auto bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md shadow-xl transition-all z-50 ${openDropdown === 'category' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
           <div className="p-2 space-y-1">
             {categories.map(c => (
               <label key={c} className="flex items-center gap-2 px-2 py-1.5 hover:bg-[var(--color-gh-hover)] rounded cursor-pointer text-sm">
@@ -46,13 +53,19 @@ export function FilterPills() {
       </div>
 
       {/* Language Dropdown/Pill */}
-      <div className="relative group">
-        <button className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--color-gh-bg)] border border-[var(--color-gh-border)] rounded-md text-sm hover:border-[var(--color-gh-muted)] transition-colors">
+      <div className="relative">
+        <button 
+          onClick={() => setOpenDropdown(openDropdown === 'language' ? null : 'language')}
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--color-gh-bg)] border border-[var(--color-gh-border)] rounded-md text-sm hover:border-[var(--color-gh-muted)] transition-colors"
+        >
           Language 
           {filters.language.length > 0 && <span className="bg-[var(--color-gh-accent)] text-white text-xs px-1.5 rounded-full">{filters.language.length}</span>}
           <ChevronDown className="w-3 h-3 text-[var(--color-gh-muted)]" />
         </button>
-        <div className="absolute top-full left-0 mt-1 w-56 max-h-64 overflow-y-auto bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+        {openDropdown === 'language' && (
+          <div className="fixed inset-0 z-40" onClick={() => setOpenDropdown(null)}></div>
+        )}
+        <div className={`absolute top-full left-0 mt-1 w-56 max-h-64 overflow-y-auto bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md shadow-xl transition-all z-50 ${openDropdown === 'language' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
           <div className="p-2 space-y-1">
             {languages.map(l => (
               <label key={l} className="flex items-center gap-2 px-2 py-1.5 hover:bg-[var(--color-gh-hover)] rounded cursor-pointer text-sm">

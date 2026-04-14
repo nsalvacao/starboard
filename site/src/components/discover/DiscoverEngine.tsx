@@ -16,16 +16,22 @@ export function DiscoverEngine() {
   }, [repos]);
 
   const topicExpansion = useMemo(() => {
-    return repos
+    const candidates = repos
       .filter(r => 
         !r.archived && 
         !r.stale && 
         r.llm_category && 
         topCategories.includes(r.llm_category) &&
         !r.recent_star
-      )
-      .sort(() => Math.random() - 0.5) // Random exploration!
-      .slice(0, 5);
+      );
+      
+    // Fisher-Yates shuffle
+    for (let i = candidates.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+    }
+    
+    return candidates.slice(0, 5);
   }, [repos, topCategories]);
 
   const trending = useMemo(() => {
@@ -103,6 +109,7 @@ export function DiscoverEngine() {
                </div>
              )}
           </div>
+        </div>
       </div>
     </div>
   );
