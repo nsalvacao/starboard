@@ -21,7 +21,7 @@ export function RepoTable() {
       }
 
       // 3. Category/Language Filters
-      if (filters.category.length > 0 && !filters.category.includes(repo.llm_category)) return false;
+      if (filters.category.length > 0 && (!repo.llm_category || !filters.category.includes(repo.llm_category))) return false;
       if (filters.language.length > 0 && (!repo.language || !filters.language.includes(repo.language))) return false;
 
       return true;
@@ -55,8 +55,8 @@ export function RepoTable() {
                 });
               }
             }}
-            title="Select visible (up to 6)"
-            aria-label="Select up to 6 visible repositories"
+            title="Select first 6 repositories"
+            aria-label="Select first 6 repositories"
             className="rounded border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-[var(--color-gh-accent)] focus:ring-[var(--color-gh-accent)]" 
           />
         </div>

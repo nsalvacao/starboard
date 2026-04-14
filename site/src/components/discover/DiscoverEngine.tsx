@@ -9,7 +9,7 @@ export function DiscoverEngine() {
   // that have been recently starred by the user.
   const topCategories = useMemo(() => {
     const counts = repos.filter(r => r.recent_star && r.llm_category).reduce((acc, r) => {
-      acc[r.llm_category] = (acc[r.llm_category] || 0) + 1;
+      acc[r.llm_category!] = (acc[r.llm_category!] || 0) + 1;
       return acc;
     }, {} as Record<string, number>);
     return Object.entries(counts).sort((a, b) => b[1] - a[1]).map(e => e[0]).slice(0, 2);

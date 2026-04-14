@@ -19,13 +19,13 @@ export interface Repository {
   stale: boolean;
   watch_candidate: boolean;
   cleanup_candidate: boolean;
-  llm_category: string;
-  llm_summary: string;
+  llm_category: string | null;
+  llm_summary: string | null;
   llm_watch_note: string | null;
-  llm_model: string;
+  llm_model: string | null;
   llm_status: 'ok' | 'failed' | null;
-  llm_enriched_at: string;
-  llm_content_hash: string;
+  llm_enriched_at: string | null;
+  llm_content_hash: string | null;
 }
 
 export type ViewMode = 'all' | 'watch' | 'discover' | 'cleanup' | 'compare';

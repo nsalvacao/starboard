@@ -7,22 +7,31 @@ export function useUrlSync() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { viewMode, setViewMode, filters, setFilter, searchQuery, setSearchQuery } = useStore();
 
-  // Read from URL on mount
+  // Read from URL — sync state when URL changes externally
   useEffect(() => {
+    const validModes: ViewMode[] = ['all', 'watch', 'discover', 'compare', 'cleanup'];
     const nav = searchParams.get('nav');
-    if (nav && ['all', 'watch', 'discover', 'compare', 'cleanup'].includes(nav)) {
+    if (nav && validModes.includes(nav as ViewMode)) {
       if (nav !== viewMode) setViewMode(nav as ViewMode);
+    } else if (viewMode !== 'all') {
+      setViewMode('all');
     }
 
     const q = searchParams.get('q');
-    if (q !== null && q !== searchQuery) setSearchQuery(q);
+    if (q !== null) {
+      if (q !== searchQuery) setSearchQuery(q);
+    } else if (searchQuery) {
+      setSearchQuery('');
+    }
 
     const categories = searchParams.get('categories');
     if (categories) {
       if (categories !== filters.category.join(',')) setFilter('category', categories.split(','));
+    } else if (filters.category.length > 0) {
+      setFilter('category', []);
     }
 
-  }, [searchParams, setViewMode, setSearchQuery, setFilter, viewMode, searchQuery, filters.category]); // Sync when URL changes externally
+  }, [searchParams, setViewMode, setSearchQuery, setFilter, viewMode, searchQuery, filters.category]);
 
   // Write to URL on state change
   useEffect(() => {
