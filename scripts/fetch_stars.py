@@ -79,16 +79,20 @@ def build_headers(token: str) -> dict:
     }
 
 
-def fetch_page(session: requests.Session, url: str) -> tuple[list, str | None]:
-    """Fetch one page of starred repos; return (items, next_url)."""
-    resp = session.get(url, timeout=30)
-
+def _get_with_rate_limit_retry(session: requests.Session, url: str, timeout: int) -> requests.Response:
+    resp = session.get(url, timeout=timeout)
     if resp.status_code == 403 and "rate limit" in resp.text.lower():
         reset_ts = int(resp.headers.get("X-RateLimit-Reset", time.time() + 60))
         wait = max(reset_ts - int(time.time()), 1) + 2
         print(f"  Rate limit hit. Waiting {wait}s …", file=sys.stderr)
         time.sleep(wait)
-        resp = session.get(url, timeout=30)
+        resp = session.get(url, timeout=timeout)
+    return resp
+
+
+def fetch_page(session: requests.Session, url: str) -> tuple[list, str | None]:
+    """Fetch one page of starred repos; return (items, next_url)."""
+    resp = _get_with_rate_limit_retry(session, url, timeout=30)
 
     if not resp.ok:
         print(f"ERROR: HTTP {resp.status_code} fetching {url}", file=sys.stderr)
@@ -107,25 +111,18 @@ def fetch_page(session: requests.Session, url: str) -> tuple[list, str | None]:
 
 
 def _safe_api_get(session: requests.Session, url: str) -> requests.Response | None:
-    resp = session.get(url, timeout=15)
-    if resp.status_code == 403 and "rate limit" in resp.text.lower():
-        reset_ts = int(resp.headers.get("X-RateLimit-Reset", time.time() + 60))
-        wait = max(reset_ts - int(time.time()), 1) + 2
-        print(f"  Rate limit hit. Waiting {wait}s …", file=sys.stderr)
-        time.sleep(wait)
-        resp = session.get(url, timeout=15)
-    return resp
+    return _get_with_rate_limit_retry(session, url, timeout=15)
 
 
 def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
     """Fetch additional REST metadata (T2-T7) for a repo."""
     full_name = repo["full_name"]
     print(f"    Fetching extended metadata for {full_name} ...")
-    
+
     r_lic = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/license")
     if r_lic and r_lic.ok:
         repo["license_spdx"] = r_lic.json().get("license", {}).get("spdx_id")
-        
+
     r_rel = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/releases/latest")
     if r_rel and r_rel.ok:
         data = r_rel.json()
@@ -134,7 +131,7 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
             "date": data.get("published_at"),
             "url": data.get("html_url")
         }
-        
+
     r_rm = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/readme")
     if r_rm and r_rm.ok:
         content_b64 = r_rm.json().get("content", "")
@@ -153,7 +150,7 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
             repo["contributor_count"] = int(m.group(1))
         else:
             repo["contributor_count"] = len(r_cont.json())
-            
+
     url_ca = f"{GITHUB_API}/repos/{full_name}/stats/commit_activity"
     for _ in range(3):
         r_ca = _safe_api_get(session, url_ca)
@@ -165,7 +162,7 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
             if isinstance(data, list):
                 repo["commit_activity_52w"] = [w.get("total", 0) for w in data][-52:]
         break
-        
+
     r_ch = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/community/profile")
     if r_ch and r_ch.ok:
         data = r_ch.json()
@@ -179,7 +176,7 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
             "has_license": bool(files.get("license")),
             "has_readme": bool(files.get("readme")),
         }
-        
+
     repo["cached_pushed_at"] = repo.get("pushed_at") or repo.get("updated_at")
     return repo
 
@@ -260,10 +257,25 @@ def load_config() -> dict:
         return json.load(f)
 
 
-PRESERVED_FIELDS = (
-    "llm_category", "llm_summary", "llm_watch_note", "llm_model", "llm_status", "llm_enriched_at", "llm_content_hash",
-    "license_spdx", "latest_release", "readme_excerpt", "contributor_count", "commit_activity_52w", "community_health", "cached_pushed_at"
+LLM_FIELDS = (
+    "llm_category",
+    "llm_summary",
+    "llm_watch_note",
+    "llm_model",
+    "llm_status",
+    "llm_enriched_at",
+    "llm_content_hash",
 )
+EXTENDED_METADATA_FIELDS = (
+    "license_spdx",
+    "latest_release",
+    "readme_excerpt",
+    "contributor_count",
+    "commit_activity_52w",
+    "community_health",
+    "cached_pushed_at",
+)
+EXISTING_DATA_FIELDS = LLM_FIELDS + EXTENDED_METADATA_FIELDS
 
 
 def load_existing_data() -> dict[str, dict]:
@@ -273,7 +285,7 @@ def load_existing_data() -> dict[str, dict]:
     with open(STARS_PATH, encoding="utf-8") as f:
         existing = json.load(f)
     return {
-        r["full_name"]: {k: r.get(k) for k in PRESERVED_FIELDS}
+        r["full_name"]: {k: r.get(k) for k in EXISTING_DATA_FIELDS}
         for r in existing
     }
 
@@ -303,30 +315,24 @@ def main() -> None:
         for item in items:
             repo = normalize_repo(item)
             repo = apply_heuristics(repo, cfg)
-            
+
             current_push = repo.get("pushed_at") or repo.get("updated_at")
             if repo["full_name"] in existing_data:
                 stored = existing_data[repo["full_name"]]
-                
+
                 # 1. Extended metadata caching strategy
                 cached_push = stored.get("cached_pushed_at")
                 if cached_push == current_push and current_push is not None:
-                    repo.update({k: stored.get(k) for k in (
-                        "license_spdx", "latest_release", "readme_excerpt", 
-                        "contributor_count", "commit_activity_52w", "community_health", "cached_pushed_at"
-                    )})
+                    repo.update({k: stored.get(k) for k in EXTENDED_METADATA_FIELDS})
                 else:
                     repo = enrich_extended_metadata(session, repo)
-                    
+
                 # 2. LLM caching strategy
                 if stored.get("llm_status") == "ok":
                     fresh = content_hash(repo)
                     preserve, reason = _should_preserve_llm(fresh, stored, max_age_days=30)
                     if preserve:
-                        repo.update({k: stored.get(k) for k in (
-                            "llm_category", "llm_summary", "llm_watch_note", "llm_model", 
-                            "llm_status", "llm_enriched_at", "llm_content_hash"
-                        )})
+                        repo.update({k: stored.get(k) for k in LLM_FIELDS})
                     else:
                         _reprocess_reasons[reason] = _reprocess_reasons.get(reason, 0) + 1
                 else:
@@ -334,7 +340,7 @@ def main() -> None:
             else:
                 repo = enrich_extended_metadata(session, repo)
                 _reprocess_reasons["new_repo"] = _reprocess_reasons.get("new_repo", 0) + 1
-                
+
             # Always write the current content hash (reflects today's GitHub API data)
             repo["llm_content_hash"] = content_hash(repo)
             all_repos.append(repo)

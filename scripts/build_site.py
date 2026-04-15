@@ -25,7 +25,7 @@ def main() -> None:
         raise SystemExit(1)
 
     DST.parent.mkdir(parents=True, exist_ok=True)
-    
+
     with open(SRC, encoding="utf-8") as f:
         repos = json.load(f)
 
