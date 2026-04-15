@@ -190,6 +190,23 @@ class TestExtendedMetadataFetch:
         assert result["community_health"] is None
         assert result["cached_pushed_at"] == "2026-04-01T00:00:00Z"
 
+    def test_enrich_extended_metadata_keeps_cache_timestamp_on_transient_error(self):
+        session = MagicMock()
+        session.get.side_effect = [
+            _mock_response(status_code=500),
+            _mock_response(status_code=404),
+            _mock_response(status_code=404),
+            _mock_response(payload=[]),
+            _mock_response(status_code=404),
+            _mock_response(status_code=404),
+        ]
+
+        repo = normalize_repo(_make_api_star_item(pushed_at="2026-04-02T00:00:00Z"))
+        repo["cached_pushed_at"] = "2026-04-01T00:00:00Z"
+        result = enrich_extended_metadata(session, repo)
+
+        assert result["cached_pushed_at"] == "2026-04-01T00:00:00Z"
+
     def test_enrich_extended_metadata_retries_commit_activity_202(self, monkeypatch):
         monkeypatch.setattr(fetch_stars.time, "sleep", lambda _: None)
         session = MagicMock()

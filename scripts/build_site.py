@@ -45,7 +45,10 @@ def main() -> None:
     with open(DST, "w", encoding="utf-8") as f:
         json.dump(public_repos, f, indent=2, ensure_ascii=False)
 
-    print(f"Copied {SRC} → {DST} ({len(public_repos)} repos, {excluded} excluded)")
+    print(
+        f"Wrote filtered dataset {SRC} → {DST} "
+        f"({len(public_repos)} public repos, {excluded} non-public repos excluded)"
+    )
 
 
 if __name__ == "__main__":

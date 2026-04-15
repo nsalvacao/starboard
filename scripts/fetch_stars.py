@@ -126,10 +126,13 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
     """Fetch additional REST metadata (T2-T7) for a repo."""
     full_name = repo["full_name"]
     print(f"    Fetching extended metadata for {full_name} ...")
+    had_transient_error = False
 
     r_lic = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/license")
     if r_lic.ok:
         repo["license_spdx"] = r_lic.json().get("license", {}).get("spdx_id")
+    elif r_lic.status_code != 404:
+        had_transient_error = True
 
     r_rel = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/releases/latest")
     if r_rel.ok:
@@ -139,6 +142,8 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
             "date": data.get("published_at"),
             "url": data.get("html_url")
         }
+    elif r_rel.status_code != 404:
+        had_transient_error = True
 
     r_rm = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/readme")
     if r_rm.ok:
@@ -149,7 +154,10 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
                 decoded = decoded_bytes.decode("utf-8")
                 repo["readme_excerpt"] = decoded[:500]
             except (binascii.Error, UnicodeDecodeError) as exc:
+                had_transient_error = True
                 print(f"    WARNING: failed to decode README for {full_name}: {exc}", file=sys.stderr)
+    elif r_rm.status_code != 404:
+        had_transient_error = True
 
     r_cont = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/contributors?per_page=1&anon=true")
     if r_cont.ok:
@@ -159,6 +167,8 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
             repo["contributor_count"] = int(m.group(1))
         else:
             repo["contributor_count"] = len(r_cont.json())
+    elif r_cont.status_code != 404:
+        had_transient_error = True
 
     url_ca = f"{GITHUB_API}/repos/{full_name}/stats/commit_activity"
     for _ in range(3):
@@ -170,6 +180,8 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
             data = r_ca.json()
             if isinstance(data, list):
                 repo["commit_activity_52w"] = [w.get("total", 0) for w in data][-52:]
+        elif r_ca.status_code != 404:
+            had_transient_error = True
         break
 
     r_ch = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/community/profile")
@@ -185,8 +197,11 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
             "has_license": bool(files.get("license")),
             "has_readme": bool(files.get("readme")),
         }
+    elif r_ch.status_code != 404:
+        had_transient_error = True
 
-    repo["cached_pushed_at"] = repo.get("pushed_at") or repo.get("updated_at")
+    if not had_transient_error:
+        repo["cached_pushed_at"] = repo.get("pushed_at") or repo.get("updated_at")
     return repo
 
 
