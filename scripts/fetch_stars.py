@@ -6,6 +6,7 @@ Includes public, private, and internal repos accessible to the token.
 """
 
 import base64
+import binascii
 import hashlib
 import json
 import os
@@ -110,7 +111,7 @@ def fetch_page(session: requests.Session, url: str) -> tuple[list, str | None]:
     return items, next_url
 
 
-def _safe_api_get(session: requests.Session, url: str) -> requests.Response | None:
+def _safe_api_get(session: requests.Session, url: str) -> requests.Response:
     return _get_with_rate_limit_retry(session, url, timeout=15)
 
 
@@ -120,11 +121,11 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
     print(f"    Fetching extended metadata for {full_name} ...")
 
     r_lic = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/license")
-    if r_lic and r_lic.ok:
+    if r_lic.ok:
         repo["license_spdx"] = r_lic.json().get("license", {}).get("spdx_id")
 
     r_rel = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/releases/latest")
-    if r_rel and r_rel.ok:
+    if r_rel.ok:
         data = r_rel.json()
         repo["latest_release"] = {
             "tag": data.get("tag_name"),
@@ -133,17 +134,18 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
         }
 
     r_rm = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/readme")
-    if r_rm and r_rm.ok:
+    if r_rm.ok:
         content_b64 = r_rm.json().get("content", "")
         if content_b64:
             try:
-                decoded = base64.b64decode(content_b64).decode("utf-8", errors="ignore")
+                decoded_bytes = base64.b64decode("".join(content_b64.split()))
+                decoded = decoded_bytes.decode("utf-8")
                 repo["readme_excerpt"] = decoded[:500]
-            except Exception:
-                pass
+            except (binascii.Error, UnicodeDecodeError) as exc:
+                print(f"    WARNING: failed to decode README for {full_name}: {exc}", file=sys.stderr)
 
     r_cont = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/contributors?per_page=1&anon=true")
-    if r_cont and r_cont.ok:
+    if r_cont.ok:
         link = r_cont.headers.get("Link", "")
         m = re.search(r'[?&]page=(\d+)[^>]*>; rel="last"', link)
         if m:
@@ -154,17 +156,17 @@ def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
     url_ca = f"{GITHUB_API}/repos/{full_name}/stats/commit_activity"
     for _ in range(3):
         r_ca = _safe_api_get(session, url_ca)
-        if r_ca and r_ca.status_code == 202:
+        if r_ca.status_code == 202:
             time.sleep(2)
             continue
-        if r_ca and r_ca.ok:
+        if r_ca.ok:
             data = r_ca.json()
             if isinstance(data, list):
                 repo["commit_activity_52w"] = [w.get("total", 0) for w in data][-52:]
         break
 
     r_ch = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/community/profile")
-    if r_ch and r_ch.ok:
+    if r_ch.ok:
         data = r_ch.json()
         files = data.get("files", {}) or {}
         repo["community_health"] = {
@@ -361,14 +363,24 @@ def main() -> None:
 
     print(f"\nDone. {len(all_repos)} repos written to {STARS_PATH}")
 
-    # Warn about private/internal repos that will be published
-    non_public = [r for r in all_repos if r["full_name"].startswith("private/") or "private" in r["html_url"]]
-    # We cannot distinguish visibility from the star API without extra calls,
-    # so we emit a general reminder instead.
-    print(
-        "\nNOTE: data/stars.json may include private or internal repositories "
-        "accessible to your token. Review before publishing to GitHub Pages."
-    )
+    private_count = sum(1 for r in all_repos if r.get("visibility") == "private")
+    internal_count = sum(1 for r in all_repos if r.get("visibility") == "internal")
+    non_public_count = private_count + internal_count
+    if non_public_count:
+        breakdown = ", ".join(
+            part
+            for part in (
+                f"{private_count} private" if private_count else "",
+                f"{internal_count} internal" if internal_count else "",
+            )
+            if part
+        )
+        print(
+            f"\nNOTE: data/stars.json includes {non_public_count} non-public repositories "
+            f"({breakdown}) accessible to your token. Review before publishing to GitHub Pages."
+        )
+    else:
+        print("\nNOTE: data/stars.json includes only public repositories.")
 
 
 if __name__ == "__main__":

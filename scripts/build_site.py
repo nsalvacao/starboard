@@ -6,7 +6,6 @@ This script ensures the published copy is in sync with the source of truth.
 """
 
 import json
-import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
@@ -15,7 +14,7 @@ DST = ROOT / "site" / "public" / "data" / "stars.json"
 
 
 def filter_public_repos(repos: list[dict]) -> list[dict]:
-    """Filter out any repository that is not explicitly public."""
+    """Filter out non-public repos, preserving old records with no visibility field."""
     return [r for r in repos if r.get("visibility", "public") == "public"]
 
 

@@ -19,7 +19,7 @@ export interface Repository {
   stale: boolean;
   watch_candidate: boolean;
   cleanup_candidate: boolean;
-  visibility: 'public' | 'private' | 'internal' | string;
+  visibility: 'public' | 'private' | 'internal';
   license_spdx: string | null;
   latest_release: { tag: string; date: string; url: string } | null;
   readme_excerpt: string | null;
