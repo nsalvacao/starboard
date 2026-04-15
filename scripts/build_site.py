@@ -1,8 +1,9 @@
 """
-build_site.py – Copy data/stars.json to site/public/data/stars.json for static publishing.
+build_site.py – Write a privacy-filtered stars dataset for static publishing.
 
 The dashboard reads data at runtime from site/public/data/stars.json.
-This script ensures the published copy is in sync with the source of truth.
+This script keeps the published copy in sync with the source of truth while
+excluding non-public repositories.
 """
 
 import json

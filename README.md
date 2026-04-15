@@ -7,8 +7,9 @@ A self-hosted admin console for your GitHub starred repositories — auto-enrich
 ## What it does
 
 - **Fetches** all starred repos via the GitHub API
-- **Enriches** each repo with an LLM-generated category, summary, and watch note using **GitHub Models** (free tier)
-- **Smart re-enrichment** — skips repos whose metadata hasn't changed and were enriched within 30 days
+- **Enriches** each repo with GitHub REST metadata plus an LLM-generated category, summary, and watch note using **GitHub Models** (free tier)
+- **Smart re-enrichment** — skips LLM work whose source metadata hasn't changed and skips REST metadata refreshes when the repo has not moved since the last successful extended fetch
+- **Privacy-filtered publishing** — keeps the canonical local dataset in `data/stars.json` and publishes only public repos to the static site
 - **Publishes** an admin console dashboard to **GitHub Pages**, refreshed daily via **GitHub Actions**
 
 ## Dashboard
@@ -77,11 +78,13 @@ cp .env.example .env
 # Run the pipeline
 python scripts/fetch_stars.py       # fetch stars + compute heuristics
 python scripts/enrich_stars.py      # LLM enrichment (requires GH_MODELS_PAT)
-python scripts/build_site.py        # sync data to site/
+python scripts/build_site.py        # write privacy-filtered data to site/
 
 # View the dashboard
-python -m http.server 8080 --directory site
-# → open http://localhost:8080
+cd site
+npm install
+npm run dev
+# → open http://localhost:5173/
 ```
 
 ---
@@ -138,13 +141,15 @@ Repos that fail either condition are queued for re-enrichment. The run prints a 
 Re-enrichment queued: 3 repos (1 content_changed, 2 aged_31d)
 ```
 
+`fetch_stars.py` also caches extended GitHub REST metadata separately from the LLM fields. License, latest release, README excerpt, contributor count, 52-week commit activity and community health data are reused while `cached_pushed_at` matches the repo's current `pushed_at`/`updated_at`. Transient endpoint failures and README decode errors do not advance `cached_pushed_at`, so a later run can retry instead of freezing incomplete metadata.
+
 ---
 
 ## Privacy
 
-> **If your `GH_STARS_PAT` has `repo` scope**, any private or internal repositories you have starred will be included in `data/stars.json` and published to GitHub Pages.
+> **If your `GH_STARS_PAT` has `repo` scope**, private or internal repositories you have starred can be included in the canonical `data/stars.json`.
 >
-> Review `data/stars.json` before enabling Pages, or restrict the token to `public_repo` only.
+> `scripts/build_site.py` refuses to publish entries without `visibility` metadata and writes only repositories with `visibility == "public"` to `site/public/data/stars.json`. Still review `data/stars.json` before committing or sharing it, or restrict the token to `public_repo` only.
 
 ---
 
@@ -154,19 +159,19 @@ Re-enrichment queued: 3 repos (1 content_changed, 2 aged_31d)
 config.json                   heuristics + model chain
 prompts/enrich.txt            LLM prompt template
 scripts/
-  fetch_stars.py              fetch stars, compute heuristics + content hash
+  fetch_stars.py              fetch stars, REST metadata, heuristics + content hash
   enrich_stars.py             LLM enrichment via GitHub Models
-  build_site.py               copy data/ → site/data/
+  build_site.py               write privacy-filtered data to site/public/data/
   validate_models.py          smoke-test model chain availability
 data/
-  stars.json                  canonical source of truth (updated by CI)
+  stars.json                  canonical source of truth, may include non-public repos
 site/
-  index.html                  dashboard shell
-  app.js                      dashboard logic (vanilla JS, no build step)
-  styles.css                  dark theme (GitHub palette)
-  data/stars.json             published copy (served by GitHub Pages)
+  src/                        React + TypeScript dashboard source
+  public/data/stars.json      privacy-filtered runtime data for the SPA
+  dist/                       production build output
 tests/
   test_fetch_stars.py         unit tests — content hash + re-enrichment logic
   test_enrich_stars.py        unit tests — LLM payload + retry classification
+  test_phase1_enrichment.py   unit tests — Phase 1 REST metadata + privacy filter
 .github/workflows/refresh.yml daily refresh + Pages deploy
 ```
