@@ -5,9 +5,11 @@ Writes data/stars.json as the canonical source of truth.
 Includes public, private, and internal repos accessible to the token.
 """
 
+import base64
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime, timezone
@@ -104,6 +106,84 @@ def fetch_page(session: requests.Session, url: str) -> tuple[list, str | None]:
     return items, next_url
 
 
+def _safe_api_get(session: requests.Session, url: str) -> requests.Response | None:
+    resp = session.get(url, timeout=15)
+    if resp.status_code == 403 and "rate limit" in resp.text.lower():
+        reset_ts = int(resp.headers.get("X-RateLimit-Reset", time.time() + 60))
+        wait = max(reset_ts - int(time.time()), 1) + 2
+        print(f"  Rate limit hit. Waiting {wait}s …", file=sys.stderr)
+        time.sleep(wait)
+        resp = session.get(url, timeout=15)
+    return resp
+
+
+def enrich_extended_metadata(session: requests.Session, repo: dict) -> dict:
+    """Fetch additional REST metadata (T2-T7) for a repo."""
+    full_name = repo["full_name"]
+    print(f"    Fetching extended metadata for {full_name} ...")
+    
+    r_lic = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/license")
+    if r_lic and r_lic.ok:
+        repo["license_spdx"] = r_lic.json().get("license", {}).get("spdx_id")
+        
+    r_rel = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/releases/latest")
+    if r_rel and r_rel.ok:
+        data = r_rel.json()
+        repo["latest_release"] = {
+            "tag": data.get("tag_name"),
+            "date": data.get("published_at"),
+            "url": data.get("html_url")
+        }
+        
+    r_rm = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/readme")
+    if r_rm and r_rm.ok:
+        content_b64 = r_rm.json().get("content", "")
+        if content_b64:
+            try:
+                decoded = base64.b64decode(content_b64).decode("utf-8", errors="ignore")
+                repo["readme_excerpt"] = decoded[:500]
+            except Exception:
+                pass
+
+    r_cont = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/contributors?per_page=1&anon=true")
+    if r_cont and r_cont.ok:
+        link = r_cont.headers.get("Link", "")
+        m = re.search(r'[?&]page=(\d+)[^>]*>; rel="last"', link)
+        if m:
+            repo["contributor_count"] = int(m.group(1))
+        else:
+            repo["contributor_count"] = len(r_cont.json())
+            
+    url_ca = f"{GITHUB_API}/repos/{full_name}/stats/commit_activity"
+    for _ in range(3):
+        r_ca = _safe_api_get(session, url_ca)
+        if r_ca and r_ca.status_code == 202:
+            time.sleep(2)
+            continue
+        if r_ca and r_ca.ok:
+            data = r_ca.json()
+            if isinstance(data, list):
+                repo["commit_activity_52w"] = [w.get("total", 0) for w in data][-52:]
+        break
+        
+    r_ch = _safe_api_get(session, f"{GITHUB_API}/repos/{full_name}/community/profile")
+    if r_ch and r_ch.ok:
+        data = r_ch.json()
+        files = data.get("files", {}) or {}
+        repo["community_health"] = {
+            "score": data.get("health_percentage", 0),
+            "has_code_of_conduct": bool(files.get("code_of_conduct")),
+            "has_contributing": bool(files.get("contributing")),
+            "has_issue_template": bool(files.get("issue_template")),
+            "has_pull_request_template": bool(files.get("pull_request_template")),
+            "has_license": bool(files.get("license")),
+            "has_readme": bool(files.get("readme")),
+        }
+        
+    repo["cached_pushed_at"] = repo.get("pushed_at") or repo.get("updated_at")
+    return repo
+
+
 def normalize_repo(item: dict) -> dict:
     """Extract only the fields we actually use."""
     repo = item.get("repo", item)  # star+json wraps repo under "repo"
@@ -128,10 +208,18 @@ def normalize_repo(item: dict) -> dict:
         "archived": repo.get("archived", False),
         "fork": repo.get("fork", False),
         "default_branch": repo.get("default_branch", "main"),
+        "visibility": repo.get("visibility", "public"),
         "pushed_at": pushed_at,
         "updated_at": repo.get("updated_at"),
         "starred_at": starred_at,
         "days_since_push": days_since_push,
+        "license_spdx": None,
+        "latest_release": None,
+        "readme_excerpt": None,
+        "contributor_count": None,
+        "commit_activity_52w": None,
+        "community_health": None,
+        "cached_pushed_at": None,
         # LLM fields – populated by enrich_stars.py
         "llm_category": None,
         "llm_summary": None,
@@ -172,19 +260,21 @@ def load_config() -> dict:
         return json.load(f)
 
 
-LLM_FIELDS = ("llm_category", "llm_summary", "llm_watch_note", "llm_model", "llm_status", "llm_enriched_at", "llm_content_hash")
+PRESERVED_FIELDS = (
+    "llm_category", "llm_summary", "llm_watch_note", "llm_model", "llm_status", "llm_enriched_at", "llm_content_hash",
+    "license_spdx", "latest_release", "readme_excerpt", "contributor_count", "commit_activity_52w", "community_health", "cached_pushed_at"
+)
 
 
-def load_existing_llm_data() -> dict[str, dict]:
-    """Load LLM enrichment fields from the existing stars.json, keyed by full_name."""
+def load_existing_data() -> dict[str, dict]:
+    """Load preserved fields from the existing stars.json, keyed by full_name."""
     if not STARS_PATH.exists():
         return {}
     with open(STARS_PATH, encoding="utf-8") as f:
         existing = json.load(f)
     return {
-        r["full_name"]: {k: r.get(k) for k in LLM_FIELDS}
+        r["full_name"]: {k: r.get(k) for k in PRESERVED_FIELDS}
         for r in existing
-        if r.get("llm_status") == "ok"
     }
 
 
@@ -192,10 +282,9 @@ def main() -> None:
     token = get_token()
     cfg = load_config()
 
-    # Preserve existing LLM enrichment so enrich_stars.py only processes new/unenriched repos
-    existing_llm = load_existing_llm_data()
-    if existing_llm:
-        print(f"Loaded existing LLM data for {len(existing_llm)} repos (will be preserved).")
+    existing_data = load_existing_data()
+    if existing_data:
+        print(f"Loaded existing data for {len(existing_data)} repos (will be preserved if applicable).")
 
     session = requests.Session()
     session.headers.update(build_headers(token))
@@ -214,15 +303,38 @@ def main() -> None:
         for item in items:
             repo = normalize_repo(item)
             repo = apply_heuristics(repo, cfg)
-            # Smart re-enrichment: preserve LLM data only if content unchanged AND < 30 days old
-            if repo["full_name"] in existing_llm:
-                stored = existing_llm[repo["full_name"]]
-                fresh = content_hash(repo)
-                preserve, reason = _should_preserve_llm(fresh, stored, max_age_days=30)
-                if preserve:
-                    repo.update(stored)
+            
+            current_push = repo.get("pushed_at") or repo.get("updated_at")
+            if repo["full_name"] in existing_data:
+                stored = existing_data[repo["full_name"]]
+                
+                # 1. Extended metadata caching strategy
+                cached_push = stored.get("cached_pushed_at")
+                if cached_push == current_push and current_push is not None:
+                    repo.update({k: stored.get(k) for k in (
+                        "license_spdx", "latest_release", "readme_excerpt", 
+                        "contributor_count", "commit_activity_52w", "community_health", "cached_pushed_at"
+                    )})
                 else:
-                    _reprocess_reasons[reason] = _reprocess_reasons.get(reason, 0) + 1
+                    repo = enrich_extended_metadata(session, repo)
+                    
+                # 2. LLM caching strategy
+                if stored.get("llm_status") == "ok":
+                    fresh = content_hash(repo)
+                    preserve, reason = _should_preserve_llm(fresh, stored, max_age_days=30)
+                    if preserve:
+                        repo.update({k: stored.get(k) for k in (
+                            "llm_category", "llm_summary", "llm_watch_note", "llm_model", 
+                            "llm_status", "llm_enriched_at", "llm_content_hash"
+                        )})
+                    else:
+                        _reprocess_reasons[reason] = _reprocess_reasons.get(reason, 0) + 1
+                else:
+                    _reprocess_reasons["failed_previous"] = _reprocess_reasons.get("failed_previous", 0) + 1
+            else:
+                repo = enrich_extended_metadata(session, repo)
+                _reprocess_reasons["new_repo"] = _reprocess_reasons.get("new_repo", 0) + 1
+                
             # Always write the current content hash (reflects today's GitHub API data)
             repo["llm_content_hash"] = content_hash(repo)
             all_repos.append(repo)

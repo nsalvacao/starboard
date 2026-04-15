@@ -1,5 +1,7 @@
 # Starboard
 
+[![Data Enrichment](https://github.com/nsalvacao/starboard/actions/workflows/refresh.yml/badge.svg)](https://github.com/nsalvacao/starboard/actions/workflows/refresh.yml)
+
 A self-hosted admin console for your GitHub starred repositories — auto-enriched by LLM and published to GitHub Pages.
 
 ## What it does

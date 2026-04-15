@@ -14,18 +14,28 @@ SRC = ROOT / "data" / "stars.json"
 DST = ROOT / "site" / "public" / "data" / "stars.json"
 
 
+def filter_public_repos(repos: list[dict]) -> list[dict]:
+    """Filter out any repository that is not explicitly public."""
+    return [r for r in repos if r.get("visibility", "public") == "public"]
+
+
 def main() -> None:
     if not SRC.exists():
         print(f"ERROR: {SRC} does not exist. Run fetch_stars.py first.")
         raise SystemExit(1)
 
     DST.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(SRC, DST)
-
-    with open(DST, encoding="utf-8") as f:
+    
+    with open(SRC, encoding="utf-8") as f:
         repos = json.load(f)
 
-    print(f"Copied {SRC} → {DST} ({len(repos)} repos)")
+    public_repos = filter_public_repos(repos)
+    excluded = len(repos) - len(public_repos)
+
+    with open(DST, "w", encoding="utf-8") as f:
+        json.dump(public_repos, f, indent=2, ensure_ascii=False)
+
+    print(f"Copied {SRC} → {DST} ({len(public_repos)} repos, {excluded} excluded)")
 
 
 if __name__ == "__main__":
