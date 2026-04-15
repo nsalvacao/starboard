@@ -281,11 +281,15 @@ class TestPrivacyFilter:
         result = filter_public_repos(repos)
         assert len(result) == 0
 
-    def test_filter_handles_missing_visibility_as_public(self):
+    def test_filter_rejects_repos_with_missing_visibility(self):
         from build_site import filter_public_repos
 
         repos = [
             {"full_name": "a/old", "description": "no visibility field"},
         ]
-        result = filter_public_repos(repos)
-        assert len(result) == 1
+        try:
+            filter_public_repos(repos)
+        except SystemExit as exc:
+            assert exc.code == 1
+        else:
+            raise AssertionError("missing visibility should stop publication")

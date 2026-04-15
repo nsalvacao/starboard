@@ -6,6 +6,7 @@ This script ensures the published copy is in sync with the source of truth.
 """
 
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
@@ -14,8 +15,18 @@ DST = ROOT / "site" / "public" / "data" / "stars.json"
 
 
 def filter_public_repos(repos: list[dict]) -> list[dict]:
-    """Filter out non-public repos, preserving old records with no visibility field."""
-    return [r for r in repos if r.get("visibility", "public") == "public"]
+    """Filter out non-public repos and fail when visibility metadata is missing."""
+    missing_visibility = [r.get("full_name", "<unknown>") for r in repos if "visibility" not in r]
+    if missing_visibility:
+        sample = ", ".join(missing_visibility[:5])
+        more = "" if len(missing_visibility) <= 5 else f" (and {len(missing_visibility) - 5} more)"
+        print(
+            "ERROR: Refusing to publish stars.json because some repository entries are missing "
+            f"'visibility' metadata: {sample}{more}. Re-run fetch_stars.py before publishing.",
+            file=sys.stderr,
+        )
+        raise SystemExit(1)
+    return [r for r in repos if r.get("visibility") == "public"]
 
 
 def main() -> None:

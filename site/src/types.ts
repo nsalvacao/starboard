@@ -19,13 +19,13 @@ export interface Repository {
   stale: boolean;
   watch_candidate: boolean;
   cleanup_candidate: boolean;
-  visibility: 'public' | 'private' | 'internal';
-  license_spdx: string | null;
-  latest_release: { tag: string; date: string; url: string } | null;
-  readme_excerpt: string | null;
-  contributor_count: number | null;
-  commit_activity_52w: number[] | null;
-  community_health: {
+  visibility?: 'public' | 'private' | 'internal';
+  license_spdx?: string | null;
+  latest_release?: { tag: string; date: string; url: string } | null;
+  readme_excerpt?: string | null;
+  contributor_count?: number | null;
+  commit_activity_52w?: number[] | null;
+  community_health?: {
     score: number;
     has_code_of_conduct: boolean;
     has_contributing: boolean;
@@ -34,7 +34,7 @@ export interface Repository {
     has_license: boolean;
     has_readme: boolean;
   } | null;
-  cached_pushed_at: string | null;
+  cached_pushed_at?: string | null;
   llm_category: string | null;
   llm_summary: string | null;
   llm_watch_note: string | null;

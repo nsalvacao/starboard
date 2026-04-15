@@ -75,19 +75,26 @@ def get_token() -> str:
 def build_headers(token: str) -> dict:
     return {
         "Authorization": f"Bearer {token}",
-        "Accept": "application/vnd.github.star+json",  # includes starred_at
+        "Accept": "application/vnd.github+json",
         "X-GitHub-Api-Version": "2022-11-28",
     }
 
 
+def _accept_header_for_url(url: str) -> str:
+    if url.startswith(f"{GITHUB_API}/user/starred"):
+        return "application/vnd.github.star+json"
+    return "application/vnd.github+json"
+
+
 def _get_with_rate_limit_retry(session: requests.Session, url: str, timeout: int) -> requests.Response:
-    resp = session.get(url, timeout=timeout)
+    headers = {"Accept": _accept_header_for_url(url)}
+    resp = session.get(url, headers=headers, timeout=timeout)
     if resp.status_code == 403 and "rate limit" in resp.text.lower():
         reset_ts = int(resp.headers.get("X-RateLimit-Reset", time.time() + 60))
         wait = max(reset_ts - int(time.time()), 1) + 2
         print(f"  Rate limit hit. Waiting {wait}s …", file=sys.stderr)
         time.sleep(wait)
-        resp = session.get(url, timeout=timeout)
+        resp = session.get(url, headers=headers, timeout=timeout)
     return resp
 
 
@@ -327,6 +334,7 @@ def main() -> None:
                 if cached_push == current_push and current_push is not None:
                     repo.update({k: stored.get(k) for k in EXTENDED_METADATA_FIELDS})
                 else:
+                    repo.update({k: stored.get(k) for k in EXTENDED_METADATA_FIELDS})
                     repo = enrich_extended_metadata(session, repo)
 
                 # 2. LLM caching strategy
