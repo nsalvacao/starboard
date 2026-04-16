@@ -11,13 +11,14 @@ A self-hosted admin console for your GitHub starred repositories — auto-enrich
 - **Smart re-enrichment** — skips LLM work whose source metadata hasn't changed and skips REST metadata refreshes when the repo has not moved since the last successful extended fetch
 - **Privacy-filtered publishing** — keeps the canonical local dataset in `data/stars.json` and publishes only public repos to the static site
 - **Daily public history snapshots** — records `data/history.json` for analytics and publishes the public copy alongside the site
+- **Topic discovery engine** — generates `data/discoveries.json` from GitHub topic search plus curated synonym groups
 - **Publishes** an admin console dashboard to **GitHub Pages**, refreshed daily via **GitHub Actions**
 
 ## Dashboard
 
 A dense dashboard with sidebar navigation and workspace tools:
 
-- **Sidebar**: All / Watch / Explore / Cleanup / Not Enriched + dynamic LLM category counts
+- **Sidebar**: All / Watch / Discover / Cleanup / Not Enriched + dynamic LLM category counts
 - **Workspace strip**: visible-repo stats, topic cloud, and export actions
 - **Table**: multi-column sorting for repository, category, stars, and activity
 - **Filters**: category, language, status, stars range, and topics
@@ -125,6 +126,19 @@ Models are tried in order; on rate limit or error the next one is used:
 
 All models are available on the **GitHub Models free tier**.
 
+### Topic synonyms
+
+Discovery uses a curated map of topic groups to expand search coverage without an LLM:
+
+```json
+"topic_synonyms": {
+  "claude-code": ["gemini-cli", "copilot-cli", "codex-cli", "..."],
+  "mcp": ["mcp-server", "mcp-tools", "..."]
+}
+```
+
+Keep the list small, explicit and function-oriented so the suggestions stay useful.
+
 ### LLM prompt
 
 Edit `prompts/enrich.txt` — it is versioned and applied at enrichment time.
@@ -148,6 +162,8 @@ Re-enrichment queued: 3 repos (1 content_changed, 2 aged_31d)
 
 `build_history.py` turns the public subset of `data/stars.json` into a daily snapshot file keyed by UTC date. The canonical `data/history.json` and the public `site/public/data/history.json` are both updated in place, so reruns on the same day stay idempotent instead of duplicating snapshots.
 
+`discover_similar.py` builds topic-based discovery suggestions from the canonical stars dataset. It expands selected topics through `config.json` synonyms, queries GitHub search for matching repositories, and writes both `data/discoveries.json` and the public `site/public/data/discoveries.json`.
+
 ---
 
 ## Privacy
@@ -167,20 +183,24 @@ scripts/
   fetch_stars.py              fetch stars, REST metadata, heuristics + content hash
   enrich_stars.py             LLM enrichment via GitHub Models
   build_history.py            daily public history snapshots for analytics
+  discover_similar.py         topic-based discovery suggestions with curated synonyms
   build_site.py               write privacy-filtered data to site/public/data/
   validate_models.py          smoke-test model chain availability
 data/
   stars.json                  canonical source of truth, may include non-public repos
   history.json                daily public history snapshots for analytics
+  discoveries.json            topic-based discovery suggestions
 site/
   src/                        React + TypeScript dashboard source
   public/data/stars.json      privacy-filtered runtime data for the SPA
   public/data/history.json     public daily history snapshots for analytics
+  public/data/discoveries.json public discovery suggestions
   dist/                       production build output
 tests/
   test_fetch_stars.py         unit tests — content hash + re-enrichment logic
   test_enrich_stars.py        unit tests — LLM payload + retry classification
   test_phase1_enrichment.py   unit tests — Phase 1 REST metadata + privacy filter
   test_build_history.py       unit tests — public history snapshot writer
+  test_discover_similar.py    unit tests — topic discovery pipeline + public filtering
 .github/workflows/refresh.yml daily refresh + Pages deploy
 ```

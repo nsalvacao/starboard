@@ -43,5 +43,43 @@
     "Game/Graphics",
     "Mobile",
     "Other"
-  ]
+  ],
+  "topic_synonyms": {
+    "claude-code": [
+      "claude-code-plugins",
+      "claude-code-skill",
+      "claude-code-system-prompts",
+      "claude-code-ui",
+      "codex-cli",
+      "copilot-cli",
+      "cursor",
+      "gemini-cli"
+    ],
+    "mcp": [
+      "mcp-client",
+      "mcp-management",
+      "mcp-manager",
+      "mcp-server",
+      "mcp-servers",
+      "mcp-tools",
+      "model-context-protocol"
+    ],
+    "ai-agents": [
+      "agent",
+      "agent-swarm",
+      "agentic",
+      "agentic-ai",
+      "agents",
+      "ai-agent",
+      "autonomous-agents",
+      "multi-agent"
+    ],
+    "skills": [
+      "agent-skills",
+      "awesome-claude-skills",
+      "claude-code-plugins",
+      "claude-code-skill",
+      "claude-code-system-prompts"
+    ]
+  }
 }
