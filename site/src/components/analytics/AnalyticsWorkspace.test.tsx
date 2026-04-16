@@ -115,4 +115,31 @@ describe('AnalyticsWorkspace', () => {
     await waitFor(() => expect(screen.getByText(/2 repos in scope/i)).toBeInTheDocument());
     expect(screen.getByText('org/b')).toBeInTheDocument();
   });
+
+  it('aborts the history request when the workspace unmounts', async () => {
+    let signal: AbortSignal | null = null;
+
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (_input: RequestInfo | URL, init?: RequestInit) => {
+        signal = init?.signal ?? null;
+        return new Promise<Response>(() => {});
+      })
+    );
+
+    const { unmount } = render(
+      <AnalyticsWorkspace repos={useStore.getState().repos} visibleRepos={useStore.getState().repos} />
+    );
+
+    await waitFor(() => expect(signal).not.toBeNull());
+
+    unmount();
+
+    const capturedSignal = signal as AbortSignal | null;
+    if (capturedSignal === null) {
+      throw new Error('Expected the fetch signal to be captured');
+    }
+
+    expect(capturedSignal.aborted).toBe(true);
+  });
 });

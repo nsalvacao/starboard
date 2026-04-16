@@ -57,14 +57,16 @@ export function AnalyticsWorkspace({ repos, visibleRepos }: AnalyticsWorkspacePr
   const [historyError, setHistoryError] = useState<string | null>(null);
 
   useEffect(() => {
-    let cancelled = false;
+    const controller = new AbortController();
 
     async function loadHistory() {
       setHistoryLoading(true);
       setHistoryError(null);
 
       try {
-        const response = await fetch(`${import.meta.env.BASE_URL}data/history.json`);
+        const response = await fetch(`${import.meta.env.BASE_URL}data/history.json`, {
+          signal: controller.signal,
+        });
         if (!response.ok) {
           throw new Error(`Failed to load history: ${response.status} ${response.statusText}`);
         }
@@ -74,16 +76,14 @@ export function AnalyticsWorkspace({ repos, visibleRepos }: AnalyticsWorkspacePr
           throw new Error('History payload was not an array');
         }
 
-        if (!cancelled) {
-          setHistory(normalizeHistorySnapshots(payload));
-        }
+        if (controller.signal.aborted) return;
+        setHistory(normalizeHistorySnapshots(payload));
       } catch (error) {
-        if (!cancelled) {
-          setHistory([]);
-          setHistoryError(error instanceof Error ? error.message : 'Failed to load history');
-        }
+        if (controller.signal.aborted) return;
+        setHistory([]);
+        setHistoryError(error instanceof Error ? error.message : 'Failed to load history');
       } finally {
-        if (!cancelled) {
+        if (!controller.signal.aborted) {
           setHistoryLoading(false);
         }
       }
@@ -92,7 +92,7 @@ export function AnalyticsWorkspace({ repos, visibleRepos }: AnalyticsWorkspacePr
     loadHistory();
 
     return () => {
-      cancelled = true;
+      controller.abort();
     };
   }, []);
 
@@ -110,6 +110,23 @@ export function AnalyticsWorkspace({ repos, visibleRepos }: AnalyticsWorkspacePr
     () => buildTrendingDeltas(history, scopeRepoNames, timeWindow),
     [history, scopeRepoNames, timeWindow]
   );
+  const positiveTrending = useMemo(
+    () => trending.filter((item) => item.star_delta > 0 || item.fork_delta > 0).slice(0, 5),
+    [trending]
+  );
+  const negativeTrending = useMemo(
+    () =>
+      [...trending]
+        .filter((item) => item.star_delta < 0 || item.fork_delta < 0)
+        .sort(
+          (a, b) =>
+            a.star_delta - b.star_delta ||
+            a.fork_delta - b.fork_delta ||
+            a.full_name.localeCompare(b.full_name)
+        )
+        .slice(0, 5),
+    [trending]
+  );
   const portfolioScore = useMemo(
     () => calculatePortfolioHealthScore(scopeRepos),
     [scopeRepos]
@@ -122,11 +139,6 @@ export function AnalyticsWorkspace({ repos, visibleRepos }: AnalyticsWorkspacePr
     () => bucketCounts(scopeRepos, (repo) => repo.language, 6),
     [scopeRepos]
   );
-  const positiveTrending = trending.filter((item) => item.star_delta > 0 || item.fork_delta > 0).slice(0, 5);
-  const negativeTrending = [...trending]
-    .filter((item) => item.star_delta < 0 || item.fork_delta < 0)
-    .sort((a, b) => a.star_delta - b.star_delta || a.fork_delta - b.fork_delta || a.full_name.localeCompare(b.full_name))
-    .slice(0, 5);
 
   const latestPoint = timeline[timeline.length - 1] || null;
   const latestSnapshot = historyWindow[historyWindow.length - 1] || null;
