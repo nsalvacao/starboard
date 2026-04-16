@@ -19,15 +19,18 @@ The dashboard reads `data/stars.json` at runtime from the Vite public directory 
 
 `scripts/build_history.py` writes the public daily analytics snapshots into `data/history.json` and `site/public/data/history.json`. Each snapshot is keyed by UTC date and is replaced in place when the pipeline runs again on the same day.
 
+`scripts/discover_similar.py` writes the public topic discovery suggestions into `data/discoveries.json` and `site/public/data/discoveries.json`. It expands curated topic synonym groups from `config.json` and uses GitHub topic search so the Discover view stays reproducible.
+
 ## Current Workspace
 
-- Sidebar views for All / Watch / Explore / Cleanup / Not Enriched
+- Sidebar views for All / Watch / Discover / Cleanup / Not Enriched
 - Multi-column sorting in the repository table
 - Stats strip, topic cloud, and export actions for the visible dataset
 - Repository detail modal opened from table rows
 - Topic filters synced to the URL
 - Compare panel for selected repositories
 - Analytics workspace with history timeline, category and language breakdowns, portfolio health, and trending panels
+- Discover workspace with pipeline-generated topic suggestions and curated synonym expansion
 - Daily public history snapshots prepared for the analytics phase
 
 ## Local Development
@@ -57,6 +60,7 @@ Deployment is handled automatically by the GitHub Actions workflow (`.github/wor
 1. Fetches starred repos via `fetch_stars.py`
 2. Enriches with LLM metadata via `enrich_stars.py`
 3. Writes daily public history snapshots via `build_history.py`
-4. Writes the privacy-filtered `stars.json` to `site/public/data/` via `build_site.py`
-5. Builds the site with `npm run build`
-6. Deploys `site/dist/` to GitHub Pages
+4. Generates topic discovery suggestions via `discover_similar.py`
+5. Writes the privacy-filtered `stars.json` to `site/public/data/` via `build_site.py`
+6. Builds the site with `npm run build`
+7. Deploys `site/dist/` to GitHub Pages

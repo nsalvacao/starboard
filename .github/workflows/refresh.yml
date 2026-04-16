@@ -45,6 +45,9 @@ jobs:
       - name: Build history snapshots
         run: python scripts/build_history.py
 
+      - name: Build discovery suggestions
+        run: python scripts/discover_similar.py
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -61,8 +64,8 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/stars.json data/history.json site/public/data/stars.json site/public/data/history.json
-          git diff --cached --quiet || git commit -m "chore: refresh stars data and history snapshots [skip ci]"
+          git add data/stars.json data/history.json data/discoveries.json site/public/data/stars.json site/public/data/history.json site/public/data/discoveries.json
+          git diff --cached --quiet || git commit -m "chore: refresh stars data, discovery suggestions, and history snapshots [skip ci]"
           git pull --rebase
           git push
 
