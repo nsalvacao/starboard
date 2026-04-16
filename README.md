@@ -10,6 +10,7 @@ A self-hosted admin console for your GitHub starred repositories — auto-enrich
 - **Enriches** each repo with GitHub REST metadata plus an LLM-generated category, summary, and watch note using **GitHub Models** (free tier)
 - **Smart re-enrichment** — skips LLM work whose source metadata hasn't changed and skips REST metadata refreshes when the repo has not moved since the last successful extended fetch
 - **Privacy-filtered publishing** — keeps the canonical local dataset in `data/stars.json` and publishes only public repos to the static site
+- **Daily public history snapshots** — records `data/history.json` for analytics and publishes the public copy alongside the site
 - **Publishes** an admin console dashboard to **GitHub Pages**, refreshed daily via **GitHub Actions**
 
 ## Dashboard
@@ -144,6 +145,8 @@ Re-enrichment queued: 3 repos (1 content_changed, 2 aged_31d)
 
 `fetch_stars.py` also caches extended GitHub REST metadata separately from the LLM fields. License, latest release, README excerpt, contributor count, 52-week commit activity and community health data are reused while `cached_pushed_at` matches the repo's current `pushed_at`/`updated_at`. Transient endpoint failures and README decode errors do not advance `cached_pushed_at`, so a later run can retry instead of freezing incomplete metadata.
 
+`build_history.py` turns the public subset of `data/stars.json` into a daily snapshot file keyed by UTC date. The canonical `data/history.json` and the public `site/public/data/history.json` are both updated in place, so reruns on the same day stay idempotent instead of duplicating snapshots.
+
 ---
 
 ## Privacy
@@ -162,17 +165,21 @@ prompts/enrich.txt            LLM prompt template
 scripts/
   fetch_stars.py              fetch stars, REST metadata, heuristics + content hash
   enrich_stars.py             LLM enrichment via GitHub Models
+  build_history.py            daily public history snapshots for analytics
   build_site.py               write privacy-filtered data to site/public/data/
   validate_models.py          smoke-test model chain availability
 data/
   stars.json                  canonical source of truth, may include non-public repos
+  history.json                daily public history snapshots for analytics
 site/
   src/                        React + TypeScript dashboard source
   public/data/stars.json      privacy-filtered runtime data for the SPA
+  public/data/history.json     public daily history snapshots for analytics
   dist/                       production build output
 tests/
   test_fetch_stars.py         unit tests — content hash + re-enrichment logic
   test_enrich_stars.py        unit tests — LLM payload + retry classification
   test_phase1_enrichment.py   unit tests — Phase 1 REST metadata + privacy filter
+  test_build_history.py       unit tests — public history snapshot writer
 .github/workflows/refresh.yml daily refresh + Pages deploy
 ```
