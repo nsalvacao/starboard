@@ -261,11 +261,13 @@ def build_discovery_entry(
             current["matched_topics"] = sorted(set(current["matched_topics"]) | set(candidate["matched_topics"]))
             current["query_terms"] = sorted(set(current["query_terms"]) | {query})
             if candidate["stargazers_count"] > current["stargazers_count"]:
+                current["stargazers_count"] = candidate["stargazers_count"]
                 current["description"] = candidate["description"]
                 current["language"] = candidate["language"]
                 current["topics"] = candidate["topics"]
                 current["forks_count"] = candidate["forks_count"]
                 current["visibility"] = candidate["visibility"]
+                current["html_url"] = candidate["html_url"]
         if index < len(queries) - 1:
             time.sleep(SEARCH_DELAY_SECONDS)
 
@@ -319,10 +321,12 @@ def build_public_dataset(dataset: dict) -> dict:
             continue
         public_entries.append({**entry, "suggestions": public_suggestions})
 
+    public_source_repo_count = len(public_entries)
+
     return {
         "generated_at": dataset["generated_at"],
-        "source_repo_count": dataset["source_repo_count"],
-        "public_source_repo_count": len(public_entries),
+        "source_repo_count": public_source_repo_count,
+        "public_source_repo_count": public_source_repo_count,
         "entries": public_entries,
     }
 

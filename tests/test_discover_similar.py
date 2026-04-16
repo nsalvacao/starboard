@@ -270,6 +270,7 @@ def test_build_public_dataset_filters_private_sources_and_suggestions():
     public_dataset = discover_similar.build_public_dataset(dataset)
 
     assert public_dataset["public_source_repo_count"] == 1
+    assert public_dataset["source_repo_count"] == 1
     assert len(public_dataset["entries"]) == 1
     assert public_dataset["entries"][0]["source"]["full_name"] == "public/source"
     assert len(public_dataset["entries"][0]["suggestions"]) == 1
@@ -323,4 +324,5 @@ def test_main_writes_canonical_and_public_discovery(tmp_path, monkeypatch):
     assert canonical["entries"][0]["source"]["full_name"] == "owner/source"
     assert canonical["entries"][0]["suggestions"][0]["full_name"] == "foo/first"
     assert public["public_source_repo_count"] == 1
+    assert public["source_repo_count"] == 1
     assert public["entries"][0]["source"]["full_name"] == "owner/source"
