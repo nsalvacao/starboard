@@ -49,14 +49,14 @@ export function ComparePanel() {
         <div className="px-6 py-3 border-b border-[var(--color-gh-border)] flex items-center justify-between bg-gradient-to-r from-[var(--color-gh-hover)] to-[var(--color-gh-card)]">
           <div className="flex items-center gap-2">
             <GitCompare className="w-5 h-5 text-[var(--color-gh-accent)]" />
-            <h3 className="font-semibold text-white">Compare Models</h3>
+            <h3 className="font-semibold text-[var(--color-gh-strong)]">Compare Models</h3>
             <span className="text-xs font-medium text-[var(--color-gh-muted)] bg-[var(--color-gh-bg)] px-2 py-0.5 rounded-full ring-1 ring-[var(--color-gh-border)]">
               {selectedRepos.length} / 6 selected
             </span>
           </div>
           <button 
             onClick={clearSelection}
-            className="text-xs font-semibold text-[var(--color-gh-muted)] hover:text-white hover:bg-[var(--color-gh-bg)] px-3 py-1 rounded transition-colors"
+            className="text-xs font-semibold text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:bg-[var(--color-gh-bg)] px-3 py-1 rounded transition-colors"
           >
             Clear All
           </button>
@@ -67,19 +67,19 @@ export function ComparePanel() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               <div className="bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md p-3">
                 <span className="text-xs uppercase tracking-wider text-[var(--color-gh-muted)]">Repos</span>
-                <p className="mt-1 text-lg font-semibold text-white">{selectedData.length}</p>
+                <p className="mt-1 text-lg font-semibold text-[var(--color-gh-strong)]">{selectedData.length}</p>
               </div>
               <div className="bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md p-3">
                 <span className="text-xs uppercase tracking-wider text-[var(--color-gh-muted)]">Avg Stars</span>
-                <p className="mt-1 text-lg font-semibold text-white">{summary.avgStars.toLocaleString()}</p>
+                <p className="mt-1 text-lg font-semibold text-[var(--color-gh-strong)]">{summary.avgStars.toLocaleString()}</p>
               </div>
               <div className="bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md p-3">
                 <span className="text-xs uppercase tracking-wider text-[var(--color-gh-muted)]">Avg Push Age</span>
-                <p className="mt-1 text-lg font-semibold text-white">{summary.avgAge}d</p>
+                <p className="mt-1 text-lg font-semibold text-[var(--color-gh-strong)]">{summary.avgAge}d</p>
               </div>
               <div className="bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md p-3">
                 <span className="text-xs uppercase tracking-wider text-[var(--color-gh-muted)]">Watch / Cleanup</span>
-                <p className="mt-1 text-lg font-semibold text-white">
+                <p className="mt-1 text-lg font-semibold text-[var(--color-gh-strong)]">
                   {summary.watchCount} / {summary.cleanupCount}
                 </p>
               </div>
@@ -97,7 +97,7 @@ export function ComparePanel() {
                 <div key={repo.full_name} className="flex-none w-80 snap-start bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md relative overflow-hidden group">
                   <button 
                     onClick={() => toggleSelection(repo.full_name)}
-                    className="absolute top-3 right-3 text-[var(--color-gh-muted)] hover:text-white bg-[var(--color-gh-bg)]/80 hover:bg-[var(--color-gh-danger)] rounded-md p-1 opacity-0 group-hover:opacity-100 transition-all"
+                    className="absolute top-3 right-3 text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] bg-[var(--color-gh-bg)]/80 hover:bg-[var(--color-gh-danger)] rounded-md p-1 opacity-0 group-hover:opacity-100 transition-all"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -107,7 +107,7 @@ export function ComparePanel() {
                       <a href={repo.html_url} target="_blank" rel="noreferrer" className="font-bold text-[var(--color-gh-accent)] hover:underline truncate">
                         {repo.full_name.split('/')[1]}
                       </a>
-                      <a href={repo.html_url} target="_blank" rel="noreferrer" className="text-[var(--color-gh-muted)] hover:text-white">
+                      <a href={repo.html_url} target="_blank" rel="noreferrer" className="text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)]">
                         <ExternalLink className="w-4 h-4" />
                       </a>
                     </div>
@@ -116,7 +116,7 @@ export function ComparePanel() {
                     <div className="flex items-center justify-between gap-2 mt-auto pt-4 border-t border-[var(--color-gh-border)]">
                       <button
                         onClick={() => openRepoModal(repo.full_name)}
-                        className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
+                        className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:border-[var(--color-gh-muted)]"
                       >
                         View details
                       </button>
@@ -129,7 +129,7 @@ export function ComparePanel() {
                       </div>
                       <div className="bg-[var(--color-gh-bg)] p-2 rounded flex flex-col">
                         <span className="text-xs text-[var(--color-gh-muted)] uppercase tracking-wider mb-1">Activity</span>
-                        <span className="font-semibold text-white flex items-center gap-1">
+                        <span className="font-semibold text-[var(--color-gh-strong)] flex items-center gap-1">
                           <Activity className="w-3 h-3 text-green-400" /> {repo.days_since_push}d ago
                         </span>
                       </div>

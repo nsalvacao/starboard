@@ -46,7 +46,7 @@ export function CommandPalette() {
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 bg-transparent border-none outline-none text-white placeholder:text-[var(--color-gh-muted)]"
+            className="flex-1 bg-transparent border-none outline-none text-[var(--color-gh-strong)] placeholder:text-[var(--color-gh-muted)]"
             placeholder="Type a command or navigate..."
           />
         </div>
@@ -66,7 +66,7 @@ export function CommandPalette() {
                  setIsOpen(false);
                  setQuery('');
                }}
-               className="w-full flex items-center px-3 py-2 text-sm text-[var(--color-gh-text)] rounded-md hover:bg-[var(--color-gh-accent)] hover:text-white transition-colors text-left"
+               className="w-full flex items-center px-3 py-2 text-sm text-[var(--color-gh-text)] rounded-md hover:bg-[var(--color-gh-accent)] hover:text-[var(--color-gh-strong)] transition-colors text-left"
              >
                {item.label}
              </button>

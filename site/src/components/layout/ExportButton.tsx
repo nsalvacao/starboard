@@ -58,14 +58,14 @@ export function ExportButton({ repos, viewMode }: ExportButtonProps) {
     <div className="flex items-center gap-2">
       <button
         onClick={() => downloadFile(JSON.stringify(repos, null, 2), buildExportName(viewMode, 'json'), 'application/json')}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-xs text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-xs text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:border-[var(--color-gh-muted)]"
       >
         <Download className="w-3.5 h-3.5" />
         Export JSON
       </button>
       <button
         onClick={() => downloadFile(toCsv(repos), buildExportName(viewMode, 'csv'), 'text/csv;charset=utf-8')}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-xs text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-xs text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:border-[var(--color-gh-muted)]"
       >
         <Download className="w-3.5 h-3.5" />
         Export CSV
