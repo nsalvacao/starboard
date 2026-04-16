@@ -1,15 +1,17 @@
 """
-discover_similar.py – Build topic-based discovery suggestions.
+discover_similar.py – Build topic-based and keyword-based discovery suggestions.
 
-The script reads the canonical stars dataset, expands topics through the
-curated synonym map in config.json, queries GitHub search for topic-based
-matches, and writes both a canonical discovery dataset plus a public copy for
-the static site.
+Reads the canonical stars dataset, expands topics through the curated synonym
+map in config.json plus auto-computed co-occurrence from the user's own starred
+repos, queries GitHub search via topic queries and description keyword queries
+derived from existing LLM summaries, and writes both a canonical discovery
+dataset plus a public copy for the static site.
 """
 
 from __future__ import annotations
 
 import json
+import re
 import sys
 import time
 from collections import Counter
@@ -56,6 +58,89 @@ GENERIC_TOPICS = {
     "tooling",
     "typescript",
 }
+
+
+_STOPWORDS = frozenset({
+    "a", "an", "and", "are", "as", "at", "be", "been", "being", "by", "can",
+    "do", "does", "for", "from", "has", "have", "in", "into", "is", "it",
+    "its", "like", "make", "makes", "new", "not", "of", "on", "or", "other",
+    "that", "the", "their", "this", "to", "use", "used", "uses", "using",
+    "via", "was", "which", "with", "your",
+    "tool", "tools", "tooling", "system", "systems", "framework", "library",
+    "api", "app", "application", "platform", "service", "project",
+    "repository", "code", "data", "build", "built", "based", "designed",
+    "allows", "provides", "enables", "support", "supports", "open", "source",
+    "github", "simple", "easy", "fast", "lightweight", "powerful",
+})
+
+
+def extract_summary_keywords(summary: str, max_keywords: int = 6) -> list[str]:
+    """Extract technical keywords from an LLM-generated summary (no model calls)."""
+    if not summary:
+        return []
+    words = re.findall(r'[a-z][a-z0-9]*(?:-[a-z0-9]+)*', summary.lower())
+    seen: set[str] = set()
+    keywords: list[str] = []
+    for w in words:
+        if w not in _STOPWORDS and w not in GENERIC_TOPICS and len(w) >= 4 and w not in seen:
+            seen.add(w)
+            keywords.append(w)
+    return keywords[:max_keywords]
+
+
+def build_description_queries(keywords: list[str], max_queries: int = 2) -> list[str]:
+    """Build GitHub in:description search queries from keyword pairs."""
+    if not keywords:
+        return []
+    queries: list[str] = []
+    for i in range(0, len(keywords) - 1, 2):
+        queries.append(f"{keywords[i]} {keywords[i + 1]} in:description")
+        if len(queries) >= max_queries:
+            break
+    if not queries and keywords:
+        queries.append(f"{keywords[0]} in:description")
+    return queries[:max_queries]
+
+
+def build_cooccurrence_groups(repos: list[dict], min_shared: int = 2, min_ratio: float = 0.25) -> dict[str, list[str]]:
+    """Auto-compute topic co-occurrence from the user's own starred repos."""
+    topic_repos: dict[str, set[str]] = {}
+    for repo in repos:
+        name = repo.get("full_name", "")
+        for topic in repo.get("topics") or []:
+            if isinstance(topic, str) and topic not in GENERIC_TOPICS:
+                topic_repos.setdefault(topic, set()).add(name)
+
+    result: dict[str, list[str]] = {}
+    for topic, repos_set in topic_repos.items():
+        n = len(repos_set)
+        if n < 2:
+            continue
+        related = [
+            other for other, other_repos in topic_repos.items()
+            if other != topic
+            and len(repos_set & other_repos) >= min_shared
+            and len(repos_set & other_repos) / n >= min_ratio
+        ]
+        if related:
+            result[topic] = related
+    return result
+
+
+def merge_topic_groups(
+    curated: dict[str, list[str]], cooccurrence: dict[str, list[str]]
+) -> dict[str, list[str]]:
+    """Merge curated synonyms with auto-computed co-occurrences (curated takes precedence)."""
+    merged = {k: list(v) for k, v in curated.items()}
+    for topic, related in cooccurrence.items():
+        if topic not in merged:
+            merged[topic] = [topic, *related]
+        else:
+            existing = set(merged[topic])
+            for term in related:
+                if term not in existing:
+                    merged[topic].append(term)
+    return merged
 
 
 def utc_now() -> str:
@@ -219,6 +304,35 @@ def score_candidate(candidate: dict, seed_topics: list[str], expanded_topics: se
     return len(matched_seeds) * 1000 + len(matched_expanded) * 100 + stars / 1000 + forks / 10000
 
 
+def normalize_description_candidate(item: dict, keywords: list[str]) -> dict | None:
+    """Normalize a candidate found via description search (no topic-overlap requirement)."""
+    full_name = item.get("full_name")
+    html_url = item.get("html_url")
+    if not isinstance(full_name, str) or not isinstance(html_url, str):
+        return None
+    topics = [t for t in (item.get("topics") or []) if isinstance(t, str)]
+    return {
+        "full_name": full_name,
+        "html_url": html_url,
+        "description": item.get("description") or "",
+        "language": item.get("language"),
+        "topics": topics,
+        "stargazers_count": item.get("stargazers_count", 0),
+        "forks_count": item.get("forks_count", 0),
+        "visibility": item.get("visibility", "public"),
+        "score": 0.0,
+        "matched_topics": [],
+        "matched_keywords": list(keywords),
+        "query_terms": [],
+    }
+
+
+def score_description_candidate(candidate: dict) -> float:
+    stars = candidate.get("stargazers_count", 0) or 0
+    forks = candidate.get("forks_count", 0) or 0
+    return 500.0 + stars / 1000 + forks / 10000
+
+
 def build_discovery_entry(
     repo: dict,
     session: requests.Session,
@@ -227,37 +341,58 @@ def build_discovery_entry(
     starred_names: set[str],
 ) -> dict | None:
     primary_topics = select_primary_topics(repo, frequencies, topic_groups)
-    if not primary_topics:
+    summary_keywords = extract_summary_keywords(repo.get("llm_summary") or "")
+
+    if not primary_topics and not summary_keywords:
         return None
 
-    expanded_topics = sorted(
-        {
+    # Topic-based queries (empty when repo has no topics)
+    expanded_topics: list[str] = []
+    topic_queries: list[str] = []
+    if primary_topics:
+        expanded_topics = sorted({
             topic
             for seed in primary_topics
             for topic in expand_topic(seed, topic_groups)
-        }
-    )
-    queries = [query_string(variant) for variant in build_query_variants(primary_topics, topic_groups)]
+        })
+        topic_queries = [query_string(variant) for variant in build_query_variants(primary_topics, topic_groups)]
 
-    merged: dict[str, dict] = {}
+    # Description-based queries from existing llm_summary (no new model calls)
+    desc_queries = build_description_queries(summary_keywords)
+
+    all_queries = topic_queries + desc_queries
+    if not all_queries:
+        return None
+
     expanded_topic_set = set(expanded_topics)
-    for index, query in enumerate(queries):
+    merged: dict[str, dict] = {}
+
+    for index, query in enumerate(all_queries):
+        is_desc = "in:description" in query
         for item in search_repositories(session, query):
-            candidate = normalize_candidate(item, expanded_topic_set)
+            if is_desc:
+                candidate = normalize_description_candidate(item, summary_keywords)
+            else:
+                candidate = normalize_candidate(item, expanded_topic_set)
             if candidate is None:
                 continue
             if candidate["full_name"] == repo["full_name"] or candidate["full_name"] in starred_names:
                 continue
-            candidate["score"] = score_candidate(candidate, primary_topics, expanded_topic_set)
+            candidate["score"] = (
+                score_description_candidate(candidate) if is_desc
+                else score_candidate(candidate, primary_topics, expanded_topic_set)
+            )
+
             current = merged.get(candidate["full_name"])
             if current is None:
-                current = candidate
-                current["query_terms"] = [query]
-                merged[candidate["full_name"]] = current
+                candidate["query_terms"] = [query]
+                merged[candidate["full_name"]] = candidate
                 continue
 
             current["score"] = max(current["score"], candidate["score"])
-            current["matched_topics"] = sorted(set(current["matched_topics"]) | set(candidate["matched_topics"]))
+            current["matched_topics"] = sorted(
+                set(current.get("matched_topics") or []) | set(candidate.get("matched_topics") or [])
+            )
             current["query_terms"] = sorted(set(current["query_terms"]) | {query})
             if candidate["stargazers_count"] > current["stargazers_count"]:
                 current["stargazers_count"] = candidate["stargazers_count"]
@@ -267,24 +402,23 @@ def build_discovery_entry(
                 current["forks_count"] = candidate["forks_count"]
                 current["visibility"] = candidate["visibility"]
                 current["html_url"] = candidate["html_url"]
-        if index < len(queries) - 1:
+
+        if index < len(all_queries) - 1:
             time.sleep(SEARCH_DELAY_SECONDS)
 
     suggestions = sorted(
         merged.values(),
-        key=lambda candidate: (
-            -candidate["score"],
-            -candidate["stargazers_count"],
-            candidate["full_name"],
-        ),
+        key=lambda c: (-c["score"], -c["stargazers_count"], c["full_name"]),
     )[:MAX_SUGGESTIONS_PER_SOURCE]
 
     if not suggestions:
         return None
 
-    source_score = score_topic(primary_topics[0], frequencies, topic_groups)
-    if len(primary_topics) > 1:
-        source_score += score_topic(primary_topics[1], frequencies, topic_groups)
+    source_score = 0.0
+    if primary_topics:
+        source_score = score_topic(primary_topics[0], frequencies, topic_groups)
+        if len(primary_topics) > 1:
+            source_score += score_topic(primary_topics[1], frequencies, topic_groups)
 
     return {
         "source": {
@@ -298,8 +432,9 @@ def build_discovery_entry(
             "visibility": repo.get("visibility", "public"),
         },
         "seed_topics": primary_topics,
+        "seed_keywords": summary_keywords,
         "expanded_topics": expanded_topics,
-        "queries": queries,
+        "queries": all_queries,
         "source_score": round(source_score, 3),
         "suggestions": suggestions,
     }
@@ -332,7 +467,9 @@ def build_public_dataset(dataset: dict) -> dict:
 
 def build_discovery_dataset(repos: list[dict], session: requests.Session, cfg: dict) -> dict:
     frequencies = topic_frequency(repos)
-    topic_groups = build_topic_groups(cfg.get("topic_synonyms", {}))
+    curated_groups = build_topic_groups(cfg.get("topic_synonyms", {}))
+    cooccurrence = build_cooccurrence_groups(repos)
+    topic_groups = merge_topic_groups(curated_groups, cooccurrence)
     starred_names = {repo["full_name"] for repo in repos if isinstance(repo.get("full_name"), str)}
 
     ranked_sources: list[tuple[float, dict]] = []
@@ -340,11 +477,14 @@ def build_discovery_dataset(repos: list[dict], session: requests.Session, cfg: d
         if not isinstance(repo, dict) or not isinstance(repo.get("full_name"), str):
             continue
         primary_topics = select_primary_topics(repo, frequencies, topic_groups)
-        if not primary_topics:
+        if primary_topics:
+            source_score = score_topic(primary_topics[0], frequencies, topic_groups)
+            if len(primary_topics) > 1:
+                source_score += score_topic(primary_topics[1], frequencies, topic_groups)
+        elif repo.get("llm_summary"):
+            source_score = 0.0  # fallback: no topics but has summary — ranked last
+        else:
             continue
-        source_score = score_topic(primary_topics[0], frequencies, topic_groups)
-        if len(primary_topics) > 1:
-            source_score += score_topic(primary_topics[1], frequencies, topic_groups)
         ranked_sources.append((source_score, repo))
 
     ranked_sources.sort(

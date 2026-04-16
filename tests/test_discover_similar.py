@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 import pytest
@@ -270,11 +271,118 @@ def test_build_public_dataset_filters_private_sources_and_suggestions():
     public_dataset = discover_similar.build_public_dataset(dataset)
 
     assert public_dataset["public_source_repo_count"] == 1
-    assert public_dataset["source_repo_count"] == 1
+    assert public_dataset["source_repo_count"] == 2  # preserves total input count
     assert len(public_dataset["entries"]) == 1
     assert public_dataset["entries"][0]["source"]["full_name"] == "public/source"
     assert len(public_dataset["entries"][0]["suggestions"]) == 1
     assert public_dataset["entries"][0]["suggestions"][0]["full_name"] == "public/suggestion"
+
+
+def test_extract_summary_keywords_returns_technical_terms():
+    summary = "Persistent memory layer for LLM agents using vector embeddings and knowledge graphs"
+    keywords = discover_similar.extract_summary_keywords(summary)
+    assert "persistent" in keywords
+    assert "memory" in keywords
+    assert "agents" in keywords
+    assert "vector" in keywords
+    # stopwords and generic terms excluded
+    assert "for" not in keywords
+    assert "using" not in keywords
+
+
+def test_extract_summary_keywords_empty_input():
+    assert discover_similar.extract_summary_keywords("") == []
+    assert discover_similar.extract_summary_keywords(None) == []  # type: ignore[arg-type]
+
+
+def test_build_description_queries_pairs_keywords():
+    qs = discover_similar.build_description_queries(["memory", "agents", "vector", "embeddings"])
+    assert len(qs) == 2
+    assert "in:description" in qs[0]
+    assert "memory" in qs[0]
+    assert "agents" in qs[0]
+
+
+def test_build_description_queries_single_keyword_fallback():
+    qs = discover_similar.build_description_queries(["memory"])
+    assert len(qs) == 1
+    assert "memory in:description" == qs[0]
+
+
+def test_build_cooccurrence_groups_finds_related_topics():
+    repos = [
+        make_repo("a/one",   ["memory", "agents", "vector"]),
+        make_repo("a/two",   ["memory", "agents", "rag"]),
+        make_repo("a/three", ["memory", "vector"]),
+        make_repo("a/four",  ["agents", "rag"]),
+    ]
+    groups = discover_similar.build_cooccurrence_groups(repos, min_shared=2, min_ratio=0.25)
+    # memory appears in 3 repos, agents in 3 — they co-occur in 2 → should be related
+    assert "agents" in groups.get("memory", [])
+    assert "memory" in groups.get("agents", [])
+
+
+def test_merge_topic_groups_curated_takes_precedence():
+    curated = {"mcp": ["mcp", "mcp-server", "mcp-tools"]}
+    cooccurrence = {"mcp": ["agents"]}  # co-occurrence adds "agents"
+    merged = discover_similar.merge_topic_groups(curated, cooccurrence)
+    assert "mcp-server" in merged["mcp"]
+    assert "agents" in merged["mcp"]  # co-occurrence appended
+
+
+def test_build_discovery_entry_uses_summary_keywords_for_description_queries():
+    repos = [make_repo("owner/source", ["claude-code"], stars=120)]
+    frequencies = discover_similar.topic_frequency(repos)
+    groups = discover_similar.build_topic_groups({"claude-code": ["gemini-cli"]})
+    starred_names = {"owner/source"}
+    source_repo = {**repos[0], "llm_summary": "persistent memory layer for agents using vector embeddings"}
+
+    desc_query = "persistent memory in:description fork:false archived:false"
+    session = FakeSession({
+        "topic:claude-code fork:false archived:false": [FakeResponse({"items": []})],
+        "topic:gemini-cli fork:false archived:false": [FakeResponse({"items": []})],
+        desc_query: [FakeResponse({"items": [
+            make_repo("foo/memstore", ["vector", "memory"], stars=300),
+        ]})],
+    })
+
+    entry = discover_similar.build_discovery_entry(source_repo, session, frequencies, groups, starred_names)
+
+    assert entry is not None
+    assert entry["seed_keywords"] == ["persistent", "memory", "layer", "agents", "vector", "embeddings"]
+    assert any("in:description" in q for q in entry["queries"])
+    assert entry["suggestions"][0]["full_name"] == "foo/memstore"
+
+
+def test_build_discovery_entry_fallback_for_repo_without_topics():
+    repo = {
+        "full_name": "owner/no-topics",
+        "html_url": "https://github.com/owner/no-topics",
+        "description": "A memory system",
+        "language": "Python",
+        "topics": [],
+        "stargazers_count": 50,
+        "forks_count": 5,
+        "visibility": "public",
+        "llm_summary": "persistent memory storage for agents",
+    }
+    frequencies: Counter[str] = Counter()
+    groups: dict[str, list[str]] = {}
+    starred_names: set[str] = {"owner/no-topics"}
+
+    desc_query = "persistent memory in:description fork:false archived:false"
+    session = FakeSession({
+        desc_query: [FakeResponse({"items": [
+            make_repo("foo/store", ["memory", "agents"], stars=200),
+        ]})],
+    })
+
+    entry = discover_similar.build_discovery_entry(repo, session, frequencies, groups, starred_names)
+
+    assert entry is not None
+    assert entry["seed_topics"] == []
+    assert entry["seed_keywords"] != []
+    assert entry["suggestions"][0]["full_name"] == "foo/store"
 
 
 def test_main_writes_canonical_and_public_discovery(tmp_path, monkeypatch):
@@ -324,5 +432,5 @@ def test_main_writes_canonical_and_public_discovery(tmp_path, monkeypatch):
     assert canonical["entries"][0]["source"]["full_name"] == "owner/source"
     assert canonical["entries"][0]["suggestions"][0]["full_name"] == "foo/first"
     assert public["public_source_repo_count"] == 1
-    assert public["source_repo_count"] == 1
+    assert public["source_repo_count"] == 2  # preserves total input count
     assert public["entries"][0]["source"]["full_name"] == "owner/source"
