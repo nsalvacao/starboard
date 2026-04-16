@@ -126,9 +126,21 @@ Models are tried in order; on rate limit or error the next one is used:
 
 All models are available on the **GitHub Models free tier**.
 
+### Discovery
+
+Controls how many source repositories are processed per run:
+
+```json
+"discovery": {
+  "source_repo_limit": 30
+}
+```
+
+Set lower during development to reduce API calls. Invalid or missing values fall back to `30`.
+
 ### Topic synonyms
 
-Discovery uses a curated map of topic groups to expand search coverage without an LLM:
+Discovery uses a curated map of topic groups to expand topic-based search coverage without an LLM:
 
 ```json
 "topic_synonyms": {
@@ -137,7 +149,7 @@ Discovery uses a curated map of topic groups to expand search coverage without a
 }
 ```
 
-Keep the list small, explicit and function-oriented so the suggestions stay useful.
+Keep the list small, explicit and function-oriented so the suggestions stay useful. Topic co-occurrence is also computed automatically from the user's own starred repos and merged with this map at runtime.
 
 ### LLM prompt
 
@@ -162,7 +174,7 @@ Re-enrichment queued: 3 repos (1 content_changed, 2 aged_31d)
 
 `build_history.py` turns the public subset of `data/stars.json` into a daily snapshot file keyed by UTC date. The canonical `data/history.json` and the public `site/public/data/history.json` are both updated in place, so reruns on the same day stay idempotent instead of duplicating snapshots.
 
-`discover_similar.py` builds topic-based discovery suggestions from the canonical stars dataset. It expands selected topics through `config.json` synonyms, queries GitHub search for matching repositories, and writes both `data/discoveries.json` and the public `site/public/data/discoveries.json`. The public artifact keeps only public sources and public suggestions, with counts derived from that published subset.
+`discover_similar.py` builds discovery suggestions from the canonical stars dataset using three complementary signals: topic search expanded through curated `config.json` synonyms plus auto-computed topic co-occurrence from the user's own starred repos; `in:description` keyword queries derived from existing `llm_summary` fields (no new model calls); and a fallback path for repos with no GitHub topics that uses keyword queries as primary signal. Each discovery entry records `seed_keywords` alongside `seed_topics` for transparency. Writes `data/discoveries.json` and the public `site/public/data/discoveries.json`, keeping only public sources and suggestions in the published copy.
 
 ---
 
@@ -183,7 +195,7 @@ scripts/
   fetch_stars.py              fetch stars, REST metadata, heuristics + content hash
   enrich_stars.py             LLM enrichment via GitHub Models
   build_history.py            daily public history snapshots for analytics
-  discover_similar.py         topic-based discovery suggestions with curated synonyms
+  discover_similar.py         topic + keyword discovery with co-occurrence and fallback
   build_site.py               write privacy-filtered data to site/public/data/
   validate_models.py          smoke-test model chain availability
 data/

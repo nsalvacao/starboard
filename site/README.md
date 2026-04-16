@@ -19,7 +19,7 @@ The dashboard reads `data/stars.json` at runtime from the Vite public directory 
 
 `scripts/build_history.py` writes the public daily analytics snapshots into `data/history.json` and `site/public/data/history.json`. Each snapshot is keyed by UTC date and is replaced in place when the pipeline runs again on the same day.
 
-`scripts/discover_similar.py` writes the topic discovery suggestions into `data/discoveries.json` and the public-only `site/public/data/discoveries.json`. It expands curated topic synonym groups from `config.json` and uses GitHub topic search so the Discover view stays reproducible. The published copy keeps only public sources and public suggestions.
+`scripts/discover_similar.py` writes the discovery suggestions into `data/discoveries.json` and the public-only `site/public/data/discoveries.json`. Discovery uses three signals: topic search expanded through curated synonym groups from `config.json` plus auto-computed topic co-occurrence from the user's starred repos; `in:description` keyword queries derived from existing `llm_summary` fields without new model calls; and a fallback for repos with no GitHub topics that uses keyword queries as primary signal. The published copy keeps only public sources and public suggestions.
 
 ## Current Workspace
 
@@ -30,7 +30,7 @@ The dashboard reads `data/stars.json` at runtime from the Vite public directory 
 - Topic filters synced to the URL
 - Compare panel for selected repositories
 - Analytics workspace with history timeline, category and language breakdowns, portfolio health, and trending panels
-- Discover workspace with pipeline-generated topic suggestions and curated synonym expansion
+- Discover workspace with pipeline-generated suggestions via topic search, keyword-based description queries, and auto-computed co-occurrence expansion
 - Daily public history snapshots prepared for the analytics phase
 
 ## Local Development
