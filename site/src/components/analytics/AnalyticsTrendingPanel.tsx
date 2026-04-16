@@ -33,7 +33,7 @@ export function AnalyticsTrendingPanel({
         </div>
         {items.length > 0 && (
           <div className={`rounded-full border border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] px-3 py-1 text-xs ${tone}`}>
-            {items.length} repos
+            {items.length} {items.length === 1 ? 'repo' : 'repos'}
           </div>
         )}
       </div>

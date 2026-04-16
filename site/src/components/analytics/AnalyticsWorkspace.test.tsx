@@ -142,4 +142,27 @@ describe('AnalyticsWorkspace', () => {
 
     expect(capturedSignal.aborted).toBe(true);
   });
+
+  it('surfaces a clear error when the history payload is malformed', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () =>
+        new Response(
+          JSON.stringify([
+            {
+              date: '2026-04-16',
+              repos: [
+                { full_name: 'org/a', stargazers_count: 'ten', forks_count: 2 },
+              ],
+            },
+          ]),
+          { status: 200, headers: { 'Content-Type': 'application/json' } }
+        )
+      )
+    );
+
+    render(<AnalyticsWorkspace repos={useStore.getState().repos} visibleRepos={useStore.getState().repos} />);
+
+    await screen.findByText(/history payload is malformed/i);
+  });
 });

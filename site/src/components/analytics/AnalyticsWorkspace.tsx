@@ -31,8 +31,34 @@ const SCOPE_OPTIONS: { value: AnalyticsScope; label: string }[] = [
   { value: 'portfolio', label: 'Portfolio' },
 ];
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null;
+}
+
+function isSnapshotDate(value: unknown): value is string {
+  return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
+function isSnapshotRepo(value: unknown): boolean {
+  if (!isRecord(value)) return false;
+
+  return (
+    typeof value.full_name === 'string' &&
+    typeof value.stargazers_count === 'number' &&
+    Number.isFinite(value.stargazers_count) &&
+    typeof value.forks_count === 'number' &&
+    Number.isFinite(value.forks_count)
+  );
+}
+
 function isSnapshotPayload(value: unknown): value is HistorySnapshot[] {
-  return Array.isArray(value);
+  return (
+    Array.isArray(value) &&
+    value.every((snapshot) => {
+      if (!isRecord(snapshot)) return false;
+      return isSnapshotDate(snapshot.date) && Array.isArray(snapshot.repos) && snapshot.repos.every(isSnapshotRepo);
+    })
+  );
 }
 
 function formatInteger(value: number): string {
@@ -73,7 +99,7 @@ export function AnalyticsWorkspace({ repos, visibleRepos }: AnalyticsWorkspacePr
 
         const payload: unknown = await response.json();
         if (!isSnapshotPayload(payload)) {
-          throw new Error('History payload was not an array');
+          throw new Error('History payload is malformed');
         }
 
         if (controller.signal.aborted) return;
