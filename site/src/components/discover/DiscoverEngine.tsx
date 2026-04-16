@@ -16,22 +16,21 @@ export function DiscoverEngine() {
   }, [repos]);
 
   const topicExpansion = useMemo(() => {
-    const candidates = repos
+    return repos
       .filter(r => 
         !r.archived && 
         !r.stale && 
         r.llm_category && 
         topCategories.includes(r.llm_category) &&
         !r.recent_star
-      );
-      
-    // Fisher-Yates shuffle
-    for (let i = candidates.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
-    }
-    
-    return candidates.slice(0, 5);
+      )
+      .sort((a, b) => {
+        if (b.stargazers_count !== a.stargazers_count) {
+          return b.stargazers_count - a.stargazers_count;
+        }
+        return a.full_name.localeCompare(b.full_name);
+      })
+      .slice(0, 5);
   }, [repos, topCategories]);
 
   const trending = useMemo(() => {

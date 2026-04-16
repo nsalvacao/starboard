@@ -83,7 +83,21 @@ export function FilterPills() {
       </div>
 
       {/* Clear Filters */}
-      {(filters.category.length > 0 || filters.language.length > 0 || filters.status.length > 0) && (
+      {filters.topics.length > 0 && (
+        <div className="flex flex-wrap gap-1 items-center">
+          {filters.topics.map((topic) => (
+            <button
+              key={topic}
+              onClick={() => setFilter('topics', filters.topics.filter((item) => item !== topic))}
+              className="text-xs px-2 py-1 rounded bg-[var(--color-gh-accent)]/15 border border-[var(--color-gh-accent)] text-[var(--color-gh-accent)]"
+            >
+              #{topic}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {(filters.category.length > 0 || filters.language.length > 0 || filters.status.length > 0 || filters.topics.length > 0) && (
         <button 
           onClick={clearFilters}
           className="ml-auto flex items-center gap-1 px-2 py-1 text-xs text-[var(--color-gh-danger)] hover:bg-[var(--color-gh-danger)]/10 rounded transition-colors"

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Repository, ViewMode, Preferences } from '../types';
+import type { Repository, ViewMode, Preferences, SortCriterion } from '../types';
 
 interface AppState {
   // Data
@@ -20,9 +20,20 @@ interface AppState {
     category: string[];
     language: string[];
     status: string[];
+    topics: string[];
   };
   setFilter: (key: keyof AppState['filters'], values: string[]) => void;
   clearFilters: () => void;
+
+  // Sorting
+  sortCriteria: SortCriterion[];
+  setSortCriteria: (criteria: SortCriterion[]) => void;
+  clearSort: () => void;
+
+  // Repo details modal
+  activeRepoFullName: string | null;
+  openRepoModal: (repoFullName: string) => void;
+  closeRepoModal: () => void;
 
   // Preferences
   preferences: Preferences;
@@ -65,13 +76,21 @@ export const useStore = create<AppState>()(
       searchQuery: '',
       setSearchQuery: (query) => set({ searchQuery: query }),
 
-      filters: { category: [], language: [], status: [] },
+      filters: { category: [], language: [], status: [], topics: [] },
       setFilter: (key, values) =>
         set((state) => ({
           filters: { ...state.filters, [key]: values },
         })),
       clearFilters: () =>
-        set({ filters: { category: [], language: [], status: [] } }),
+        set({ filters: { category: [], language: [], status: [], topics: [] } }),
+
+      sortCriteria: [],
+      setSortCriteria: (criteria) => set({ sortCriteria: criteria }),
+      clearSort: () => set({ sortCriteria: [] }),
+
+      activeRepoFullName: null,
+      openRepoModal: (repoFullName) => set({ activeRepoFullName: repoFullName }),
+      closeRepoModal: () => set({ activeRepoFullName: null }),
 
       preferences: { theme: 'dark', density: 'normal' },
       setPreferences: (prefs) =>

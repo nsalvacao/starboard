@@ -3,11 +3,51 @@ import { RepoTable } from '../table/RepoTable';
 import { DiscoverEngine } from '../discover/DiscoverEngine';
 import { ComparePanel } from '../compare/ComparePanel';
 import { Loader2 } from 'lucide-react';
+import { useMemo } from 'react';
 import { useUrlSync } from '../../hooks/useUrlSync';
+import { getVisibleRepos } from '../../lib/repoSelectors';
+import { StatsStrip } from './StatsStrip';
+import { TopicCloud } from './TopicCloud';
+import { ExportButton } from './ExportButton';
+import { RepoDetailModal } from './RepoDetailModal';
 
 export function MainWorkspace({ isLoading }: { isLoading: boolean }) {
   useUrlSync();
-  const { viewMode, error } = useStore();
+  const {
+    repos,
+    viewMode,
+    filters,
+    setFilter,
+    searchQuery,
+    sortCriteria,
+    activeRepoFullName,
+    closeRepoModal,
+    error,
+  } = useStore();
+
+  const visibleRepos = useMemo(
+    () =>
+      getVisibleRepos({
+        repos,
+        viewMode,
+        searchQuery,
+        filters,
+        sortCriteria,
+      }),
+    [repos, viewMode, searchQuery, filters, sortCriteria]
+  );
+
+  const activeRepo = useMemo(
+    () => repos.find((repo) => repo.full_name === activeRepoFullName) || null,
+    [repos, activeRepoFullName]
+  );
+
+  const toggleTopic = (topic: string) => {
+    const nextTopics = filters.topics.includes(topic)
+      ? filters.topics.filter((item) => item !== topic)
+      : [...filters.topics, topic];
+    setFilter('topics', nextTopics);
+  };
 
   if (error) {
     return (
@@ -35,7 +75,23 @@ export function MainWorkspace({ isLoading }: { isLoading: boolean }) {
       case 'cleanup':
       case 'watch':
       default:
-        return <RepoTable />;
+        return (
+          <div className="flex-1 flex flex-col gap-4 min-h-0">
+            <div className="flex flex-col gap-3">
+              <StatsStrip repos={visibleRepos} />
+              <div className="flex justify-end">
+                <ExportButton repos={visibleRepos} viewMode={viewMode} />
+              </div>
+            </div>
+            <TopicCloud
+              repos={visibleRepos}
+              selectedTopics={filters.topics}
+              onToggleTopic={toggleTopic}
+              onClearTopics={() => setFilter('topics', [])}
+            />
+            <RepoTable repos={visibleRepos} />
+          </div>
+        );
     }
   };
 
@@ -43,6 +99,7 @@ export function MainWorkspace({ isLoading }: { isLoading: boolean }) {
     <>
       {renderView()}
       <ComparePanel />
+      <RepoDetailModal repo={activeRepo} isOpen={Boolean(activeRepo)} onClose={closeRepoModal} />
     </>
   );
 }

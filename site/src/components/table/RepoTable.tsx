@@ -1,32 +1,63 @@
 import { useStore } from '../../store/useStore';
 import { useMemo, useRef } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Star, GitFork, Clock, AlertCircle } from 'lucide-react';
+import { ArrowDown, ArrowUp, ArrowUpDown, Clock, GitFork, Star } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import type { Repository, SortKey } from '../../types';
+import { updateSortCriteria } from '../../lib/repoSelectors';
 
-export function RepoTable() {
-  const { repos, viewMode, filters, searchQuery, selectedRepos, toggleSelection } = useStore();
+interface RepoTableProps {
+  repos: Repository[];
+}
 
-  const filteredRepos = useMemo(() => {
-    return repos.filter(repo => {
-      // 1. View Mode Filter
-      if (viewMode === 'watch' && !repo.watch_candidate) return false;
-      if (viewMode === 'cleanup' && !repo.cleanup_candidate) return false;
-      
-      // 2. Search Filter
-      if (searchQuery) {
-        const q = searchQuery.toLowerCase();
-        const searchTarget = `${repo.full_name} ${repo.description || ''} ${repo.llm_summary || ''}`.toLowerCase();
-        if (!searchTarget.includes(q)) return false;
-      }
+interface SortableHeaderProps {
+  label: string;
+  sortKey: SortKey;
+  className?: string;
+  onSort: (key: SortKey, isMultiSort: boolean) => void;
+}
 
-      // 3. Category/Language Filters
-      if (filters.category.length > 0 && (!repo.llm_category || !filters.category.includes(repo.llm_category))) return false;
-      if (filters.language.length > 0 && (!repo.language || !filters.language.includes(repo.language))) return false;
+function SortableHeader({ label, sortKey, className, onSort }: SortableHeaderProps) {
+  const sortCriteria = useStore((state) => state.sortCriteria);
+  const activeIndex = sortCriteria.findIndex((criterion) => criterion.key === sortKey);
+  const activeCriterion = activeIndex >= 0 ? sortCriteria[activeIndex] : null;
 
-      return true;
-    });
-  }, [repos, viewMode, searchQuery, filters.category, filters.language]);
+  return (
+    <button
+      onClick={(event) => onSort(sortKey, event.shiftKey)}
+      className={cn(
+        'inline-flex items-center gap-1 hover:text-white transition-colors text-left',
+        className
+      )}
+      title="Click to sort, Shift+Click for multi-sort"
+    >
+      <span>{label}</span>
+      {activeCriterion ? (
+        activeCriterion.direction === 'asc' ? (
+          <ArrowUp className="w-3 h-3" />
+        ) : (
+          <ArrowDown className="w-3 h-3" />
+        )
+      ) : (
+        <ArrowUpDown className="w-3 h-3 opacity-50" />
+      )}
+      {activeIndex >= 0 && (
+        <span className="text-[10px] px-1 rounded bg-[var(--color-gh-border)]">{activeIndex + 1}</span>
+      )}
+    </button>
+  );
+}
+
+export function RepoTable({ repos }: RepoTableProps) {
+  const {
+    selectedRepos,
+    toggleSelection,
+    openRepoModal,
+    sortCriteria,
+    setSortCriteria,
+  } = useStore();
+
+  const filteredRepos = useMemo(() => repos, [repos]);
 
   const parentRef = useRef<HTMLDivElement>(null);
 
@@ -36,6 +67,10 @@ export function RepoTable() {
     estimateSize: () => 75,
     overscan: 10,
   });
+
+  const onSort = (key: SortKey, isMultiSort: boolean) => {
+    setSortCriteria(updateSortCriteria(sortCriteria, key, isMultiSort));
+  };
 
   return (
     <div className="flex-1 flex flex-col min-h-0 bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-lg shadow-sm overflow-hidden">
@@ -60,11 +95,17 @@ export function RepoTable() {
             className="rounded border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-[var(--color-gh-accent)] focus:ring-[var(--color-gh-accent)]" 
           />
         </div>
-        <div>Repository</div>
-        <div>Category & Lang</div>
-        <div className="hidden lg:block">Summary</div>
-        <div className="text-right">Stats</div>
-        <div className="text-right">Activity</div>
+        <SortableHeader label="Repository" sortKey="full_name" onSort={onSort} />
+        <SortableHeader label="Category & Lang" sortKey="llm_category" onSort={onSort} />
+        <div className="hidden lg:block">
+          <SortableHeader label="Summary" sortKey="language" onSort={onSort} />
+        </div>
+        <div className="text-right">
+          <SortableHeader label="Stats" sortKey="stargazers_count" className="justify-end w-full" onSort={onSort} />
+        </div>
+        <div className="text-right">
+          <SortableHeader label="Activity" sortKey="days_since_push" className="justify-end w-full" onSort={onSort} />
+        </div>
       </div>
 
       {/* Virtual Table Body */}
@@ -89,13 +130,26 @@ export function RepoTable() {
                   height: `${virtualItem.size}px`,
                   transform: `translateY(${virtualItem.start}px)`,
                 }}
-                className="grid grid-cols-[auto_2fr_1fr_1fr_100px_100px] gap-4 p-4 items-center border-b border-[var(--color-gh-border)] hover:bg-[var(--color-gh-hover)] transition-colors group cursor-pointer"
+                role="button"
+                tabIndex={0}
+                className="grid grid-cols-[auto_2fr_1fr_1fr_100px_100px] gap-4 p-4 items-center border-b border-[var(--color-gh-border)] hover:bg-[var(--color-gh-hover)] transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gh-accent)] focus-visible:ring-inset"
+                onClick={() => openRepoModal(repo.full_name)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openRepoModal(repo.full_name);
+                  }
+                }}
               >
                 <div className="w-8 flex items-center justify-center">
                   <input 
                     type="checkbox" 
                     checked={selectedRepos.includes(repo.full_name)}
-                    onChange={() => toggleSelection(repo.full_name)}
+                    onClick={(event) => event.stopPropagation()}
+                    onChange={(event) => {
+                      event.stopPropagation();
+                      toggleSelection(repo.full_name);
+                    }}
                     aria-label={`Select ${repo.full_name} for comparison`}
                     className="rounded border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] focus:ring-[var(--color-gh-accent)]" 
                   />
@@ -111,7 +165,13 @@ export function RepoTable() {
                       referrerPolicy="no-referrer"
                       className="w-5 h-5 rounded-full"
                     />
-                    <a href={repo.html_url} target="_blank" rel="noreferrer" className="text-sm font-semibold text-[var(--color-gh-accent)] hover:underline truncate">
+                    <a
+                      href={repo.html_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm font-semibold text-[var(--color-gh-accent)] hover:underline truncate"
+                      onClick={(event) => event.stopPropagation()}
+                    >
                       {repo.full_name}
                     </a>
                   </div>
@@ -148,8 +208,8 @@ export function RepoTable() {
                     <Clock className="w-3 h-3" /> {repo.days_since_push}d
                   </div>
                   {repo.cleanup_candidate && (
-                    <div className="text-xs text-[var(--color-gh-danger)] flex items-center gap-1 mt-1 font-medium bg-[var(--color-gh-danger)]/10 px-1.5 py-0.5 rounded">
-                      <AlertCircle className="w-3 h-3" /> Cleanup
+                    <div className="text-xs text-[var(--color-gh-danger)] mt-1 font-medium bg-[var(--color-gh-danger)]/10 px-1.5 py-0.5 rounded">
+                      Cleanup
                     </div>
                   )}
                 </div>

@@ -45,6 +45,21 @@ export interface Repository {
 }
 
 export type ViewMode = 'all' | 'watch' | 'discover' | 'cleanup' | 'compare';
+export type SortDirection = 'asc' | 'desc';
+export type SortKey =
+  | 'full_name'
+  | 'llm_category'
+  | 'llm_summary'
+  | 'language'
+  | 'stargazers_count'
+  | 'forks_count'
+  | 'days_since_push'
+  | 'starred_at';
+
+export interface SortCriterion {
+  key: SortKey;
+  direction: SortDirection;
+}
 
 export interface Preferences {
   theme: 'dark' | 'light';
