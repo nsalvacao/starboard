@@ -52,8 +52,11 @@ def merge_history_snapshots(existing: list[dict], snapshot: dict) -> list[dict]:
 def load_json(path: Path) -> list[dict]:
     if not path.exists():
         return []
-    with open(path, encoding="utf-8") as f:
-        data = json.load(f)
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except json.JSONDecodeError:
+        return []
     if not isinstance(data, list):
         raise ValueError(f"{path} must contain a JSON array of snapshots")
     return data

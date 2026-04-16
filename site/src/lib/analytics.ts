@@ -46,6 +46,15 @@ function average(values: number[]): number {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
+const METADATA_FIELDS = [
+  'license_spdx',
+  'latest_release',
+  'readme_excerpt',
+  'contributor_count',
+  'commit_activity_52w',
+  'community_health',
+] as const;
+
 export function bucketCounts<T>(
   items: T[],
   getLabel: (item: T) => string | null | undefined,
@@ -129,15 +138,11 @@ export function calculatePortfolioHealthScore(repos: Repository[]): PortfolioHea
   const metadataDepth = roundPercent(
     average(
       repos.map((repo) => {
-        const present = [
-          repo.license_spdx,
-          repo.latest_release,
-          repo.readme_excerpt,
-          repo.contributor_count,
-          repo.commit_activity_52w,
-          repo.community_health,
-        ].filter((value) => value !== null && value !== undefined);
-        return (present.length / 6) * 100;
+        const presentCount = METADATA_FIELDS.filter((field) => {
+          const value = repo[field];
+          return value !== null && value !== undefined;
+        }).length;
+        return (presentCount / METADATA_FIELDS.length) * 100;
       })
     )
   );

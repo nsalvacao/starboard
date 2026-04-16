@@ -121,6 +121,13 @@ def test_main_replaces_existing_day_snapshot(tmp_path, monkeypatch):
     ]
 
 
+def test_load_json_returns_empty_list_for_invalid_json(tmp_path):
+    invalid = tmp_path / "history.json"
+    invalid.write_text("", encoding="utf-8")
+
+    assert build_history.load_json(invalid) == []
+
+
 def test_filter_public_repos_requires_visibility():
     with pytest.raises(SystemExit):
         build_history.build_daily_snapshot([{"full_name": "missing/visibility"}], snapshot_date="2026-04-16")
