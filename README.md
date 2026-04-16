@@ -14,13 +14,14 @@ A self-hosted admin console for your GitHub starred repositories — auto-enrich
 
 ## Dashboard
 
-A dense, sortable table with sidebar navigation:
+A dense dashboard with sidebar navigation and workspace tools:
 
 - **Sidebar**: All / Watch / Explore / Cleanup / Not Enriched + dynamic LLM category counts
-- **Table**: sortable by name, category, language, stars, status, last push
-- **Filters**: category, language, status, stars range
+- **Workspace strip**: visible-repo stats, topic cloud, and export actions
+- **Table**: multi-column sorting for repository, category, stars, and activity
+- **Filters**: category, language, status, stars range, and topics
 - **Search**: full-text across name, summary, description
-- **Row expand**: full summary, watch note, topics, links, stats — inline
+- **Row detail modal**: repository metadata, LLM fields, and Phase 1 extended GitHub data
 - **Compare**: select 2–4 repos for side-by-side comparison with aggregate metrics
 
 Status chips:

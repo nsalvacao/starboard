@@ -17,6 +17,15 @@ The dashboard reads `data/stars.json` at runtime from the Vite public directory 
 
 `scripts/build_site.py` writes the publishable copy into `site/public/data/stars.json`. That copy is privacy-filtered: entries must include `visibility`, and only repositories with `visibility == "public"` are published to the site.
 
+## Current Workspace
+
+- Sidebar views for All / Watch / Explore / Cleanup / Not Enriched
+- Multi-column sorting in the repository table
+- Stats strip, topic cloud, and export actions for the visible dataset
+- Repository detail modal opened from table rows
+- Topic filters synced to the URL
+- Compare panel for selected repositories
+
 ## Local Development
 
 ```bash
