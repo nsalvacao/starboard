@@ -57,6 +57,7 @@ export function CommandPalette() {
             { label: 'Go to Watch', mode: 'watch' as const },
             { label: 'Go to Discover', mode: 'discover' as const },
             { label: 'Go to Compare', mode: 'compare' as const },
+            { label: 'Go to Analytics', mode: 'analytics' as const },
             { label: 'Go to Cleanup', mode: 'cleanup' as const },
           ].filter(item => item.label.toLowerCase().includes(query.toLowerCase())).map((item) => (
             <button

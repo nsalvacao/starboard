@@ -9,7 +9,7 @@ import {
   serializeSortParam,
 } from '../lib/urlState';
 
-const VALID_MODES: ViewMode[] = ['all', 'watch', 'discover', 'compare', 'cleanup'];
+const VALID_MODES: ViewMode[] = ['all', 'watch', 'discover', 'compare', 'cleanup', 'analytics'];
 
 export function useUrlSync() {
   const [searchParams, setSearchParams] = useSearchParams();

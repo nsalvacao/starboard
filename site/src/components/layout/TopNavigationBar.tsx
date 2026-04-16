@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 import { useStore } from '../../store/useStore';
-import { Search, GitMerge, LayoutGrid, Eye, Sparkles, Trash2, GitCompare, Moon, Sun } from 'lucide-react';
+import { Search, GitMerge, LayoutGrid, Eye, Sparkles, Trash2, GitCompare, Moon, Sun, BarChart3 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import type { ViewMode } from '../../types';
 
@@ -17,6 +17,7 @@ export function TopNavigationBar() {
     { id: 'watch', label: 'Watch', icon: <Eye className="w-4 h-4" />, count: watchCount },
     { id: 'discover', label: 'Discover', icon: <Sparkles className="w-4 h-4" /> },
     { id: 'compare', label: 'Compare', icon: <GitCompare className="w-4 h-4" /> },
+    { id: 'analytics', label: 'Analytics', icon: <BarChart3 className="w-4 h-4" /> },
     { id: 'cleanup', label: 'Cleanup', icon: <Trash2 className="w-4 h-4" />, count: cleanupCount },
   ];
 

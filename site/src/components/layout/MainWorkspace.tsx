@@ -10,6 +10,7 @@ import { StatsStrip } from './StatsStrip';
 import { TopicCloud } from './TopicCloud';
 import { ExportButton } from './ExportButton';
 import { RepoDetailModal } from './RepoDetailModal';
+import { AnalyticsWorkspace } from '../analytics/AnalyticsWorkspace';
 
 export function MainWorkspace({ isLoading }: { isLoading: boolean }) {
   useUrlSync();
@@ -70,6 +71,8 @@ export function MainWorkspace({ isLoading }: { isLoading: boolean }) {
     switch (viewMode) {
       case 'discover':
         return <DiscoverEngine />;
+      case 'analytics':
+        return <AnalyticsWorkspace repos={repos} visibleRepos={visibleRepos} />;
       case 'compare':
       case 'all':
       case 'cleanup':
