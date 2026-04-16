@@ -11,7 +11,7 @@ A self-hosted admin console for your GitHub starred repositories — auto-enrich
 - **Smart re-enrichment** — skips LLM work whose source metadata hasn't changed and skips REST metadata refreshes when the repo has not moved since the last successful extended fetch
 - **Privacy-filtered publishing** — keeps the canonical local dataset in `data/stars.json` and publishes only public repos to the static site
 - **Daily public history snapshots** — records `data/history.json` for analytics and publishes the public copy alongside the site
-- **Topic discovery engine** — generates `data/discoveries.json` from GitHub topic search plus curated synonym groups
+- **Topic discovery engine** — generates `data/discoveries.json` from GitHub topic search plus curated synonym groups, and publishes a public-only `site/public/data/discoveries.json`
 - **Publishes** an admin console dashboard to **GitHub Pages**, refreshed daily via **GitHub Actions**
 
 ## Dashboard
@@ -162,7 +162,7 @@ Re-enrichment queued: 3 repos (1 content_changed, 2 aged_31d)
 
 `build_history.py` turns the public subset of `data/stars.json` into a daily snapshot file keyed by UTC date. The canonical `data/history.json` and the public `site/public/data/history.json` are both updated in place, so reruns on the same day stay idempotent instead of duplicating snapshots.
 
-`discover_similar.py` builds topic-based discovery suggestions from the canonical stars dataset. It expands selected topics through `config.json` synonyms, queries GitHub search for matching repositories, and writes both `data/discoveries.json` and the public `site/public/data/discoveries.json`.
+`discover_similar.py` builds topic-based discovery suggestions from the canonical stars dataset. It expands selected topics through `config.json` synonyms, queries GitHub search for matching repositories, and writes both `data/discoveries.json` and the public `site/public/data/discoveries.json`. The public artifact keeps only public sources and public suggestions, with counts derived from that published subset.
 
 ---
 

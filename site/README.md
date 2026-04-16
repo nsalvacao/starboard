@@ -19,7 +19,7 @@ The dashboard reads `data/stars.json` at runtime from the Vite public directory 
 
 `scripts/build_history.py` writes the public daily analytics snapshots into `data/history.json` and `site/public/data/history.json`. Each snapshot is keyed by UTC date and is replaced in place when the pipeline runs again on the same day.
 
-`scripts/discover_similar.py` writes the public topic discovery suggestions into `data/discoveries.json` and `site/public/data/discoveries.json`. It expands curated topic synonym groups from `config.json` and uses GitHub topic search so the Discover view stays reproducible.
+`scripts/discover_similar.py` writes the topic discovery suggestions into `data/discoveries.json` and the public-only `site/public/data/discoveries.json`. It expands curated topic synonym groups from `config.json` and uses GitHub topic search so the Discover view stays reproducible. The published copy keeps only public sources and public suggestions.
 
 ## Current Workspace
 
