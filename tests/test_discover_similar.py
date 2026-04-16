@@ -292,7 +292,7 @@ def test_extract_summary_keywords_returns_technical_terms():
 
 def test_extract_summary_keywords_empty_input():
     assert discover_similar.extract_summary_keywords("") == []
-    assert discover_similar.extract_summary_keywords(None) == []  # type: ignore[arg-type]
+    assert discover_similar.extract_summary_keywords(None) == []
 
 
 def test_build_description_queries_pairs_keywords():
@@ -328,6 +328,15 @@ def test_merge_topic_groups_curated_takes_precedence():
     merged = discover_similar.merge_topic_groups(curated, cooccurrence)
     assert "mcp-server" in merged["mcp"]
     assert "agents" in merged["mcp"]  # co-occurrence appended
+
+
+def test_merge_topic_groups_propagates_cooccurrence_to_group_siblings():
+    curated_groups = discover_similar.build_topic_groups({"mcp": ["mcp-server", "mcp-tools"]})
+    cooccurrence = {"mcp": ["agents"]}
+    merged = discover_similar.merge_topic_groups(curated_groups, cooccurrence)
+    assert "agents" in merged.get("mcp", [])
+    assert "agents" in merged.get("mcp-server", [])
+    assert "agents" in merged.get("mcp-tools", [])
 
 
 def test_build_discovery_entry_uses_summary_keywords_for_description_queries():
