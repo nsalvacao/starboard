@@ -17,6 +17,8 @@ The dashboard reads `data/stars.json` at runtime from the Vite public directory 
 
 `scripts/build_site.py` writes the publishable copy into `site/public/data/stars.json`. That copy is privacy-filtered: entries must include `visibility`, and only repositories with `visibility == "public"` are published to the site.
 
+`scripts/build_history.py` writes the public daily analytics snapshots into `data/history.json` and `site/public/data/history.json`. Each snapshot is keyed by UTC date and is replaced in place when the pipeline runs again on the same day.
+
 ## Current Workspace
 
 - Sidebar views for All / Watch / Explore / Cleanup / Not Enriched
@@ -25,6 +27,7 @@ The dashboard reads `data/stars.json` at runtime from the Vite public directory 
 - Repository detail modal opened from table rows
 - Topic filters synced to the URL
 - Compare panel for selected repositories
+- Daily public history snapshots prepared for the analytics phase
 
 ## Local Development
 
@@ -52,6 +55,7 @@ Deployment is handled automatically by the GitHub Actions workflow (`.github/wor
 
 1. Fetches starred repos via `fetch_stars.py`
 2. Enriches with LLM metadata via `enrich_stars.py`
-3. Writes the privacy-filtered `stars.json` to `site/public/data/` via `build_site.py`
-4. Builds the site with `npm run build`
-5. Deploys `site/dist/` to GitHub Pages
+3. Writes daily public history snapshots via `build_history.py`
+4. Writes the privacy-filtered `stars.json` to `site/public/data/` via `build_site.py`
+5. Builds the site with `npm run build`
+6. Deploys `site/dist/` to GitHub Pages
