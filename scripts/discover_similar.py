@@ -74,11 +74,11 @@ _STOPWORDS = frozenset({
 })
 
 
-def extract_summary_keywords(summary: str, max_keywords: int = 6) -> list[str]:
+def extract_summary_keywords(summary: str | None, max_keywords: int = 6) -> list[str]:
     """Extract technical keywords from an LLM-generated summary (no model calls)."""
     if not summary:
         return []
-    words = re.findall(r'[a-z][a-z0-9]*(?:-[a-z0-9]+)*', summary.lower())
+    words = re.findall(r'[a-z][a-z0-9]*(?:[._-][a-z0-9]+)*', summary.lower())
     seen: set[str] = set()
     keywords: list[str] = []
     for w in words:
@@ -93,13 +93,12 @@ def build_description_queries(keywords: list[str], max_queries: int = 2) -> list
     if not keywords:
         return []
     queries: list[str] = []
-    for i in range(0, len(keywords) - 1, 2):
-        queries.append(f"{keywords[i]} {keywords[i + 1]} in:description")
+    for i in range(0, len(keywords), 2):
+        pair = keywords[i : i + 2]
+        queries.append(" ".join(pair) + " in:description")
         if len(queries) >= max_queries:
             break
-    if not queries and keywords:
-        queries.append(f"{keywords[0]} in:description")
-    return queries[:max_queries]
+    return queries
 
 
 def build_cooccurrence_groups(repos: list[dict], min_shared: int = 2, min_ratio: float = 0.25) -> dict[str, list[str]]:
@@ -123,7 +122,7 @@ def build_cooccurrence_groups(repos: list[dict], min_shared: int = 2, min_ratio:
             and len(repos_set & other_repos) / n >= min_ratio
         ]
         if related:
-            result[topic] = related
+            result[topic] = sorted(related)
     return result
 
 
@@ -134,12 +133,18 @@ def merge_topic_groups(
     merged = {k: list(v) for k, v in curated.items()}
     for topic, related in cooccurrence.items():
         if topic not in merged:
-            merged[topic] = [topic, *related]
+            merged[topic] = [topic, *sorted(related)]
         else:
             existing = set(merged[topic])
-            for term in related:
-                if term not in existing:
-                    merged[topic].append(term)
+            new_terms = sorted(t for t in related if t not in existing)
+            if new_terms:
+                merged[topic].extend(new_terms)
+                for sibling in list(existing):
+                    if sibling != topic and sibling in merged:
+                        sibling_existing = set(merged[sibling])
+                        for term in new_terms:
+                            if term not in sibling_existing:
+                                merged[sibling].append(term)
     return merged
 
 
@@ -311,6 +316,8 @@ def normalize_description_candidate(item: dict, keywords: list[str]) -> dict | N
     if not isinstance(full_name, str) or not isinstance(html_url, str):
         return None
     topics = [t for t in (item.get("topics") or []) if isinstance(t, str)]
+    desc = (item.get("description") or "").lower()
+    matched_keywords = [kw for kw in keywords if kw in desc]
     return {
         "full_name": full_name,
         "html_url": html_url,
@@ -322,7 +329,7 @@ def normalize_description_candidate(item: dict, keywords: list[str]) -> dict | N
         "visibility": item.get("visibility", "public"),
         "score": 0.0,
         "matched_topics": [],
-        "matched_keywords": list(keywords),
+        "matched_keywords": matched_keywords,
         "query_terms": [],
     }
 
@@ -482,7 +489,7 @@ def build_discovery_dataset(repos: list[dict], session: requests.Session, cfg: d
             if len(primary_topics) > 1:
                 source_score += score_topic(primary_topics[1], frequencies, topic_groups)
         elif repo.get("llm_summary"):
-            source_score = 0.0  # fallback: no topics but has summary — ranked last
+            source_score = float("-inf")  # fallback: no topics but has summary — ranked last
         else:
             continue
         ranked_sources.append((source_score, repo))
@@ -495,7 +502,10 @@ def build_discovery_dataset(repos: list[dict], session: requests.Session, cfg: d
         )
     )
 
-    source_repo_limit = int(cfg.get("discovery", {}).get("source_repo_limit", 30))
+    try:
+        source_repo_limit = max(1, int(cfg.get("discovery", {}).get("source_repo_limit", 30)))
+    except (TypeError, ValueError):
+        source_repo_limit = 30
     entries: list[dict] = []
     for _, repo in ranked_sources[:source_repo_limit]:
         entry = build_discovery_entry(repo, session, frequencies, topic_groups, starred_names)
