@@ -179,10 +179,14 @@ export function RepoTable({ repos }: RepoTableProps) {
                 </div>
 
                 <div className="min-w-0 flex flex-col gap-1">
-                  <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full w-fit", 
-                    repo.llm_category === 'AI/ML' ? 'bg-purple-900/30 text-purple-400 border border-purple-800' :
-                    'bg-[var(--color-gh-border)] text-[var(--color-gh-strong)]'
-                  )}>
+                  <span
+                    className={cn(
+                      'text-xs font-medium px-2 py-0.5 rounded-full w-fit border',
+                      repo.llm_category === 'AI/ML'
+                        ? 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/30 dark:text-purple-400 dark:border-purple-800'
+                        : 'bg-[var(--color-gh-border)] text-[var(--color-gh-strong)] border-[var(--color-gh-border)]'
+                    )}
+                  >
                     {repo.llm_category || 'Uncategorized'}
                   </span>
                   {repo.language && <div className="text-xs text-[var(--color-gh-muted)] flex items-center gap-1">
