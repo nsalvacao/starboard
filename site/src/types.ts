@@ -49,6 +49,7 @@ export type SortDirection = 'asc' | 'desc';
 export type SortKey =
   | 'full_name'
   | 'llm_category'
+  | 'llm_summary'
   | 'language'
   | 'stargazers_count'
   | 'forks_count'

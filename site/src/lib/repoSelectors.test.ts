@@ -68,6 +68,21 @@ describe('updateSortCriteria', () => {
       { key: 'forks_count', direction: 'asc' },
     ]);
   });
+
+  it('sorts by summary text when requested', () => {
+    const visible = getVisibleRepos({
+      repos: [
+        makeRepo({ full_name: 'org/b', llm_summary: 'zeta' }),
+        makeRepo({ full_name: 'org/a', llm_summary: 'alpha' }),
+      ],
+      viewMode: 'all',
+      searchQuery: '',
+      filters: { category: [], language: [], status: [], topics: [] },
+      sortCriteria: [{ key: 'llm_summary', direction: 'asc' }],
+    });
+
+    expect(visible.map((repo) => repo.full_name)).toEqual(['org/a', 'org/b']);
+  });
 });
 
 describe('getVisibleRepos', () => {

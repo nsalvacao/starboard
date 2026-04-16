@@ -130,8 +130,16 @@ export function RepoTable({ repos }: RepoTableProps) {
                   height: `${virtualItem.size}px`,
                   transform: `translateY(${virtualItem.start}px)`,
                 }}
-                className="grid grid-cols-[auto_2fr_1fr_1fr_100px_100px] gap-4 p-4 items-center border-b border-[var(--color-gh-border)] hover:bg-[var(--color-gh-hover)] transition-colors group cursor-pointer"
+                role="button"
+                tabIndex={0}
+                className="grid grid-cols-[auto_2fr_1fr_1fr_100px_100px] gap-4 p-4 items-center border-b border-[var(--color-gh-border)] hover:bg-[var(--color-gh-hover)] transition-colors group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-gh-accent)] focus-visible:ring-inset"
                 onClick={() => openRepoModal(repo.full_name)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openRepoModal(repo.full_name);
+                  }
+                }}
               >
                 <div className="w-8 flex items-center justify-center">
                   <input 

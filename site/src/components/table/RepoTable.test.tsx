@@ -71,4 +71,24 @@ describe('RepoTable', () => {
     expect(useStore.getState().selectedRepos).toContain('org/repo');
     expect(useStore.getState().activeRepoId).toBeNull();
   });
+
+  it('opens the detail modal from the row via keyboard', async () => {
+    const user = userEvent.setup();
+    const repo = makeRepo();
+
+    useStore.setState({
+      repos: [repo],
+      viewMode: 'all',
+      searchQuery: '',
+      filters: { category: [], language: [], status: [], topics: [] },
+    });
+
+    render(<RepoTable repos={[repo]} />);
+
+    const row = screen.getByRole('button', { name: /org\/repo/i });
+    row.focus();
+    await user.keyboard('{Enter}');
+
+    expect(useStore.getState().activeRepoId).toBe('org/repo');
+  });
 });

@@ -3,6 +3,7 @@ import type { SortCriterion, SortDirection, SortKey } from '../types';
 const VALID_SORT_KEYS: SortKey[] = [
   'full_name',
   'llm_category',
+  'llm_summary',
   'language',
   'stargazers_count',
   'forks_count',

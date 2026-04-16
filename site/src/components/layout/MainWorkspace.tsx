@@ -38,8 +38,8 @@ export function MainWorkspace({ isLoading }: { isLoading: boolean }) {
   );
 
   const activeRepo = useMemo(
-    () => visibleRepos.find((repo) => repo.full_name === activeRepoId) || null,
-    [visibleRepos, activeRepoId]
+    () => repos.find((repo) => repo.full_name === activeRepoId) || null,
+    [repos, activeRepoId]
   );
 
   const toggleTopic = (topic: string) => {

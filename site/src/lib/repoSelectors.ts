@@ -34,6 +34,8 @@ function compareRepoByCriterion(a: Repository, b: Repository, criterion: SortCri
       return compareStrings(a.full_name, b.full_name, direction);
     case 'llm_category':
       return compareStrings(a.llm_category || '', b.llm_category || '', direction);
+    case 'llm_summary':
+      return compareStrings(a.llm_summary || '', b.llm_summary || '', direction);
     case 'language':
       return compareStrings(a.language || '', b.language || '', direction);
     case 'stargazers_count':

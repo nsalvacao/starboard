@@ -49,22 +49,22 @@ function timestamp(): string {
   return new Date().toISOString().replace(/[:.]/g, '-');
 }
 
-export function ExportButton({ repos, viewMode }: ExportButtonProps) {
-  const baseName = `starboard-${viewMode}-${timestamp()}`;
+function buildExportName(viewMode: ViewMode, extension: 'json' | 'csv'): string {
+  return `starboard-${viewMode}-${timestamp()}.${extension}`;
+}
 
+export function ExportButton({ repos, viewMode }: ExportButtonProps) {
   return (
     <div className="flex items-center gap-2">
       <button
-        onClick={() =>
-          downloadFile(JSON.stringify(repos, null, 2), `${baseName}.json`, 'application/json')
-        }
+        onClick={() => downloadFile(JSON.stringify(repos, null, 2), buildExportName(viewMode, 'json'), 'application/json')}
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-xs text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
       >
         <Download className="w-3.5 h-3.5" />
         Export JSON
       </button>
       <button
-        onClick={() => downloadFile(toCsv(repos), `${baseName}.csv`, 'text/csv;charset=utf-8')}
+        onClick={() => downloadFile(toCsv(repos), buildExportName(viewMode, 'csv'), 'text/csv;charset=utf-8')}
         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-xs text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
       >
         <Download className="w-3.5 h-3.5" />
