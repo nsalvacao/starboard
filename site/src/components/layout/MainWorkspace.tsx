@@ -20,7 +20,7 @@ export function MainWorkspace({ isLoading }: { isLoading: boolean }) {
     setFilter,
     searchQuery,
     sortCriteria,
-    activeRepoId,
+    activeRepoFullName,
     closeRepoModal,
     error,
   } = useStore();
@@ -38,8 +38,8 @@ export function MainWorkspace({ isLoading }: { isLoading: boolean }) {
   );
 
   const activeRepo = useMemo(
-    () => repos.find((repo) => repo.full_name === activeRepoId) || null,
-    [repos, activeRepoId]
+    () => repos.find((repo) => repo.full_name === activeRepoFullName) || null,
+    [repos, activeRepoFullName]
   );
 
   const toggleTopic = (topic: string) => {

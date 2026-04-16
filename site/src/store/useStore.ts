@@ -31,8 +31,8 @@ interface AppState {
   clearSort: () => void;
 
   // Repo details modal
-  activeRepoId: string | null;
-  openRepoModal: (repoId: string) => void;
+  activeRepoFullName: string | null;
+  openRepoModal: (repoFullName: string) => void;
   closeRepoModal: () => void;
 
   // Preferences
@@ -88,9 +88,9 @@ export const useStore = create<AppState>()(
       setSortCriteria: (criteria) => set({ sortCriteria: criteria }),
       clearSort: () => set({ sortCriteria: [] }),
 
-      activeRepoId: null,
-      openRepoModal: (repoId) => set({ activeRepoId: repoId }),
-      closeRepoModal: () => set({ activeRepoId: null }),
+      activeRepoFullName: null,
+      openRepoModal: (repoFullName) => set({ activeRepoFullName: repoFullName }),
+      closeRepoModal: () => set({ activeRepoFullName: null }),
 
       preferences: { theme: 'dark', density: 'normal' },
       setPreferences: (prefs) =>

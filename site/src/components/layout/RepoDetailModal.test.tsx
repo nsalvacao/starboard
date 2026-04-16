@@ -54,12 +54,12 @@ function makeRepo(): Repository {
 }
 
 beforeEach(() => {
-  useStore.setState({ activeRepoId: 'org/repo' });
+  useStore.setState({ activeRepoFullName: 'org/repo' });
 });
 
 afterEach(() => {
   document.body.style.overflow = '';
-  useStore.setState({ activeRepoId: null });
+  useStore.setState({ activeRepoFullName: null });
 });
 
 describe('RepoDetailModal', () => {
@@ -75,7 +75,7 @@ describe('RepoDetailModal', () => {
           isOpen={isOpen}
           onClose={() => {
             setIsOpen(false);
-            useStore.setState({ activeRepoId: null });
+            useStore.setState({ activeRepoFullName: null });
           }}
         />
       );

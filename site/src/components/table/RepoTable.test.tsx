@@ -47,7 +47,7 @@ function makeRepo(): Repository {
 beforeEach(() => {
   useStore.setState({
     selectedRepos: [],
-    activeRepoId: null,
+    activeRepoFullName: null,
     sortCriteria: [],
   });
 });
@@ -69,7 +69,7 @@ describe('RepoTable', () => {
     await user.click(screen.getByRole('checkbox', { name: /select org\/repo for comparison/i }));
 
     expect(useStore.getState().selectedRepos).toContain('org/repo');
-    expect(useStore.getState().activeRepoId).toBeNull();
+    expect(useStore.getState().activeRepoFullName).toBeNull();
   });
 
   it('opens the detail modal from the row via keyboard', async () => {
@@ -89,6 +89,6 @@ describe('RepoTable', () => {
     row.focus();
     await user.keyboard('{Enter}');
 
-    expect(useStore.getState().activeRepoId).toBe('org/repo');
+    expect(useStore.getState().activeRepoFullName).toBe('org/repo');
   });
 });
