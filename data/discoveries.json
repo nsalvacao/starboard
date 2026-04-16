@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-16T16:44:13Z",
-  "source_repo_count": 114,
+  "generated_at": "2026-04-16T19:56:44Z",
+  "source_repo_count": 142,
   "entries": [
     {
       "source": {
@@ -26,14 +26,30 @@
           "tauri"
         ],
         "stargazers_count": 304,
-        "forks_count": 26,
+        "forks_count": 27,
         "visibility": "public"
       },
       "seed_topics": [
         "mcp-management",
         "mcp-manager"
       ],
+      "seed_keywords": [
+        "managing",
+        "synchronizing",
+        "server",
+        "configurations",
+        "across",
+        "multiple"
+      ],
       "expanded_topics": [
+        "agents",
+        "ai-agents",
+        "autonomous-agents",
+        "claude",
+        "claude-code",
+        "dxt",
+        "gemini",
+        "gpt-oss",
         "mcp",
         "mcp-client",
         "mcp-management",
@@ -41,13 +57,19 @@
         "mcp-server",
         "mcp-servers",
         "mcp-tools",
-        "model-context-protocol"
+        "model-context-protocol",
+        "multi-agent-systems",
+        "ollama",
+        "self-hosted",
+        "workflow-automation"
       ],
       "queries": [
         "topic:mcp-management topic:mcp-manager",
         "topic:mcp-management",
         "topic:mcp-manager",
-        "topic:mcp"
+        "topic:mcp",
+        "managing synchronizing in:description",
+        "server configurations in:description"
       ],
       "source_score": 1239.0,
       "suggestions": [
@@ -150,10 +172,10 @@
             "mcp-servers",
             "mcp-tools"
           ],
-          "stargazers_count": 1959,
+          "stargazers_count": 1960,
           "forks_count": 158,
           "visibility": "public",
-          "score": 1601.9748,
+          "score": 1601.9758,
           "matched_topics": [
             "mcp",
             "mcp-client",
@@ -191,8 +213,9 @@
           "stargazers_count": 5,
           "forks_count": 0,
           "visibility": "public",
-          "score": 1500.005,
+          "score": 1600.005,
           "matched_topics": [
+            "claude",
             "mcp",
             "mcp-client",
             "mcp-manager",
@@ -201,262 +224,6 @@
           ],
           "query_terms": [
             "topic:mcp-manager"
-          ]
-        }
-      ]
-    },
-    {
-      "source": {
-        "full_name": "ruvnet/ruflo",
-        "html_url": "https://github.com/ruvnet/ruflo",
-        "description": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features    enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
-        "language": "TypeScript",
-        "topics": [
-          "agentic-ai",
-          "agentic-engineering",
-          "agentic-framework",
-          "agentic-rag",
-          "agentic-workflow",
-          "agents",
-          "ai-assistant",
-          "ai-tools",
-          "anthropic-claude",
-          "autonomous-agents",
-          "claude-code",
-          "claude-code-skills",
-          "codex",
-          "huggingface",
-          "mcp-server",
-          "model-context-protocol",
-          "multi-agent",
-          "multi-agent-systems",
-          "swarm",
-          "swarm-intelligence"
-        ],
-        "stargazers_count": 32009,
-        "forks_count": 3588,
-        "visibility": "public"
-      },
-      "seed_topics": [
-        "model-context-protocol",
-        "agentic-engineering"
-      ],
-      "expanded_topics": [
-        "agentic-engineering",
-        "mcp",
-        "mcp-client",
-        "mcp-management",
-        "mcp-manager",
-        "mcp-server",
-        "mcp-servers",
-        "mcp-tools",
-        "model-context-protocol"
-      ],
-      "queries": [
-        "topic:model-context-protocol topic:agentic-engineering",
-        "topic:model-context-protocol",
-        "topic:agentic-engineering",
-        "topic:mcp"
-      ],
-      "source_score": 1140.0,
-      "suggestions": [
-        {
-          "full_name": "marcuspat/turbo-flow",
-          "html_url": "https://github.com/marcuspat/turbo-flow",
-          "description": "Advanced Agentic Development Environment Supporting Devpods, Rackspace Spot Instances, Github Codespaces, Google Cloud Shell, and more!  Features 600+ AI subagents, Claude Flow, SPARC methodology, and automatic context loading! Deploy intelligent multi-agent swarms, coordinate autonomous workflows.",
-          "language": "Shell",
-          "topics": [
-            "agentic-ai",
-            "agentic-engineering",
-            "agentic-framework",
-            "agentic-rag",
-            "agentic-workflow",
-            "ai-assistant",
-            "ai-tools",
-            "anthropic-claude",
-            "autonomous-agents",
-            "claude-code",
-            "codex",
-            "hugging-face",
-            "jules",
-            "mcp-server",
-            "model-context-protocol",
-            "multi-agent",
-            "multi-agent-systems",
-            "npx",
-            "swarm",
-            "swarm-intelligence"
-          ],
-          "stargazers_count": 156,
-          "forks_count": 44,
-          "visibility": "public",
-          "score": 2300.1603999999998,
-          "matched_topics": [
-            "agentic-engineering",
-            "mcp-server",
-            "model-context-protocol"
-          ],
-          "query_terms": [
-            "topic:agentic-engineering",
-            "topic:model-context-protocol topic:agentic-engineering"
-          ]
-        },
-        {
-          "full_name": "chernistry/bernstein",
-          "html_url": "https://github.com/chernistry/bernstein",
-          "description": "Declarative Agent Orchestration.  Ship while you sleep.",
-          "language": "Python",
-          "topics": [
-            "a2a",
-            "agent-orchestration",
-            "agentic-ai",
-            "agentic-engineering",
-            "agentic-workflow",
-            "ai-agents",
-            "ai-orchestrator",
-            "autonomous-agents",
-            "claude-code",
-            "coding-agents",
-            "cursor",
-            "developer-tools",
-            "mcp-server",
-            "model-context-protocol",
-            "multi-agent",
-            "multi-agent-systems",
-            "open-plugins",
-            "openclaw",
-            "self-evolving",
-            "vibe-coding"
-          ],
-          "stargazers_count": 125,
-          "forks_count": 21,
-          "visibility": "public",
-          "score": 2300.1271,
-          "matched_topics": [
-            "agentic-engineering",
-            "mcp-server",
-            "model-context-protocol"
-          ],
-          "query_terms": [
-            "topic:agentic-engineering",
-            "topic:model-context-protocol topic:agentic-engineering"
-          ]
-        },
-        {
-          "full_name": "MakingJamie/claude-colony",
-          "html_url": "https://github.com/MakingJamie/claude-colony",
-          "description": "Multi-agent Claude Code you can actually control. Spawn specialist teams in tmux, watch them work side-by-side, steer when needed. Built on native Claude Code agents. No black boxes.",
-          "language": "TypeScript",
-          "topics": [
-            "agentic-ai",
-            "agentic-engineering",
-            "agentic-framework",
-            "agentic-rag",
-            "agentic-workflow",
-            "ai-assistant",
-            "ai-coding",
-            "ai-tools",
-            "anthropic-claude",
-            "autonomous-agents",
-            "claude-code",
-            "cli",
-            "developer-tools",
-            "mcp-server",
-            "model-context-protocol",
-            "multi-agent",
-            "multi-agent-systems",
-            "terminal",
-            "tmux",
-            "vibe-coding"
-          ],
-          "stargazers_count": 12,
-          "forks_count": 2,
-          "visibility": "public",
-          "score": 2300.0122,
-          "matched_topics": [
-            "agentic-engineering",
-            "mcp-server",
-            "model-context-protocol"
-          ],
-          "query_terms": [
-            "topic:model-context-protocol topic:agentic-engineering"
-          ]
-        },
-        {
-          "full_name": "cyborgsalamanca/codex-agent",
-          "html_url": "https://github.com/cyborgsalamanca/codex-agent",
-          "description": "Automate Codex CLI tasks using OpenClaw to write prompts, approve commands, check results, and interact via terminal or Telegram.",
-          "language": "Shell",
-          "topics": [
-            "agent",
-            "agentic-engineering",
-            "agentic-framework",
-            "agentic-workflow",
-            "ai-assistant",
-            "ai-tools",
-            "claude",
-            "claude-code-skills",
-            "cli",
-            "cursor-agent",
-            "management",
-            "mcp",
-            "model-context-protocol",
-            "opencode",
-            "parallel-agents",
-            "swarm",
-            "terminal",
-            "tui"
-          ],
-          "stargazers_count": 7,
-          "forks_count": 2,
-          "visibility": "public",
-          "score": 2300.0072,
-          "matched_topics": [
-            "agentic-engineering",
-            "mcp",
-            "model-context-protocol"
-          ],
-          "query_terms": [
-            "topic:model-context-protocol topic:agentic-engineering"
-          ]
-        },
-        {
-          "full_name": "MihailBausov/coding-swarm",
-          "html_url": "https://github.com/MihailBausov/coding-swarm",
-          "description": "🐝 Run parallel AI agents in isolated containers to coordinate code tasks across any project using multiple AI providers with git integration.",
-          "language": "Python",
-          "topics": [
-            "agentic-engineering",
-            "agentic-workflow",
-            "agents",
-            "ai-tools",
-            "anthropic-claude",
-            "claude-code",
-            "codex",
-            "devops",
-            "docker-swarm",
-            "game-development",
-            "huggingface",
-            "infrastructure-as-code",
-            "mcp-server",
-            "model-context-protocol",
-            "noops",
-            "swarm",
-            "tads",
-            "terraform",
-            "vagrant"
-          ],
-          "stargazers_count": 0,
-          "forks_count": 1,
-          "visibility": "public",
-          "score": 2300.0001,
-          "matched_topics": [
-            "agentic-engineering",
-            "mcp-server",
-            "model-context-protocol"
-          ],
-          "query_terms": [
-            "topic:model-context-protocol topic:agentic-engineering"
           ]
         }
       ]
@@ -485,119 +252,56 @@
           "saas",
           "skills"
         ],
-        "stargazers_count": 1952,
-        "forks_count": 266,
+        "stargazers_count": 1958,
+        "forks_count": 265,
         "visibility": "public"
       },
       "seed_topics": [
         "claude-code-plugins",
         "plugin-marketplace"
       ],
+      "seed_keywords": [
+        "marketplace",
+        "plugins",
+        "agent",
+        "skills",
+        "claude",
+        "including"
+      ],
       "expanded_topics": [
         "agent-skills",
+        "ai-agents",
+        "anthropic",
+        "antigravity",
         "awesome-claude-skills",
+        "claude",
+        "claude-code",
         "claude-code-plugins",
         "claude-code-skill",
         "claude-code-system-prompts",
+        "codex",
+        "gemini",
+        "gemini-api",
+        "mcp",
+        "openclaw",
         "plugin-marketplace",
-        "skills"
+        "qwen",
+        "qwen-code",
+        "saas",
+        "skills",
+        "system-prompts",
+        "workflow-automation"
       ],
       "queries": [
         "topic:claude-code-plugins topic:plugin-marketplace",
         "topic:claude-code-plugins",
         "topic:plugin-marketplace",
-        "topic:skills"
+        "topic:skills",
+        "marketplace plugins in:description",
+        "agent skills in:description"
       ],
       "source_score": 1140.0,
       "suggestions": [
-        {
-          "full_name": "acostanzo/quickstop",
-          "html_url": "https://github.com/acostanzo/quickstop",
-          "description": "A Claude Code plugin marketplace",
-          "language": "Shell",
-          "topics": [
-            "agentic-development",
-            "claude-code",
-            "claude-code-plugins",
-            "claude-plugins",
-            "configuration-audit",
-            "developer-tools",
-            "plugin-marketplace"
-          ],
-          "stargazers_count": 41,
-          "forks_count": 7,
-          "visibility": "public",
-          "score": 2200.0417,
-          "matched_topics": [
-            "claude-code-plugins",
-            "plugin-marketplace"
-          ],
-          "query_terms": [
-            "topic:claude-code-plugins topic:plugin-marketplace",
-            "topic:plugin-marketplace"
-          ]
-        },
-        {
-          "full_name": "mrdenox109-nyx/skill-manager",
-          "html_url": "https://github.com/mrdenox109-nyx/skill-manager",
-          "description": "Automatically detect and disable irrelevant Claude Code skills per project to save tokens and streamline your tech workflow.",
-          "language": "Python",
-          "topics": [
-            "agents",
-            "ai-agents",
-            "antigravity",
-            "claude",
-            "claude-code-plugins",
-            "claude-code-skills",
-            "claude-skills",
-            "commands",
-            "hacktoberfest",
-            "kiro",
-            "mcp",
-            "package-manager",
-            "plugin-marketplace",
-            "pm-frameworks",
-            "product-management",
-            "rules",
-            "skills-manager"
-          ],
-          "stargazers_count": 3,
-          "forks_count": 0,
-          "visibility": "public",
-          "score": 2200.003,
-          "matched_topics": [
-            "claude-code-plugins",
-            "plugin-marketplace"
-          ],
-          "query_terms": [
-            "topic:claude-code-plugins topic:plugin-marketplace"
-          ]
-        },
-        {
-          "full_name": "fakoli/fakoli-plugins",
-          "html_url": "https://github.com/fakoli/fakoli-plugins",
-          "description": "A curated collection of Claude Code plugins for enhanced productivity and development workflows",
-          "language": "Python",
-          "topics": [
-            "ai-tools",
-            "anthropic",
-            "claude",
-            "claude-code",
-            "claude-code-plugins",
-            "plugin-marketplace"
-          ],
-          "stargazers_count": 2,
-          "forks_count": 1,
-          "visibility": "public",
-          "score": 2200.0021,
-          "matched_topics": [
-            "claude-code-plugins",
-            "plugin-marketplace"
-          ],
-          "query_terms": [
-            "topic:claude-code-plugins topic:plugin-marketplace"
-          ]
-        },
         {
           "full_name": "shihwesley/shihwesley-plugins",
           "html_url": "https://github.com/shihwesley/shihwesley-plugins",
@@ -624,10 +328,15 @@
           "stargazers_count": 2,
           "forks_count": 1,
           "visibility": "public",
-          "score": 2200.0021,
+          "score": 2700.0021,
           "matched_topics": [
+            "ai-agents",
+            "claude",
+            "claude-code",
             "claude-code-plugins",
-            "plugin-marketplace"
+            "mcp",
+            "plugin-marketplace",
+            "workflow-automation"
           ],
           "query_terms": [
             "topic:claude-code-plugins topic:plugin-marketplace"
@@ -663,9 +372,113 @@
           "stargazers_count": 2,
           "forks_count": 0,
           "visibility": "public",
-          "score": 2200.002,
+          "score": 2700.002,
           "matched_topics": [
+            "ai-agents",
+            "anthropic",
+            "claude",
+            "claude-code",
             "claude-code-plugins",
+            "mcp",
+            "plugin-marketplace"
+          ],
+          "query_terms": [
+            "topic:claude-code-plugins topic:plugin-marketplace"
+          ]
+        },
+        {
+          "full_name": "mrdenox109-nyx/skill-manager",
+          "html_url": "https://github.com/mrdenox109-nyx/skill-manager",
+          "description": "Automatically detect and disable irrelevant Claude Code skills per project to save tokens and streamline your tech workflow.",
+          "language": "Python",
+          "topics": [
+            "agents",
+            "ai-agents",
+            "antigravity",
+            "claude",
+            "claude-code-plugins",
+            "claude-code-skills",
+            "claude-skills",
+            "commands",
+            "hacktoberfest",
+            "kiro",
+            "mcp",
+            "package-manager",
+            "plugin-marketplace",
+            "pm-frameworks",
+            "product-management",
+            "rules",
+            "skills-manager"
+          ],
+          "stargazers_count": 3,
+          "forks_count": 0,
+          "visibility": "public",
+          "score": 2600.003,
+          "matched_topics": [
+            "ai-agents",
+            "antigravity",
+            "claude",
+            "claude-code-plugins",
+            "mcp",
+            "plugin-marketplace"
+          ],
+          "query_terms": [
+            "topic:claude-code-plugins topic:plugin-marketplace"
+          ]
+        },
+        {
+          "full_name": "fakoli/fakoli-plugins",
+          "html_url": "https://github.com/fakoli/fakoli-plugins",
+          "description": "A curated collection of Claude Code plugins for enhanced productivity and development workflows",
+          "language": "Python",
+          "topics": [
+            "ai-tools",
+            "anthropic",
+            "claude",
+            "claude-code",
+            "claude-code-plugins",
+            "plugin-marketplace"
+          ],
+          "stargazers_count": 2,
+          "forks_count": 1,
+          "visibility": "public",
+          "score": 2500.0021,
+          "matched_topics": [
+            "anthropic",
+            "claude",
+            "claude-code",
+            "claude-code-plugins",
+            "plugin-marketplace"
+          ],
+          "query_terms": [
+            "topic:claude-code-plugins topic:plugin-marketplace"
+          ]
+        },
+        {
+          "full_name": "gemgalawala/telecom-ops-claude-code-plugins",
+          "html_url": "https://github.com/gemgalawala/telecom-ops-claude-code-plugins",
+          "description": "🎯 Enhance telecom operations with this Claude Code plugin for intent parsing and O2-IMS status queries, streamlining network management tasks.",
+          "language": "Shell",
+          "topics": [
+            "claude-code",
+            "claude-code-plugins",
+            "gitops",
+            "kpt",
+            "kubernetes",
+            "mcp",
+            "model-context-protocol",
+            "nephio",
+            "plugin-marketplace",
+            "porch"
+          ],
+          "stargazers_count": 2,
+          "forks_count": 0,
+          "visibility": "public",
+          "score": 2400.002,
+          "matched_topics": [
+            "claude-code",
+            "claude-code-plugins",
+            "mcp",
             "plugin-marketplace"
           ],
           "query_terms": [
@@ -702,31 +515,52 @@
           "token-counter",
           "tweak"
         ],
-        "stargazers_count": 1752,
-        "forks_count": 132,
+        "stargazers_count": 1759,
+        "forks_count": 133,
         "visibility": "public"
       },
       "seed_topics": [
         "claude-code-ui",
         "claude-code-native"
       ],
+      "seed_keywords": [
+        "customizing",
+        "claude",
+        "prompts",
+        "themes",
+        "user",
+        "interface"
+      ],
       "expanded_topics": [
+        "ai-agents",
+        "anthropic",
+        "antigravity",
+        "claude",
         "claude-code",
         "claude-code-native",
         "claude-code-plugins",
         "claude-code-skill",
         "claude-code-system-prompts",
         "claude-code-ui",
+        "codex",
         "codex-cli",
         "copilot-cli",
         "cursor",
-        "gemini-cli"
+        "gemini",
+        "gemini-api",
+        "gemini-cli",
+        "mcp",
+        "qwen",
+        "qwen-code",
+        "workflow-automation"
       ],
       "queries": [
         "topic:claude-code-ui topic:claude-code-native",
         "topic:claude-code-ui",
         "topic:claude-code-native",
-        "topic:claude-code"
+        "topic:claude-code",
+        "customizing claude in:description",
+        "prompts themes in:description"
       ],
       "source_score": 1140.0,
       "suggestions": [
@@ -771,37 +605,6 @@
           ]
         },
         {
-          "full_name": "siteboon/claudecodeui",
-          "html_url": "https://github.com/siteboon/claudecodeui",
-          "description": "Use Claude Code, Cursor CLI or Codex on mobile and web with CloudCLI (aka Claude Code UI). CloudCLI is a free open source webui/GUI that helps you manage your Claude Code session and projects remotely",
-          "language": "TypeScript",
-          "topics": [
-            "anthropic",
-            "anthropic-ai",
-            "anthropic-claude",
-            "claude",
-            "claude-api",
-            "claude-code",
-            "claude-code-ui",
-            "claudecode",
-            "gui",
-            "mobile-first",
-            "react",
-            "ui"
-          ],
-          "stargazers_count": 9898,
-          "forks_count": 1319,
-          "visibility": "public",
-          "score": 1210.0299,
-          "matched_topics": [
-            "claude-code",
-            "claude-code-ui"
-          ],
-          "query_terms": [
-            "topic:claude-code-ui"
-          ]
-        },
-        {
           "full_name": "zainow000/claudecodeui",
           "html_url": "https://github.com/zainow000/claudecodeui",
           "description": "Provide a unified desktop and mobile interface to manage and edit projects and sessions for Claude Code, Cursor CLI, Codex, and Gemini-CLI.",
@@ -830,8 +633,44 @@
           "stargazers_count": 1,
           "forks_count": 0,
           "visibility": "public",
-          "score": 1200.001,
+          "score": 1500.001,
           "matched_topics": [
+            "anthropic",
+            "claude",
+            "claude-code",
+            "claude-code-ui",
+            "codex"
+          ],
+          "query_terms": [
+            "topic:claude-code-ui"
+          ]
+        },
+        {
+          "full_name": "siteboon/claudecodeui",
+          "html_url": "https://github.com/siteboon/claudecodeui",
+          "description": "Use Claude Code, Cursor CLI or Codex on mobile and web with CloudCLI (aka Claude Code UI). CloudCLI is a free open source webui/GUI that helps you manage your Claude Code session and projects remotely",
+          "language": "TypeScript",
+          "topics": [
+            "anthropic",
+            "anthropic-ai",
+            "anthropic-claude",
+            "claude",
+            "claude-api",
+            "claude-code",
+            "claude-code-ui",
+            "claudecode",
+            "gui",
+            "mobile-first",
+            "react",
+            "ui"
+          ],
+          "stargazers_count": 9901,
+          "forks_count": 1319,
+          "visibility": "public",
+          "score": 1410.0329000000002,
+          "matched_topics": [
+            "anthropic",
+            "claude",
             "claude-code",
             "claude-code-ui"
           ],
@@ -860,8 +699,10 @@
           "stargazers_count": 0,
           "forks_count": 0,
           "visibility": "public",
-          "score": 1200.0,
+          "score": 1400.0,
           "matched_topics": [
+            "anthropic",
+            "claude",
             "claude-code",
             "claude-code-ui"
           ],
@@ -892,13 +733,17 @@
             "tui",
             "typescript"
           ],
-          "stargazers_count": 52088,
-          "forks_count": 4186,
+          "stargazers_count": 52107,
+          "forks_count": 4191,
           "visibility": "public",
-          "score": 252.5066,
+          "score": 652.5260999999999,
           "matched_topics": [
+            "ai-agents",
+            "anthropic",
+            "claude",
             "claude-code",
-            "cursor"
+            "cursor",
+            "gemini"
           ],
           "query_terms": [
             "topic:claude-code"
@@ -921,31 +766,126 @@
           "open-source",
           "second-brain"
         ],
-        "stargazers_count": 1390,
-        "forks_count": 154,
+        "stargazers_count": 1470,
+        "forks_count": 162,
         "visibility": "public"
       },
       "seed_topics": [
         "claude-code-skill",
         "second-brain"
       ],
+      "seed_keywords": [
+        "integrates",
+        "claude",
+        "obsidian",
+        "knowledge",
+        "management",
+        "wiki"
+      ],
       "expanded_topics": [
         "agent-skills",
+        "ai-agents",
+        "anthropic",
+        "antigravity",
         "awesome-claude-skills",
+        "claude",
+        "claude-code",
         "claude-code-plugins",
         "claude-code-skill",
         "claude-code-system-prompts",
+        "codex",
+        "gemini",
+        "gemini-api",
+        "mcp",
+        "openclaw",
+        "qwen",
+        "qwen-code",
+        "saas",
         "second-brain",
-        "skills"
+        "skills",
+        "system-prompts",
+        "workflow-automation"
       ],
       "queries": [
         "topic:claude-code-skill topic:second-brain",
         "topic:claude-code-skill",
         "topic:second-brain",
-        "topic:skills"
+        "topic:skills",
+        "integrates claude in:description",
+        "obsidian knowledge in:description"
       ],
       "source_score": 1140.0,
       "suggestions": [
+        {
+          "full_name": "Apexlify/vaultweaver",
+          "html_url": "https://github.com/Apexlify/vaultweaver",
+          "description": "Drop files. Get a knowledge graph. No database required. Claude Code skill that compiles raw sources into interconnected Obsidian-compatible markdown wikis with auto-ingest, concept extraction, BM25 search, and drift detection.",
+          "language": "Python",
+          "topics": [
+            "ai-agent",
+            "anthropic",
+            "bm25-search",
+            "claude",
+            "claude-code",
+            "claude-code-skill",
+            "cross-references",
+            "knowledge-base",
+            "knowledge-graph",
+            "knowledge-management",
+            "llm",
+            "markdown",
+            "obsidian",
+            "obsidian-plugin",
+            "personal-knowledge-management",
+            "rag-alternative",
+            "research",
+            "second-brain",
+            "wiki",
+            "wikilinks"
+          ],
+          "stargazers_count": 0,
+          "forks_count": 1,
+          "visibility": "public",
+          "score": 2500.0001,
+          "matched_topics": [
+            "anthropic",
+            "claude",
+            "claude-code",
+            "claude-code-skill",
+            "second-brain"
+          ],
+          "query_terms": [
+            "topic:claude-code-skill topic:second-brain"
+          ]
+        },
+        {
+          "full_name": "superuser-pal/awesome-second-brain",
+          "html_url": "https://github.com/superuser-pal/awesome-second-brain",
+          "description": "The AI-assisted second brain that connects your notes, ideas, and tasks into persistent context for agentic workflows using Claude Code + Obsidian",
+          "language": "TypeScript",
+          "topics": [
+            "claude",
+            "claude-code",
+            "claude-code-skill",
+            "knowledge-management",
+            "obsidian",
+            "pkm",
+            "second-brain"
+          ],
+          "stargazers_count": 3,
+          "forks_count": 1,
+          "visibility": "public",
+          "score": 2400.0031000000004,
+          "matched_topics": [
+            "claude",
+            "claude-code",
+            "claude-code-skill",
+            "second-brain"
+          ],
+          "query_terms": [
+            "topic:claude-code-skill topic:second-brain"
+          ]
+        },
         {
           "full_name": "AgriciDaniel/claude-canvas",
           "html_url": "https://github.com/AgriciDaniel/claude-canvas",
@@ -961,10 +901,11 @@
             "second-brain"
           ],
           "stargazers_count": 25,
-          "forks_count": 1,
+          "forks_count": 2,
           "visibility": "public",
-          "score": 2200.0251000000003,
+          "score": 2300.0252,
           "matched_topics": [
+            "claude-code",
             "claude-code-skill",
             "second-brain"
           ],
@@ -999,37 +940,12 @@
             "rag-alternative",
             "second-brain"
           ],
-          "stargazers_count": 9,
+          "stargazers_count": 10,
           "forks_count": 0,
           "visibility": "public",
-          "score": 2200.009,
+          "score": 2300.01,
           "matched_topics": [
-            "claude-code-skill",
-            "second-brain"
-          ],
-          "query_terms": [
-            "topic:claude-code-skill topic:second-brain"
-          ]
-        },
-        {
-          "full_name": "superuser-pal/awesome-second-brain",
-          "html_url": "https://github.com/superuser-pal/awesome-second-brain",
-          "description": "The AI-assisted second brain that connects your notes, ideas, and tasks into persistent context for agentic workflows using Claude Code + Obsidian",
-          "language": "TypeScript",
-          "topics": [
-            "claude",
             "claude-code",
-            "claude-code-skill",
-            "knowledge-management",
-            "obsidian",
-            "pkm",
-            "second-brain"
-          ],
-          "stargazers_count": 3,
-          "forks_count": 1,
-          "visibility": "public",
-          "score": 2200.0031000000004,
-          "matched_topics": [
             "claude-code-skill",
             "second-brain"
           ],
@@ -1056,47 +972,9 @@
           "stargazers_count": 1,
           "forks_count": 0,
           "visibility": "public",
-          "score": 2200.001,
+          "score": 2300.001,
           "matched_topics": [
-            "claude-code-skill",
-            "second-brain"
-          ],
-          "query_terms": [
-            "topic:claude-code-skill topic:second-brain"
-          ]
-        },
-        {
-          "full_name": "Apexlify/vaultweaver",
-          "html_url": "https://github.com/Apexlify/vaultweaver",
-          "description": "Drop files. Get a knowledge graph. No database required. Claude Code skill that compiles raw sources into interconnected Obsidian-compatible markdown wikis with auto-ingest, concept extraction, BM25 search, and drift detection.",
-          "language": "Python",
-          "topics": [
-            "ai-agent",
-            "anthropic",
-            "bm25-search",
-            "claude",
             "claude-code",
-            "claude-code-skill",
-            "cross-references",
-            "knowledge-base",
-            "knowledge-graph",
-            "knowledge-management",
-            "llm",
-            "markdown",
-            "obsidian",
-            "obsidian-plugin",
-            "personal-knowledge-management",
-            "rag-alternative",
-            "research",
-            "second-brain",
-            "wiki",
-            "wikilinks"
-          ],
-          "stargazers_count": 0,
-          "forks_count": 1,
-          "visibility": "public",
-          "score": 2200.0001,
-          "matched_topics": [
             "claude-code-skill",
             "second-brain"
           ],
@@ -1126,70 +1004,104 @@
           "skills",
           "tmux"
         ],
-        "stargazers_count": 6273,
-        "forks_count": 846,
+        "stargazers_count": 6280,
+        "forks_count": 850,
         "visibility": "public"
       },
       "seed_topics": [
         "agent-swarm",
         "git-worktrees"
       ],
+      "seed_keywords": [
+        "agentic",
+        "orchestrator",
+        "parallel",
+        "coding",
+        "agents",
+        "plans"
+      ],
       "expanded_topics": [
         "agent",
         "agent-swarm",
         "agentic",
         "agentic-ai",
+        "agentic-framework",
+        "agentic-workflow",
         "agents",
         "ai-agent",
         "ai-agents",
+        "anthropic",
         "autonomous-agents",
+        "claude",
+        "claude-code",
+        "clawdbot",
+        "codex",
+        "gemini",
+        "generative-ai",
         "git-worktrees",
-        "multi-agent"
+        "langchain",
+        "langgraph",
+        "mcp-server",
+        "memory",
+        "multi-agent",
+        "multi-agent-systems",
+        "nextjs",
+        "openclaw",
+        "orchestration",
+        "rag"
       ],
       "queries": [
         "topic:agent-swarm topic:git-worktrees",
         "topic:agent-swarm",
         "topic:git-worktrees",
-        "topic:ai-agents"
+        "topic:ai-agents",
+        "agentic orchestrator in:description",
+        "parallel coding in:description"
       ],
       "source_score": 1139.0,
       "suggestions": [
         {
-          "full_name": "sortie-ai/sortie",
-          "html_url": "https://github.com/sortie-ai/sortie",
-          "description": "Turn tracker tickets into agent sessions",
-          "language": "Go",
+          "full_name": "web3dev1337/agent-workspace",
+          "html_url": "https://github.com/web3dev1337/agent-workspace",
+          "description": "All your projects in one workspace. Run multiple CLI agents in parallel across different repos. Runs on your hardware, accessed through the desktop app or the browser. Bring your own plans.",
+          "language": "JavaScript",
           "topics": [
-            "agent",
-            "agent-fleet",
-            "agent-swarm",
+            "agentic-ai",
+            "ai",
+            "ai-agents",
+            "automation",
+            "claude",
+            "claude-code",
+            "codex",
+            "codex-cli",
+            "developer-tools",
+            "git-worktree",
+            "git-worktrees",
+            "llm",
+            "multi-terminal",
+            "opencode",
+            "orchestration",
+            "orchestrator",
+            "productivity",
+            "tauri",
+            "terminal",
+            "workspaces"
+          ],
+          "stargazers_count": 16,
+          "forks_count": 2,
+          "visibility": "public",
+          "score": 1700.0162,
+          "matched_topics": [
             "agentic-ai",
             "ai-agents",
-            "ai-orchestration",
-            "automation",
+            "claude",
             "claude-code",
-            "coding-agent",
-            "copilot-cli",
-            "developer-tools",
-            "devops",
-            "github-project",
-            "jira",
-            "jira-automation",
-            "orchestration",
-            "orchestrator"
-          ],
-          "stargazers_count": 26,
-          "forks_count": 3,
-          "visibility": "public",
-          "score": 1400.0263,
-          "matched_topics": [
-            "agent",
-            "agent-swarm",
-            "agentic-ai",
-            "ai-agents"
+            "codex",
+            "git-worktrees",
+            "orchestration"
           ],
           "query_terms": [
-            "topic:agent-swarm"
+            "topic:git-worktrees"
           ]
         },
         {
@@ -1219,56 +1131,20 @@
             "ralph-wiggum",
             "vibe-coding"
           ],
-          "stargazers_count": 253,
+          "stargazers_count": 254,
           "forks_count": 31,
           "visibility": "public",
-          "score": 1300.2560999999998,
+          "score": 1600.2570999999998,
           "matched_topics": [
             "agent-swarm",
             "agentic-ai",
-            "ai-agents"
+            "ai-agents",
+            "claude-code",
+            "codex",
+            "multi-agent-systems"
           ],
           "query_terms": [
             "topic:agent-swarm"
-          ]
-        },
-        {
-          "full_name": "marcusquinn/aidevops",
-          "html_url": "https://github.com/marcusquinn/aidevops",
-          "description": "Vibe-Coding is easy. DevOps is hard. OpenCode & Git token-efficient AI agent automation for your app, business, and personal development. Opinionated tools, services, CLI & API stack for speed, security, and 24/7 results. Open-source first. SOTA everything. Try it on your repos to see the magic.",
-          "language": "Shell",
-          "topics": [
-            "agents",
-            "agents-md",
-            "ai",
-            "ai-agents",
-            "ai-assistant",
-            "ai-assistants",
-            "ai-assisted-development",
-            "ai-code-review",
-            "ai-coding",
-            "ai-dev-ops",
-            "ai-devops",
-            "ai-system-admin",
-            "claude",
-            "devops",
-            "devops-tools",
-            "git-workflow",
-            "git-worktrees",
-            "opencode",
-            "opencode-plugin"
-          ],
-          "stargazers_count": 190,
-          "forks_count": 39,
-          "visibility": "public",
-          "score": 1300.1939,
-          "matched_topics": [
-            "agents",
-            "ai-agents",
-            "git-worktrees"
-          ],
-          "query_terms": [
-            "topic:git-worktrees"
           ]
         },
         {
@@ -1301,10 +1177,13 @@
           "stargazers_count": 137,
           "forks_count": 14,
           "visibility": "public",
-          "score": 1300.1384,
+          "score": 1600.1384,
           "matched_topics": [
             "agentic-ai",
             "ai-agents",
+            "claude",
+            "claude-code",
+            "gemini",
             "git-worktrees"
           ],
           "query_terms": [
@@ -1341,14 +1220,57 @@
           "stargazers_count": 76,
           "forks_count": 8,
           "visibility": "public",
-          "score": 1300.0768,
+          "score": 1600.0768,
           "matched_topics": [
             "ai-agents",
+            "anthropic",
+            "claude",
+            "claude-code",
             "git-worktrees",
             "multi-agent"
           ],
           "query_terms": [
             "topic:git-worktrees"
+          ]
+        },
+        {
+          "full_name": "sortie-ai/sortie",
+          "html_url": "https://github.com/sortie-ai/sortie",
+          "description": "Turn tracker tickets into agent sessions",
+          "language": "Go",
+          "topics": [
+            "agent",
+            "agent-fleet",
+            "agent-swarm",
+            "agentic-ai",
+            "ai-agents",
+            "ai-orchestration",
+            "automation",
+            "claude-code",
+            "coding-agent",
+            "copilot-cli",
+            "developer-tools",
+            "devops",
+            "github-project",
+            "jira",
+            "jira-automation",
+            "orchestration",
+            "orchestrator"
+          ],
+          "stargazers_count": 26,
+          "forks_count": 3,
+          "visibility": "public",
+          "score": 1600.0263,
+          "matched_topics": [
+            "agent",
+            "agent-swarm",
+            "agentic-ai",
+            "ai-agents",
+            "claude-code",
+            "orchestration"
+          ],
+          "query_terms": [
+            "topic:agent-swarm"
           ]
         }
       ]
@@ -1381,13 +1303,21 @@
           "workflow",
           "workflow-automation"
         ],
-        "stargazers_count": 184256,
-        "forks_count": 56852,
+        "stargazers_count": 184342,
+        "forks_count": 56861,
         "visibility": "public"
       },
       "seed_topics": [
         "integration-framework",
         "low-code-platform"
+      ],
+      "seed_keywords": [
+        "visual",
+        "workflow",
+        "capabilities",
+        "supporting",
+        "custom",
+        "self-hosting"
       ],
       "expanded_topics": [
         "integration-framework",
@@ -1396,7 +1326,9 @@
       "queries": [
         "topic:integration-framework topic:low-code-platform",
         "topic:integration-framework",
-        "topic:low-code-platform"
+        "topic:low-code-platform",
+        "visual workflow in:description",
+        "capabilities supporting in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -1607,13 +1539,21 @@
           "openai",
           "openclaw"
         ],
-        "stargazers_count": 90847,
-        "forks_count": 12478,
+        "stargazers_count": 93290,
+        "forks_count": 12958,
         "visibility": "public"
       },
       "seed_topics": [
         "hermes-agent",
         "nous-research"
+      ],
+      "seed_keywords": [
+        "agent",
+        "integrates",
+        "various",
+        "claude",
+        "codex",
+        "ai-powered"
       ],
       "expanded_topics": [
         "hermes-agent",
@@ -1622,7 +1562,9 @@
       "queries": [
         "topic:hermes-agent topic:nous-research",
         "topic:hermes-agent",
-        "topic:nous-research"
+        "topic:nous-research",
+        "agent integrates in:description",
+        "various claude in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -1638,10 +1580,10 @@
             "hermes-agent",
             "nous-research"
           ],
-          "stargazers_count": 2306,
-          "forks_count": 274,
+          "stargazers_count": 2323,
+          "forks_count": 275,
           "visibility": "public",
-          "score": 2202.3334,
+          "score": 2202.3505,
           "matched_topics": [
             "hermes-agent",
             "nous-research"
@@ -1666,10 +1608,10 @@
             "react",
             "typescript"
           ],
-          "stargazers_count": 1509,
+          "stargazers_count": 1512,
           "forks_count": 175,
           "visibility": "public",
-          "score": 2201.5265,
+          "score": 2201.5295,
           "matched_topics": [
             "hermes-agent",
             "nous-research"
@@ -1719,10 +1661,10 @@
             "hermes-atlas",
             "nous-research"
           ],
-          "stargazers_count": 251,
+          "stargazers_count": 253,
           "forks_count": 19,
           "visibility": "public",
-          "score": 2200.2529000000004,
+          "score": 2200.2549000000004,
           "matched_topics": [
             "hermes-agent",
             "nous-research"
@@ -1765,231 +1707,6 @@
     },
     {
       "source": {
-        "full_name": "Mintplex-Labs/anything-llm",
-        "html_url": "https://github.com/Mintplex-Labs/anything-llm",
-        "description": "The all-in-one AI productivity accelerator. On device and privacy first with no annoying setup or configuration.",
-        "language": "JavaScript",
-        "topics": [
-          "ai-agents",
-          "custom-ai-agents",
-          "deepseek",
-          "kimi",
-          "llama3",
-          "llm",
-          "lmstudio",
-          "local-llm",
-          "localai",
-          "mcp",
-          "mcp-servers",
-          "moonshot",
-          "multimodal",
-          "no-code",
-          "ollama",
-          "qwen3",
-          "rag",
-          "vector-database",
-          "web-scraping"
-        ],
-        "stargazers_count": 58396,
-        "forks_count": 6320,
-        "visibility": "public"
-      },
-      "seed_topics": [
-        "custom-ai-agents",
-        "web-scraping"
-      ],
-      "expanded_topics": [
-        "custom-ai-agents",
-        "web-scraping"
-      ],
-      "queries": [
-        "topic:custom-ai-agents topic:web-scraping",
-        "topic:custom-ai-agents",
-        "topic:web-scraping"
-      ],
-      "source_score": 1040.0,
-      "suggestions": [
-        {
-          "full_name": "gekonge/No-one",
-          "html_url": "https://github.com/gekonge/No-one",
-          "description": "🌐 Manage Java WebShells effortlessly with No-one, a modern tool for secure testing and deeper understanding of web attack scenarios.",
-          "language": "TypeScript",
-          "topics": [
-            "custom-ai-agents",
-            "deepseek",
-            "dictonary",
-            "git",
-            "javascript",
-            "kimi",
-            "localai",
-            "mcp",
-            "mcp-servers",
-            "moonshot",
-            "no-code",
-            "oicq",
-            "ollama",
-            "onebot",
-            "purecss",
-            "vector-database",
-            "web-scraping",
-            "zokou"
-          ],
-          "stargazers_count": 1,
-          "forks_count": 0,
-          "visibility": "public",
-          "score": 2200.001,
-          "matched_topics": [
-            "custom-ai-agents",
-            "web-scraping"
-          ],
-          "query_terms": [
-            "topic:custom-ai-agents",
-            "topic:custom-ai-agents topic:web-scraping"
-          ]
-        },
-        {
-          "full_name": "firecrawl/firecrawl",
-          "html_url": "https://github.com/firecrawl/firecrawl",
-          "description": "🔥 The API to search, scrape, and interact with the web for AI",
-          "language": "TypeScript",
-          "topics": [
-            "ai",
-            "ai-agents",
-            "ai-crawler",
-            "ai-scraping",
-            "ai-search",
-            "crawler",
-            "data-extraction",
-            "html-to-markdown",
-            "llm",
-            "markdown",
-            "scraper",
-            "scraping",
-            "web-crawler",
-            "web-data",
-            "web-data-extraction",
-            "web-scraper",
-            "web-scraping",
-            "web-search",
-            "webscraping"
-          ],
-          "stargazers_count": 109949,
-          "forks_count": 7027,
-          "visibility": "public",
-          "score": 1210.6517000000001,
-          "matched_topics": [
-            "web-scraping"
-          ],
-          "query_terms": [
-            "topic:web-scraping"
-          ]
-        },
-        {
-          "full_name": "scrapy/scrapy",
-          "html_url": "https://github.com/scrapy/scrapy",
-          "description": "Scrapy, a fast high-level web crawling & scraping framework for Python.",
-          "language": "Python",
-          "topics": [
-            "crawler",
-            "crawling",
-            "framework",
-            "hacktoberfest",
-            "python",
-            "scraping",
-            "web-scraping",
-            "web-scraping-python"
-          ],
-          "stargazers_count": 61344,
-          "forks_count": 11474,
-          "visibility": "public",
-          "score": 1162.4914,
-          "matched_topics": [
-            "web-scraping"
-          ],
-          "query_terms": [
-            "topic:web-scraping"
-          ]
-        },
-        {
-          "full_name": "D4Vinci/Scrapling",
-          "html_url": "https://github.com/D4Vinci/Scrapling",
-          "description": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!",
-          "language": "Python",
-          "topics": [
-            "ai",
-            "ai-scraping",
-            "automation",
-            "crawler",
-            "crawling",
-            "crawling-python",
-            "data",
-            "data-extraction",
-            "mcp",
-            "mcp-server",
-            "playwright",
-            "python",
-            "scraping",
-            "selectors",
-            "stealth",
-            "web-scraper",
-            "web-scraping",
-            "web-scraping-python",
-            "webscraping",
-            "xpath"
-          ],
-          "stargazers_count": 37398,
-          "forks_count": 3251,
-          "visibility": "public",
-          "score": 1137.7231,
-          "matched_topics": [
-            "web-scraping"
-          ],
-          "query_terms": [
-            "topic:web-scraping"
-          ]
-        },
-        {
-          "full_name": "dgtlmoon/changedetection.io",
-          "html_url": "https://github.com/dgtlmoon/changedetection.io",
-          "description": "Best and simplest tool for website change detection, web page monitoring, and website change alerts. Perfect for tracking content changes, price drops, restock alerts, and website defacement monitoring—all for free or enjoy our SaaS plan!",
-          "language": "Python",
-          "topics": [
-            "back-in-stock",
-            "change-alert",
-            "change-detection",
-            "change-monitoring",
-            "monitoring",
-            "notifications",
-            "restock-monitor",
-            "rss",
-            "self-hosted",
-            "url-monitor",
-            "web-scraping",
-            "website-change-detection",
-            "website-change-detector",
-            "website-change-monitor",
-            "website-change-notification",
-            "website-change-tracker",
-            "website-defacement-monitoring",
-            "website-monitor",
-            "website-monitoring",
-            "website-watcher"
-          ],
-          "stargazers_count": 31153,
-          "forks_count": 1757,
-          "visibility": "public",
-          "score": 1131.3287,
-          "matched_topics": [
-            "web-scraping"
-          ],
-          "query_terms": [
-            "topic:web-scraping"
-          ]
-        }
-      ]
-    },
-    {
-      "source": {
         "full_name": "thedotmack/claude-mem",
         "html_url": "https://github.com/thedotmack/claude-mem",
         "description": "A Claude Code plugin that automatically captures everything Claude does during your coding sessions, compresses it with AI (using Claude's agent-sdk), and injects relevant context back into future sessions.",
@@ -2016,13 +1733,21 @@
           "sqlite",
           "supermemory"
         ],
-        "stargazers_count": 58217,
-        "forks_count": 4726,
+        "stargazers_count": 59369,
+        "forks_count": 4863,
         "visibility": "public"
       },
       "seed_topics": [
         "claude-agent-sdk",
         "claude-agents"
+      ],
+      "seed_keywords": [
+        "plugin",
+        "captures",
+        "compresses",
+        "claude",
+        "sessions",
+        "injecting"
       ],
       "expanded_topics": [
         "claude-agent-sdk",
@@ -2031,7 +1756,9 @@
       "queries": [
         "topic:claude-agent-sdk topic:claude-agents",
         "topic:claude-agent-sdk",
-        "topic:claude-agents"
+        "topic:claude-agents",
+        "plugin captures in:description",
+        "compresses claude in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -2202,6 +1929,241 @@
     },
     {
       "source": {
+        "full_name": "Mintplex-Labs/anything-llm",
+        "html_url": "https://github.com/Mintplex-Labs/anything-llm",
+        "description": "The all-in-one AI productivity accelerator. On device and privacy first with no annoying setup or configuration.",
+        "language": "JavaScript",
+        "topics": [
+          "ai-agents",
+          "custom-ai-agents",
+          "deepseek",
+          "kimi",
+          "llama3",
+          "llm",
+          "lmstudio",
+          "local-llm",
+          "localai",
+          "mcp",
+          "mcp-servers",
+          "moonshot",
+          "multimodal",
+          "no-code",
+          "ollama",
+          "qwen3",
+          "rag",
+          "vector-database",
+          "web-scraping"
+        ],
+        "stargazers_count": 58444,
+        "forks_count": 6324,
+        "visibility": "public"
+      },
+      "seed_topics": [
+        "custom-ai-agents",
+        "web-scraping"
+      ],
+      "seed_keywords": [
+        "all-in-one",
+        "productivity",
+        "focused",
+        "local",
+        "privacy-first",
+        "large"
+      ],
+      "expanded_topics": [
+        "custom-ai-agents",
+        "web-scraping"
+      ],
+      "queries": [
+        "topic:custom-ai-agents topic:web-scraping",
+        "topic:custom-ai-agents",
+        "topic:web-scraping",
+        "all-in-one productivity in:description",
+        "focused local in:description"
+      ],
+      "source_score": 1040.0,
+      "suggestions": [
+        {
+          "full_name": "gekonge/No-one",
+          "html_url": "https://github.com/gekonge/No-one",
+          "description": "🌐 Manage Java WebShells effortlessly with No-one, a modern tool for secure testing and deeper understanding of web attack scenarios.",
+          "language": "TypeScript",
+          "topics": [
+            "custom-ai-agents",
+            "deepseek",
+            "dictonary",
+            "git",
+            "javascript",
+            "kimi",
+            "localai",
+            "mcp",
+            "mcp-servers",
+            "moonshot",
+            "no-code",
+            "oicq",
+            "ollama",
+            "onebot",
+            "purecss",
+            "vector-database",
+            "web-scraping",
+            "zokou"
+          ],
+          "stargazers_count": 1,
+          "forks_count": 0,
+          "visibility": "public",
+          "score": 2200.001,
+          "matched_topics": [
+            "custom-ai-agents",
+            "web-scraping"
+          ],
+          "query_terms": [
+            "topic:custom-ai-agents",
+            "topic:custom-ai-agents topic:web-scraping"
+          ]
+        },
+        {
+          "full_name": "firecrawl/firecrawl",
+          "html_url": "https://github.com/firecrawl/firecrawl",
+          "description": "🔥 The API to search, scrape, and interact with the web for AI",
+          "language": "TypeScript",
+          "topics": [
+            "ai",
+            "ai-agents",
+            "ai-crawler",
+            "ai-scraping",
+            "ai-search",
+            "crawler",
+            "data-extraction",
+            "html-to-markdown",
+            "llm",
+            "markdown",
+            "scraper",
+            "scraping",
+            "web-crawler",
+            "web-data",
+            "web-data-extraction",
+            "web-scraper",
+            "web-scraping",
+            "web-search",
+            "webscraping"
+          ],
+          "stargazers_count": 110004,
+          "forks_count": 7029,
+          "visibility": "public",
+          "score": 1210.7069,
+          "matched_topics": [
+            "web-scraping"
+          ],
+          "query_terms": [
+            "topic:web-scraping"
+          ]
+        },
+        {
+          "full_name": "scrapy/scrapy",
+          "html_url": "https://github.com/scrapy/scrapy",
+          "description": "Scrapy, a fast high-level web crawling & scraping framework for Python.",
+          "language": "Python",
+          "topics": [
+            "crawler",
+            "crawling",
+            "framework",
+            "hacktoberfest",
+            "python",
+            "scraping",
+            "web-scraping",
+            "web-scraping-python"
+          ],
+          "stargazers_count": 61345,
+          "forks_count": 11474,
+          "visibility": "public",
+          "score": 1162.4924,
+          "matched_topics": [
+            "web-scraping"
+          ],
+          "query_terms": [
+            "topic:web-scraping"
+          ]
+        },
+        {
+          "full_name": "D4Vinci/Scrapling",
+          "html_url": "https://github.com/D4Vinci/Scrapling",
+          "description": "🕷️ An adaptive Web Scraping framework that handles everything from a single request to a full-scale crawl!",
+          "language": "Python",
+          "topics": [
+            "ai",
+            "ai-scraping",
+            "automation",
+            "crawler",
+            "crawling",
+            "crawling-python",
+            "data",
+            "data-extraction",
+            "mcp",
+            "mcp-server",
+            "playwright",
+            "python",
+            "scraping",
+            "selectors",
+            "stealth",
+            "web-scraper",
+            "web-scraping",
+            "web-scraping-python",
+            "webscraping",
+            "xpath"
+          ],
+          "stargazers_count": 37433,
+          "forks_count": 3254,
+          "visibility": "public",
+          "score": 1137.7584,
+          "matched_topics": [
+            "web-scraping"
+          ],
+          "query_terms": [
+            "topic:web-scraping"
+          ]
+        },
+        {
+          "full_name": "dgtlmoon/changedetection.io",
+          "html_url": "https://github.com/dgtlmoon/changedetection.io",
+          "description": "Best and simplest tool for website change detection, web page monitoring, and website change alerts. Perfect for tracking content changes, price drops, restock alerts, and website defacement monitoring—all for free or enjoy our SaaS plan!",
+          "language": "Python",
+          "topics": [
+            "back-in-stock",
+            "change-alert",
+            "change-detection",
+            "change-monitoring",
+            "monitoring",
+            "notifications",
+            "restock-monitor",
+            "rss",
+            "self-hosted",
+            "url-monitor",
+            "web-scraping",
+            "website-change-detection",
+            "website-change-detector",
+            "website-change-monitor",
+            "website-change-notification",
+            "website-change-tracker",
+            "website-defacement-monitoring",
+            "website-monitor",
+            "website-monitoring",
+            "website-watcher"
+          ],
+          "stargazers_count": 31154,
+          "forks_count": 1757,
+          "visibility": "public",
+          "score": 1131.3297,
+          "matched_topics": [
+            "web-scraping"
+          ],
+          "query_terms": [
+            "topic:web-scraping"
+          ]
+        }
+      ]
+    },
+    {
+      "source": {
         "full_name": "ruvnet/RuView",
         "html_url": "https://github.com/ruvnet/RuView",
         "description": "π RuView: WiFi DensePose turns commodity WiFi signals into real-time human pose estimation, vital sign monitoring, and presence detection — all without a single pixel of video. ",
@@ -2222,22 +2184,32 @@
           "wifi-hacking",
           "wifi-security"
         ],
-        "stargazers_count": 46818,
-        "forks_count": 6313,
+        "stargazers_count": 46844,
+        "forks_count": 6314,
         "visibility": "public"
       },
       "seed_topics": [
         "pose-estimation",
-        "self-learning"
+        "wifi-hacking"
+      ],
+      "seed_keywords": [
+        "rust-based",
+        "wifi",
+        "densepose",
+        "real-time",
+        "human",
+        "pose"
       ],
       "expanded_topics": [
         "pose-estimation",
-        "self-learning"
+        "wifi-hacking"
       ],
       "queries": [
-        "topic:pose-estimation topic:self-learning",
+        "topic:pose-estimation topic:wifi-hacking",
         "topic:pose-estimation",
-        "topic:self-learning"
+        "topic:wifi-hacking",
+        "rust-based wifi in:description",
+        "densepose real-time in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -2268,10 +2240,10 @@
           "score": 2200.0,
           "matched_topics": [
             "pose-estimation",
-            "self-learning"
+            "wifi-hacking"
           ],
           "query_terms": [
-            "topic:pose-estimation topic:self-learning"
+            "topic:pose-estimation topic:wifi-hacking"
           ]
         },
         {
@@ -2301,10 +2273,10 @@
             "yolo26",
             "yolov8"
           ],
-          "stargazers_count": 56036,
+          "stargazers_count": 56037,
           "forks_count": 10776,
           "visibility": "public",
-          "score": 1157.1136000000001,
+          "score": 1157.1146,
           "matched_topics": [
             "pose-estimation"
           ],
@@ -2339,10 +2311,10 @@
             "pose-estimation",
             "real-time"
           ],
-          "stargazers_count": 33965,
+          "stargazers_count": 33964,
           "forks_count": 8053,
           "visibility": "public",
-          "score": 1134.7703,
+          "score": 1134.7693,
           "matched_topics": [
             "pose-estimation"
           ],
@@ -2351,27 +2323,40 @@
           ]
         },
         {
-          "full_name": "lfnovo/open-notebook",
-          "html_url": "https://github.com/lfnovo/open-notebook",
-          "description": "An Open Source implementation of Notebook LM with more flexibility and features",
-          "language": "TypeScript",
+          "full_name": "We5ter/Scanners-Box",
+          "html_url": "https://github.com/We5ter/Scanners-Box",
+          "description": "A powerful and open-source toolkit for hackers and security automation - 安全行业从业者自研开源扫描器合辑",
+          "language": null,
           "topics": [
-            "assistant",
-            "learning",
-            "note-taking",
-            "notebook",
-            "notes-app",
-            "self-learning"
+            "apk-analysis",
+            "binary-analysis",
+            "code-analyzer",
+            "devsecops",
+            "exploitation-framework",
+            "hacker-tools",
+            "information-security",
+            "malware-analysis",
+            "penetration-testing",
+            "pentesting-tools",
+            "privacy-compliance",
+            "redteam-tools",
+            "security-audit",
+            "security-automation",
+            "smart-contracts",
+            "static-analysis",
+            "vulnerability-scanners",
+            "wifi-hacking",
+            "wifi-security"
           ],
-          "stargazers_count": 22263,
-          "forks_count": 2560,
+          "stargazers_count": 8888,
+          "forks_count": 2429,
           "visibility": "public",
-          "score": 1122.519,
+          "score": 1109.1308999999999,
           "matched_topics": [
-            "self-learning"
+            "wifi-hacking"
           ],
           "query_terms": [
-            "topic:self-learning"
+            "topic:wifi-hacking"
           ]
         },
         {
@@ -2401,10 +2386,10 @@
             "vision-language-model",
             "yolo"
           ],
-          "stargazers_count": 8778,
+          "stargazers_count": 8779,
           "forks_count": 942,
           "visibility": "public",
-          "score": 1108.8722,
+          "score": 1108.8732,
           "matched_topics": [
             "pose-estimation"
           ],
@@ -2423,6 +2408,7 @@
         "topics": [
           "ai-companion",
           "ai-vtuber",
+          "airi",
           "digital-life",
           "grok-companion",
           "live2d",
@@ -2432,13 +2418,21 @@
           "vrm",
           "vtuber"
         ],
-        "stargazers_count": 38189,
-        "forks_count": 3842,
+        "stargazers_count": 38223,
+        "forks_count": 3850,
         "visibility": "public"
       },
       "seed_topics": [
         "ai-companion",
         "digital-life"
+      ],
+      "seed_keywords": [
+        "self-hosted",
+        "companion",
+        "supporting",
+        "realtime",
+        "voice",
+        "chat"
       ],
       "expanded_topics": [
         "ai-companion",
@@ -2447,7 +2441,9 @@
       "queries": [
         "topic:ai-companion topic:digital-life",
         "topic:ai-companion",
-        "topic:digital-life"
+        "topic:digital-life",
+        "self-hosted companion in:description",
+        "supporting realtime in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -2515,6 +2511,36 @@
           ]
         },
         {
+          "full_name": "AlanY1an/echovessel",
+          "html_url": "https://github.com/AlanY1an/echovessel",
+          "description": "Local-first digital persona engine with long-term memory, voice, and channel integrations",
+          "language": "Python",
+          "topics": [
+            "agents",
+            "ai-companion",
+            "chatgpt",
+            "digital-life",
+            "llm",
+            "long-term-memory",
+            "memory",
+            "memory-management",
+            "python",
+            "rag",
+            "state-management"
+          ],
+          "stargazers_count": 5,
+          "forks_count": 0,
+          "visibility": "public",
+          "score": 2200.005,
+          "matched_topics": [
+            "ai-companion",
+            "digital-life"
+          ],
+          "query_terms": [
+            "topic:ai-companion topic:digital-life"
+          ]
+        },
+        {
           "full_name": "bryanchen3777/Project-Aura",
           "html_url": "https://github.com/bryanchen3777/Project-Aura",
           "description": "Project Aura: The Emo-Agent-Toolkit - Give your AI more than just logic, give it an Aura.",
@@ -2565,31 +2591,226 @@
           "query_terms": [
             "topic:ai-companion topic:digital-life"
           ]
-        },
+        }
+      ]
+    },
+    {
+      "source": {
+        "full_name": "ruvnet/ruflo",
+        "html_url": "https://github.com/ruvnet/ruflo",
+        "description": "🌊 The leading agent orchestration platform for Claude. Deploy intelligent multi-agent swarms, coordinate autonomous workflows, and build conversational AI systems. Features    enterprise-grade architecture, distributed swarm intelligence, RAG integration, and native Claude Code / Codex Integration",
+        "language": "TypeScript",
+        "topics": [
+          "agentic-ai",
+          "agentic-engineering",
+          "agentic-framework",
+          "agentic-rag",
+          "agentic-workflow",
+          "agents",
+          "ai-assistant",
+          "ai-tools",
+          "anthropic-claude",
+          "autonomous-agents",
+          "claude-code",
+          "claude-code-skills",
+          "codex",
+          "huggingface",
+          "mcp-server",
+          "model-context-protocol",
+          "multi-agent",
+          "multi-agent-systems",
+          "swarm",
+          "swarm-intelligence"
+        ],
+        "stargazers_count": 32073,
+        "forks_count": 3597,
+        "visibility": "public"
+      },
+      "seed_topics": [
+        "agentic-engineering",
+        "claude-code-skills"
+      ],
+      "seed_keywords": [
+        "agent",
+        "orchestration",
+        "deploying",
+        "managing",
+        "multi-agent",
+        "swarms"
+      ],
+      "expanded_topics": [
+        "agentic-engineering",
+        "claude-code-skills"
+      ],
+      "queries": [
+        "topic:agentic-engineering topic:claude-code-skills",
+        "topic:agentic-engineering",
+        "topic:claude-code-skills",
+        "agent orchestration in:description",
+        "deploying managing in:description"
+      ],
+      "source_score": 1040.0,
+      "suggestions": [
         {
-          "full_name": "bryanchen3777/yua-memory",
-          "html_url": "https://github.com/bryanchen3777/yua-memory",
-          "description": "Emotional Memory Management System for AI Agents",
-          "language": "JavaScript",
+          "full_name": "shanraisshan/claude-code-best-practice",
+          "html_url": "https://github.com/shanraisshan/claude-code-best-practice",
+          "description": "from vibe coding to agentic engineering - practice makes claude perfect",
+          "language": "HTML",
           "topics": [
-            "ai-companion",
-            "digital-life",
-            "emotional-intelligence",
-            "mcp-server",
-            "memory-management",
-            "openclaw",
-            "rag"
+            "agentic-engineering",
+            "anthropic",
+            "best-practices",
+            "boris",
+            "boris-cherny",
+            "claude",
+            "claude-ai",
+            "claude-code",
+            "claude-code-agents",
+            "claude-code-best-practices",
+            "claude-code-commands",
+            "claude-code-skills",
+            "vibe-coding"
           ],
-          "stargazers_count": 1,
-          "forks_count": 0,
+          "stargazers_count": 45509,
+          "forks_count": 4399,
           "visibility": "public",
-          "score": 2200.001,
+          "score": 2245.9489,
           "matched_topics": [
-            "ai-companion",
-            "digital-life"
+            "agentic-engineering",
+            "claude-code-skills"
           ],
           "query_terms": [
-            "topic:ai-companion topic:digital-life"
+            "topic:agentic-engineering",
+            "topic:agentic-engineering topic:claude-code-skills",
+            "topic:claude-code-skills"
+          ]
+        },
+        {
+          "full_name": "cyborgsalamanca/codex-agent",
+          "html_url": "https://github.com/cyborgsalamanca/codex-agent",
+          "description": "Automate Codex CLI tasks using OpenClaw to write prompts, approve commands, check results, and interact via terminal or Telegram.",
+          "language": "Shell",
+          "topics": [
+            "agent",
+            "agentic-engineering",
+            "agentic-framework",
+            "agentic-workflow",
+            "ai-assistant",
+            "ai-tools",
+            "claude",
+            "claude-code-skills",
+            "cli",
+            "cursor-agent",
+            "management",
+            "mcp",
+            "model-context-protocol",
+            "opencode",
+            "parallel-agents",
+            "swarm",
+            "terminal",
+            "tui"
+          ],
+          "stargazers_count": 7,
+          "forks_count": 2,
+          "visibility": "public",
+          "score": 2200.0072,
+          "matched_topics": [
+            "agentic-engineering",
+            "claude-code-skills"
+          ],
+          "query_terms": [
+            "topic:agentic-engineering topic:claude-code-skills"
+          ]
+        },
+        {
+          "full_name": "winghv/newhorse",
+          "html_url": "https://github.com/winghv/newhorse",
+          "description": "Spawn unlimited AI agents. Configure once, deploy forever. No CLI. No boilerplate. Just open your browser and go.",
+          "language": "TypeScript",
+          "topics": [
+            "agentic-engineering",
+            "claude",
+            "claude-code-skills",
+            "multi-agent-systems",
+            "swarm",
+            "web-native"
+          ],
+          "stargazers_count": 3,
+          "forks_count": 0,
+          "visibility": "public",
+          "score": 2200.003,
+          "matched_topics": [
+            "agentic-engineering",
+            "claude-code-skills"
+          ],
+          "query_terms": [
+            "topic:agentic-engineering topic:claude-code-skills"
+          ]
+        },
+        {
+          "full_name": "aneja5/forge-skills",
+          "html_url": "https://github.com/aneja5/forge-skills",
+          "description": "",
+          "language": "Shell",
+          "topics": [
+            "agentic-engineering",
+            "agents",
+            "claude-code",
+            "claude-code-plugin",
+            "claude-code-skills",
+            "plugins",
+            "productivity",
+            "skills"
+          ],
+          "stargazers_count": 0,
+          "forks_count": 0,
+          "visibility": "public",
+          "score": 2200.0,
+          "matched_topics": [
+            "agentic-engineering",
+            "claude-code-skills"
+          ],
+          "query_terms": [
+            "topic:agentic-engineering topic:claude-code-skills"
+          ]
+        },
+        {
+          "full_name": "wshobson/agents",
+          "html_url": "https://github.com/wshobson/agents",
+          "description": "Intelligent automation and multi-agent orchestration for Claude Code",
+          "language": "Python",
+          "topics": [
+            "agents",
+            "anthropic",
+            "anthropic-claude",
+            "automation",
+            "claude",
+            "claude-code",
+            "claude-code-cli",
+            "claude-code-commands",
+            "claude-code-plugin",
+            "claude-code-plugins",
+            "claude-code-skills",
+            "claude-code-subagents",
+            "claude-skills",
+            "claudecode",
+            "claudecode-config",
+            "claudecode-subagents",
+            "orchestration",
+            "sub-agents",
+            "subagents",
+            "workflows"
+          ],
+          "stargazers_count": 33718,
+          "forks_count": 3660,
+          "visibility": "public",
+          "score": 1134.084,
+          "matched_topics": [
+            "claude-code-skills"
+          ],
+          "query_terms": [
+            "agent orchestration in:description",
+            "topic:claude-code-skills"
           ]
         }
       ]
@@ -2622,13 +2843,21 @@
           "ts",
           "typescript"
         ],
-        "stargazers_count": 30254,
-        "forks_count": 3910,
+        "stargazers_count": 30268,
+        "forks_count": 3912,
         "visibility": "public"
       },
       "seed_topics": [
         "agent-native",
         "assistant-chat-bots"
+      ],
+      "seed_keywords": [
+        "frontend",
+        "stack",
+        "integrating",
+        "react",
+        "angular",
+        "agents"
       ],
       "expanded_topics": [
         "agent-native",
@@ -2637,7 +2866,9 @@
       "queries": [
         "topic:agent-native topic:assistant-chat-bots",
         "topic:agent-native",
-        "topic:assistant-chat-bots"
+        "topic:assistant-chat-bots",
+        "frontend stack in:description",
+        "integrating react in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -2664,9 +2895,9 @@
             "visualization"
           ],
           "stargazers_count": 1133,
-          "forks_count": 137,
+          "forks_count": 138,
           "visibility": "public",
-          "score": 2201.1467,
+          "score": 2201.1468,
           "matched_topics": [
             "agent-native",
             "assistant-chat-bots"
@@ -2819,13 +3050,21 @@
           "hacktoberfest",
           "prompt-engineering"
         ],
-        "stargazers_count": 29924,
-        "forks_count": 3536,
+        "stargazers_count": 30053,
+        "forks_count": 3553,
         "visibility": "public"
       },
       "seed_topics": [
         "custom-agents",
         "github-copilot"
+      ],
+      "seed_keywords": [
+        "collection",
+        "community-contributed",
+        "instructions",
+        "agents",
+        "skills",
+        "configurations"
       ],
       "expanded_topics": [
         "custom-agents",
@@ -2834,7 +3073,9 @@
       "queries": [
         "topic:custom-agents topic:github-copilot",
         "topic:custom-agents",
-        "topic:github-copilot"
+        "topic:github-copilot",
+        "collection community-contributed in:description",
+        "instructions agents in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -2865,6 +3106,7 @@
             "github-copilot"
           ],
           "query_terms": [
+            "instructions agents in:description",
             "topic:custom-agents",
             "topic:custom-agents topic:github-copilot"
           ]
@@ -3005,13 +3247,21 @@
           "vision",
           "vlm"
         ],
-        "stargazers_count": 29419,
-        "forks_count": 2880,
+        "stargazers_count": 29425,
+        "forks_count": 2878,
         "visibility": "public"
       },
       "seed_topics": [
         "computer-use",
         "gui-operator"
+      ],
+      "seed_keywords": [
+        "multimodal",
+        "agent",
+        "stack",
+        "connecting",
+        "advanced",
+        "models"
       ],
       "expanded_topics": [
         "computer-use",
@@ -3020,7 +3270,9 @@
       "queries": [
         "topic:computer-use topic:gui-operator",
         "topic:computer-use",
-        "topic:gui-operator"
+        "topic:gui-operator",
+        "multimodal agent in:description",
+        "stack connecting in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -3081,10 +3333,10 @@
             "windows",
             "windows-sandbox"
           ],
-          "stargazers_count": 13492,
+          "stargazers_count": 13493,
           "forks_count": 835,
           "visibility": "public",
-          "score": 1113.5755,
+          "score": 1113.5765,
           "matched_topics": [
             "computer-use"
           ],
@@ -3107,10 +3359,10 @@
             "phone-use",
             "testing"
           ],
-          "stargazers_count": 12665,
+          "stargazers_count": 12667,
           "forks_count": 943,
           "visibility": "public",
-          "score": 1112.7593,
+          "score": 1112.7613,
           "matched_topics": [
             "computer-use"
           ],
@@ -3186,235 +3438,6 @@
     },
     {
       "source": {
-        "full_name": "langfuse/langfuse",
-        "html_url": "https://github.com/langfuse/langfuse",
-        "description": "🪢 Open source LLM engineering platform: LLM Observability, metrics, evals, prompt management, playground, datasets. Integrates with OpenTelemetry, Langchain, OpenAI SDK, LiteLLM, and more. 🍊YC W23 ",
-        "language": "TypeScript",
-        "topics": [
-          "analytics",
-          "autogen",
-          "evaluation",
-          "langchain",
-          "large-language-models",
-          "llama-index",
-          "llm",
-          "llm-evaluation",
-          "llm-observability",
-          "llmops",
-          "monitoring",
-          "observability",
-          "open-source",
-          "openai",
-          "playground",
-          "prompt-engineering",
-          "prompt-management",
-          "self-hosted",
-          "ycombinator"
-        ],
-        "stargazers_count": 24992,
-        "forks_count": 2540,
-        "visibility": "public"
-      },
-      "seed_topics": [
-        "llm-observability",
-        "prompt-management"
-      ],
-      "expanded_topics": [
-        "llm-observability",
-        "prompt-management"
-      ],
-      "queries": [
-        "topic:llm-observability topic:prompt-management",
-        "topic:llm-observability",
-        "topic:prompt-management"
-      ],
-      "source_score": 1040.0,
-      "suggestions": [
-        {
-          "full_name": "Helicone/helicone",
-          "html_url": "https://github.com/Helicone/helicone",
-          "description": "🧊 Open source LLM observability platform. One line of code to monitor, evaluate, and experiment. YC W23 🍓",
-          "language": "TypeScript",
-          "topics": [
-            "agent-monitoring",
-            "analytics",
-            "evaluation",
-            "gpt",
-            "langchain",
-            "large-language-models",
-            "llama-index",
-            "llm",
-            "llm-cost",
-            "llm-evaluation",
-            "llm-observability",
-            "llmops",
-            "monitoring",
-            "open-source",
-            "openai",
-            "playground",
-            "prompt-engineering",
-            "prompt-management",
-            "ycombinator"
-          ],
-          "stargazers_count": 5499,
-          "forks_count": 511,
-          "visibility": "public",
-          "score": 2205.5501,
-          "matched_topics": [
-            "llm-observability",
-            "prompt-management"
-          ],
-          "query_terms": [
-            "topic:llm-observability",
-            "topic:llm-observability topic:prompt-management",
-            "topic:prompt-management"
-          ]
-        },
-        {
-          "full_name": "coze-dev/coze-loop",
-          "html_url": "https://github.com/coze-dev/coze-loop",
-          "description": "Next-generation AI Agent Optimization Platform: Cozeloop addresses challenges in AI agent development by providing full-lifecycle management capabilities from development, debugging, and evaluation to monitoring.  ",
-          "language": "Go",
-          "topics": [
-            "agent",
-            "agent-evaluation",
-            "agent-observability",
-            "agentops",
-            "ai",
-            "coze",
-            "eino",
-            "evaluation",
-            "langchain",
-            "llm-observability",
-            "llmops",
-            "monitoring",
-            "observability",
-            "open-source",
-            "openai",
-            "playground",
-            "prompt-management"
-          ],
-          "stargazers_count": 5412,
-          "forks_count": 748,
-          "visibility": "public",
-          "score": 2205.4867999999997,
-          "matched_topics": [
-            "llm-observability",
-            "prompt-management"
-          ],
-          "query_terms": [
-            "topic:llm-observability",
-            "topic:llm-observability topic:prompt-management",
-            "topic:prompt-management"
-          ]
-        },
-        {
-          "full_name": "Agenta-AI/agenta",
-          "html_url": "https://github.com/Agenta-AI/agenta",
-          "description": "The open-source LLMOps platform: prompt playground, prompt management, LLM evaluation, and LLM observability all in one place.",
-          "language": "TypeScript",
-          "topics": [
-            "agents",
-            "evaluation",
-            "llm-as-a-judge",
-            "llm-evaluation",
-            "llm-framework",
-            "llm-monitoring",
-            "llm-observability",
-            "llm-platform",
-            "llm-playground",
-            "llm-tools",
-            "llmops",
-            "observability",
-            "prompt-engineering",
-            "prompt-management",
-            "rag-evaluation"
-          ],
-          "stargazers_count": 4033,
-          "forks_count": 510,
-          "visibility": "public",
-          "score": 2204.084,
-          "matched_topics": [
-            "llm-observability",
-            "prompt-management"
-          ],
-          "query_terms": [
-            "topic:llm-observability",
-            "topic:llm-observability topic:prompt-management",
-            "topic:prompt-management"
-          ]
-        },
-        {
-          "full_name": "langfuse/oss-llmops-stack",
-          "html_url": "https://github.com/langfuse/oss-llmops-stack",
-          "description": "Modular, open source LLMOps stack that separates concerns: LiteLLM unifies LLM APIs, manages routing and cost controls, and ensures high-availability, while Langfuse focuses on detailed observability, prompt versioning, and performance evaluations.",
-          "language": null,
-          "topics": [
-            "ai-gateway",
-            "gateway",
-            "llm",
-            "llm-evaluation",
-            "llm-gateway",
-            "llm-observability",
-            "llmops",
-            "monitoring",
-            "open-source",
-            "openai-proxy",
-            "prompt-management",
-            "self-hosted",
-            "ycombinator"
-          ],
-          "stargazers_count": 136,
-          "forks_count": 7,
-          "visibility": "public",
-          "score": 2200.1367,
-          "matched_topics": [
-            "llm-observability",
-            "prompt-management"
-          ],
-          "query_terms": [
-            "topic:llm-observability topic:prompt-management"
-          ]
-        },
-        {
-          "full_name": "steloit/steloit",
-          "html_url": "https://github.com/steloit/steloit",
-          "description": "The AI engineering platform for AI teams. Observability, evaluation, and prompt management for LLMs and AI agents. OpenTelemetry native.",
-          "language": "Go",
-          "topics": [
-            "ai",
-            "ai-agents",
-            "anthropic",
-            "developer-tools",
-            "evaluation",
-            "langchain",
-            "llm-observability",
-            "llm-ops",
-            "mlops",
-            "observability",
-            "open-source",
-            "openai",
-            "opentelemetry",
-            "prompt-engineering",
-            "prompt-management",
-            "tracing"
-          ],
-          "stargazers_count": 3,
-          "forks_count": 2,
-          "visibility": "public",
-          "score": 2200.0032,
-          "matched_topics": [
-            "llm-observability",
-            "prompt-management"
-          ],
-          "query_terms": [
-            "topic:llm-observability topic:prompt-management"
-          ]
-        }
-      ]
-    },
-    {
-      "source": {
         "full_name": "supermemoryai/supermemory",
         "html_url": "https://github.com/supermemoryai/supermemory",
         "description": "Memory engine and app that is extremely fast, scalable. The Memory API for the AI era.",
@@ -3433,13 +3456,21 @@
           "typescript",
           "vite"
         ],
-        "stargazers_count": 21843,
-        "forks_count": 2004,
+        "stargazers_count": 21874,
+        "forks_count": 2005,
         "visibility": "public"
       },
       "seed_topics": [
         "cloudflare-kv",
         "cloudflare-pages"
+      ],
+      "seed_keywords": [
+        "scalable",
+        "memory",
+        "engine",
+        "applications",
+        "supporting",
+        "cloudflare"
       ],
       "expanded_topics": [
         "cloudflare-kv",
@@ -3448,7 +3479,9 @@
       "queries": [
         "topic:cloudflare-kv topic:cloudflare-pages",
         "topic:cloudflare-kv",
-        "topic:cloudflare-pages"
+        "topic:cloudflare-pages",
+        "scalable memory in:description",
+        "engine applications in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -3632,13 +3665,21 @@
           "typescript",
           "workflow"
         ],
-        "stargazers_count": 20529,
-        "forks_count": 2978,
+        "stargazers_count": 20538,
+        "forks_count": 2979,
         "visibility": "public"
       },
       "seed_topics": [
         "agent-platform",
         "chatbot-framework"
+      ],
+      "seed_keywords": [
+        "agent",
+        "visual",
+        "creating",
+        "debugging",
+        "deploying",
+        "agents"
       ],
       "expanded_topics": [
         "agent-platform",
@@ -3647,7 +3688,9 @@
       "queries": [
         "topic:agent-platform topic:chatbot-framework",
         "topic:agent-platform",
-        "topic:chatbot-framework"
+        "topic:chatbot-framework",
+        "agent visual in:description",
+        "creating debugging in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -3664,10 +3707,10 @@
             "voice",
             "voice-assistant"
           ],
-          "stargazers_count": 11354,
-          "forks_count": 1941,
+          "stargazers_count": 11359,
+          "forks_count": 1942,
           "visibility": "public",
-          "score": 1111.5481,
+          "score": 1111.5531999999998,
           "matched_topics": [
             "chatbot-framework"
           ],
@@ -3809,13 +3852,21 @@
           "self-hosted",
           "typescript"
         ],
-        "stargazers_count": 17970,
-        "forks_count": 725,
+        "stargazers_count": 17973,
+        "forks_count": 724,
         "visibility": "public"
       },
       "seed_topics": [
         "bookmark-manager",
         "react-native"
+      ],
+      "seed_keywords": [
+        "self-hosted",
+        "collaborative",
+        "bookmark",
+        "manager",
+        "collecting",
+        "reading"
       ],
       "expanded_topics": [
         "bookmark-manager",
@@ -3824,7 +3875,9 @@
       "queries": [
         "topic:bookmark-manager topic:react-native",
         "topic:bookmark-manager",
-        "topic:react-native"
+        "topic:react-native",
+        "self-hosted collaborative in:description",
+        "bookmark manager in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -3842,10 +3895,10 @@
             "read-it-later",
             "self-hosted"
           ],
-          "stargazers_count": 24694,
-          "forks_count": 1145,
+          "stargazers_count": 24696,
+          "forks_count": 1146,
           "visibility": "public",
-          "score": 2224.8085,
+          "score": 2224.8106,
           "matched_topics": [
             "bookmark-manager",
             "react-native"
@@ -3951,10 +4004,10 @@
             "react",
             "react-native"
           ],
-          "stargazers_count": 125705,
-          "forks_count": 25145,
+          "stargazers_count": 125703,
+          "forks_count": 25144,
           "visibility": "public",
-          "score": 1228.2195,
+          "score": 1228.2174,
           "matched_topics": [
             "react-native"
           ],
@@ -3974,13 +4027,20 @@
           "multi-modal-rag",
           "retrieval-augmented-generation"
         ],
-        "stargazers_count": 15838,
-        "forks_count": 1876,
+        "stargazers_count": 15892,
+        "forks_count": 1885,
         "visibility": "public"
       },
       "seed_topics": [
         "multi-modal-rag",
         "retrieval-augmented-generation"
+      ],
+      "seed_keywords": [
+        "comprehensive",
+        "retrieval-augmented",
+        "generation",
+        "supporting",
+        "multi-modal"
       ],
       "expanded_topics": [
         "multi-modal-rag",
@@ -3989,7 +4049,9 @@
       "queries": [
         "topic:multi-modal-rag topic:retrieval-augmented-generation",
         "topic:multi-modal-rag",
-        "topic:retrieval-augmented-generation"
+        "topic:retrieval-augmented-generation",
+        "comprehensive retrieval-augmented in:description",
+        "generation supporting in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -4060,10 +4122,10 @@
             "rag",
             "retrieval-augmented-generation"
           ],
-          "stargazers_count": 78265,
+          "stargazers_count": 78267,
           "forks_count": 8828,
           "visibility": "public",
-          "score": 1179.1478000000002,
+          "score": 1179.1498000000001,
           "matched_topics": [
             "retrieval-augmented-generation"
           ],
@@ -4093,10 +4155,10 @@
             "vector-database",
             "vector-index"
           ],
-          "stargazers_count": 60011,
-          "forks_count": 1433,
+          "stargazers_count": 60010,
+          "forks_count": 1431,
           "visibility": "public",
-          "score": 1160.1543,
+          "score": 1160.1531,
           "matched_topics": [
             "retrieval-augmented-generation"
           ],
@@ -4158,10 +4220,10 @@
             "rag",
             "retrieval-augmented-generation"
           ],
-          "stargazers_count": 33476,
-          "forks_count": 4754,
+          "stargazers_count": 33500,
+          "forks_count": 4757,
           "visibility": "public",
-          "score": 1133.9514000000001,
+          "score": 1133.9757,
           "matched_topics": [
             "retrieval-augmented-generation"
           ],
@@ -4199,13 +4261,21 @@
           "rag",
           "vector-database"
         ],
-        "stargazers_count": 15540,
-        "forks_count": 1604,
+        "stargazers_count": 15732,
+        "forks_count": 1624,
         "visibility": "public"
       },
       "seed_topics": [
         "cognitive-memory",
         "contributions-welcome"
+      ],
+      "seed_keywords": [
+        "knowledge",
+        "engine",
+        "agent",
+        "memory",
+        "graph-based",
+        "databases"
       ],
       "expanded_topics": [
         "cognitive-memory",
@@ -4214,7 +4284,9 @@
       "queries": [
         "topic:cognitive-memory topic:contributions-welcome",
         "topic:cognitive-memory",
-        "topic:contributions-welcome"
+        "topic:contributions-welcome",
+        "knowledge engine in:description",
+        "agent memory in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -4236,10 +4308,10 @@
             "windows-terminal",
             "wsl"
           ],
-          "stargazers_count": 102751,
-          "forks_count": 9225,
+          "stargazers_count": 102749,
+          "forks_count": 9226,
           "visibility": "public",
-          "score": 1203.6734999999999,
+          "score": 1203.6716000000001,
           "matched_topics": [
             "contributions-welcome"
           ],
@@ -4264,10 +4336,10 @@
             "open-source",
             "tutorial"
           ],
-          "stargazers_count": 53506,
-          "forks_count": 101210,
+          "stargazers_count": 53510,
+          "forks_count": 101218,
           "visibility": "public",
-          "score": 1163.6270000000002,
+          "score": 1163.6317999999999,
           "matched_topics": [
             "contributions-welcome"
           ],
@@ -4295,10 +4367,10 @@
             "responsive-web-design",
             "web-development"
           ],
-          "stargazers_count": 24861,
-          "forks_count": 1368,
+          "stargazers_count": 24860,
+          "forks_count": 1366,
           "visibility": "public",
-          "score": 1124.9978,
+          "score": 1124.9966,
           "matched_topics": [
             "contributions-welcome"
           ],
@@ -4365,10 +4437,10 @@
             "python",
             "react"
           ],
-          "stargazers_count": 13552,
-          "forks_count": 1227,
+          "stargazers_count": 13556,
+          "forks_count": 1228,
           "visibility": "public",
-          "score": 1113.6746999999998,
+          "score": 1113.6788000000001,
           "matched_topics": [
             "contributions-welcome"
           ],
@@ -4405,13 +4477,21 @@
           "stateful",
           "typescript"
         ],
-        "stargazers_count": 13295,
-        "forks_count": 1711,
+        "stargazers_count": 13297,
+        "forks_count": 1712,
         "visibility": "public"
       },
       "seed_topics": [
         "long-short-term-memory",
         "openclaw-memory"
+      ],
+      "seed_keywords": [
+        "agent-native",
+        "memory",
+        "infrastructure",
+        "structured",
+        "persistent",
+        "state"
       ],
       "expanded_topics": [
         "long-short-term-memory",
@@ -4420,7 +4500,9 @@
       "queries": [
         "topic:long-short-term-memory topic:openclaw-memory",
         "topic:long-short-term-memory",
-        "topic:openclaw-memory"
+        "topic:openclaw-memory",
+        "agent-native memory in:description",
+        "infrastructure structured in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -4587,6 +4669,227 @@
     },
     {
       "source": {
+        "full_name": "The-PR-Agent/pr-agent",
+        "html_url": "https://github.com/The-PR-Agent/pr-agent",
+        "description": "🚀 PR Agent: The Original Open-Source PR Reviewer.  | This repo is not the Qodo free tier! Try Qodo free tier, click the link",
+        "language": "Python",
+        "topics": [
+          "code-review",
+          "codereview",
+          "coding-assistant",
+          "devtools",
+          "gpt-4",
+          "openai",
+          "pull-request",
+          "pull-requests"
+        ],
+        "stargazers_count": 10910,
+        "forks_count": 1437,
+        "visibility": "public"
+      },
+      "seed_topics": [
+        "pull-request",
+        "pull-requests"
+      ],
+      "seed_keywords": [
+        "reviewing",
+        "pull",
+        "requests",
+        "gpt-4"
+      ],
+      "expanded_topics": [
+        "pull-request",
+        "pull-requests"
+      ],
+      "queries": [
+        "topic:pull-request topic:pull-requests",
+        "topic:pull-request",
+        "topic:pull-requests",
+        "reviewing pull in:description",
+        "requests gpt-4 in:description"
+      ],
+      "source_score": 1040.0,
+      "suggestions": [
+        {
+          "full_name": "stevemao/github-issue-templates",
+          "html_url": "https://github.com/stevemao/github-issue-templates",
+          "description": "🔣 A collection of GitHub issue, pull request and security templates",
+          "language": null,
+          "topics": [
+            "bug-tracker",
+            "github",
+            "hacktoberfest",
+            "issue",
+            "issue-tracker",
+            "issues",
+            "merge-request",
+            "merge-requests",
+            "mr",
+            "pr",
+            "pull-request",
+            "pull-request-template",
+            "pull-requests",
+            "template",
+            "templates"
+          ],
+          "stargazers_count": 4418,
+          "forks_count": 5608,
+          "visibility": "public",
+          "score": 2204.9788000000003,
+          "matched_topics": [
+            "pull-request",
+            "pull-requests"
+          ],
+          "query_terms": [
+            "topic:pull-request",
+            "topic:pull-request topic:pull-requests",
+            "topic:pull-requests"
+          ]
+        },
+        {
+          "full_name": "ossamamehmood/Hacktoberfest",
+          "html_url": "https://github.com/ossamamehmood/Hacktoberfest",
+          "description": "Hacktoberfest OPEN FIRST Pull Request 🎉",
+          "language": null,
+          "topics": [
+            "awesome",
+            "contributions-welcome",
+            "digitalocean",
+            "first-contribution",
+            "first-contributions",
+            "firstcontributions",
+            "firstpullrequest",
+            "freecodecamp",
+            "freetshirt",
+            "gift",
+            "github",
+            "hacktoberfest",
+            "hacktoberfest-accepted",
+            "hacktoberfest2020",
+            "hacktoberfest2023",
+            "newbiefriendly",
+            "opensource",
+            "ossamamehmood",
+            "pull-request",
+            "pull-requests"
+          ],
+          "stargazers_count": 1328,
+          "forks_count": 5010,
+          "visibility": "public",
+          "score": 2201.829,
+          "matched_topics": [
+            "pull-request",
+            "pull-requests"
+          ],
+          "query_terms": [
+            "topic:pull-request",
+            "topic:pull-request topic:pull-requests",
+            "topic:pull-requests"
+          ]
+        },
+        {
+          "full_name": "peakoss/anti-slop",
+          "html_url": "https://github.com/peakoss/anti-slop",
+          "description": "A GitHub action that detects and automatically closes low-quality and AI slop PRs.",
+          "language": "TypeScript",
+          "topics": [
+            "ai",
+            "ai-slop",
+            "ai-slop-detection",
+            "anti-slop",
+            "anti-spam",
+            "contributor-metrics",
+            "github",
+            "github-action",
+            "pull-request",
+            "pull-requests",
+            "quality",
+            "quality-check",
+            "quality-checker",
+            "quality-checks",
+            "quality-control",
+            "slop-detector",
+            "spam-detection",
+            "spam-filtering",
+            "spam-prevention"
+          ],
+          "stargazers_count": 606,
+          "forks_count": 13,
+          "visibility": "public",
+          "score": 2200.6073,
+          "matched_topics": [
+            "pull-request",
+            "pull-requests"
+          ],
+          "query_terms": [
+            "topic:pull-request topic:pull-requests"
+          ]
+        },
+        {
+          "full_name": "CodelyTV/pr-size-labeler",
+          "html_url": "https://github.com/CodelyTV/pr-size-labeler",
+          "description": "🏷 Visualize and optionally limit the size of your Pull Requests",
+          "language": "Shell",
+          "topics": [
+            "action",
+            "automation",
+            "codely",
+            "codelytv",
+            "github",
+            "github-action",
+            "github-actions",
+            "pull-request",
+            "pull-request-action",
+            "pull-request-management",
+            "pull-requests"
+          ],
+          "stargazers_count": 388,
+          "forks_count": 74,
+          "visibility": "public",
+          "score": 2200.3954,
+          "matched_topics": [
+            "pull-request",
+            "pull-requests"
+          ],
+          "query_terms": [
+            "topic:pull-request topic:pull-requests"
+          ]
+        },
+        {
+          "full_name": "Mergifyio/mergify",
+          "html_url": "https://github.com/Mergifyio/mergify",
+          "description": "Mergify Community Issue Tracker",
+          "language": null,
+          "topics": [
+            "automation",
+            "automerge",
+            "git",
+            "github",
+            "merge",
+            "merge-queue",
+            "opensource",
+            "pull",
+            "pull-request",
+            "pull-requests",
+            "python",
+            "workflow"
+          ],
+          "stargazers_count": 330,
+          "forks_count": 92,
+          "visibility": "public",
+          "score": 2200.3392,
+          "matched_topics": [
+            "pull-request",
+            "pull-requests"
+          ],
+          "query_terms": [
+            "topic:pull-request topic:pull-requests"
+          ]
+        }
+      ]
+    },
+    {
+      "source": {
         "full_name": "enricoros/big-AGI",
         "html_url": "https://github.com/enricoros/big-AGI",
         "description": "AI suite powered by state-of-the-art models and providing advanced AI/AGI functions. Includes AI personas, AGI functions, world-class Beam multi-model chats, text-to-image, voice, response streaming, code highlighting and execution, PDF import, presets for developers, much more. Deploy on-prem or in the cloud.",
@@ -4619,6 +4922,14 @@
         "ai-workspace",
         "anthropic-api"
       ],
+      "seed_keywords": [
+        "suite",
+        "offering",
+        "advanced",
+        "functions",
+        "multi-modal",
+        "interactions"
+      ],
       "expanded_topics": [
         "ai-workspace",
         "anthropic-api"
@@ -4626,7 +4937,9 @@
       "queries": [
         "topic:ai-workspace topic:anthropic-api",
         "topic:ai-workspace",
-        "topic:anthropic-api"
+        "topic:anthropic-api",
+        "suite offering in:description",
+        "advanced functions in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -4687,10 +5000,10 @@
             "openai",
             "opencode"
           ],
-          "stargazers_count": 3100,
+          "stargazers_count": 3101,
           "forks_count": 347,
           "visibility": "public",
-          "score": 1103.1346999999998,
+          "score": 1103.1357,
           "matched_topics": [
             "anthropic-api"
           ],
@@ -4722,10 +5035,10 @@
             "typescript",
             "websearch"
           ],
-          "stargazers_count": 2009,
+          "stargazers_count": 2010,
           "forks_count": 167,
           "visibility": "public",
-          "score": 1102.0257,
+          "score": 1102.0267,
           "matched_topics": [
             "anthropic-api"
           ],
@@ -4747,10 +5060,10 @@
             "react",
             "typescript"
           ],
-          "stargazers_count": 1509,
+          "stargazers_count": 1512,
           "forks_count": 175,
           "visibility": "public",
-          "score": 1101.5265,
+          "score": 1101.5294999999999,
           "matched_topics": [
             "ai-workspace"
           ],
@@ -4771,9 +5084,9 @@
             "claude-code"
           ],
           "stargazers_count": 947,
-          "forks_count": 102,
+          "forks_count": 101,
           "visibility": "public",
-          "score": 1100.9571999999998,
+          "score": 1100.9570999999999,
           "matched_topics": [
             "anthropic-api"
           ],
@@ -4798,13 +5111,21 @@
           "llm",
           "openai"
         ],
-        "stargazers_count": 6141,
+        "stargazers_count": 6144,
         "forks_count": 771,
         "visibility": "public"
       },
       "seed_topics": [
         "code-interpreter",
         "data-analysis"
+      ],
+      "seed_keywords": [
+        "planning",
+        "executing",
+        "analytics",
+        "tasks",
+        "code-first",
+        "agent"
       ],
       "expanded_topics": [
         "code-interpreter",
@@ -4813,7 +5134,9 @@
       "queries": [
         "topic:code-interpreter topic:data-analysis",
         "topic:code-interpreter",
-        "topic:data-analysis"
+        "topic:data-analysis",
+        "planning executing in:description",
+        "analytics tasks in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -4868,10 +5191,10 @@
             "sql-editor",
             "superset"
           ],
-          "stargazers_count": 72448,
+          "stargazers_count": 72449,
           "forks_count": 17050,
           "visibility": "public",
-          "score": 1174.153,
+          "score": 1174.154,
           "matched_topics": [
             "data-analysis"
           ],
@@ -4894,10 +5217,10 @@
             "code-interpreter",
             "developer-tools"
           ],
-          "stargazers_count": 72332,
-          "forks_count": 5547,
+          "stargazers_count": 72324,
+          "forks_count": 5544,
           "visibility": "public",
-          "score": 1172.8866999999998,
+          "score": 1172.8784,
           "matched_topics": [
             "code-interpreter"
           ],
@@ -4917,10 +5240,10 @@
             "python",
             "statistics"
           ],
-          "stargazers_count": 65845,
+          "stargazers_count": 65844,
           "forks_count": 26954,
           "visibility": "public",
-          "score": 1168.5404,
+          "score": 1168.5394000000001,
           "matched_topics": [
             "data-analysis"
           ],
@@ -4951,15 +5274,607 @@
             "wechat",
             "wework"
           ],
-          "stargazers_count": 51744,
-          "forks_count": 23156,
+          "stargazers_count": 51754,
+          "forks_count": 23160,
           "visibility": "public",
-          "score": 1154.0595999999998,
+          "score": 1154.07,
           "matched_topics": [
             "data-analysis"
           ],
           "query_terms": [
             "topic:data-analysis"
+          ]
+        }
+      ]
+    },
+    {
+      "source": {
+        "full_name": "AgentOps-AI/agentops",
+        "html_url": "https://github.com/AgentOps-AI/agentops",
+        "description": "Python SDK for AI agent monitoring, LLM cost tracking, benchmarking, and more. Integrates with most LLMs and agent frameworks including CrewAI, Agno, OpenAI Agents SDK, Langchain, Autogen, AG2, and CamelAI",
+        "language": "Python",
+        "topics": [
+          "agent",
+          "agentops",
+          "agents-sdk",
+          "ai",
+          "anthropic",
+          "autogen",
+          "cost-estimation",
+          "crewai",
+          "evals",
+          "evaluation-metrics",
+          "groq",
+          "langchain",
+          "llm",
+          "mistral",
+          "ollama",
+          "openai",
+          "openai-agents"
+        ],
+        "stargazers_count": 5475,
+        "forks_count": 562,
+        "visibility": "public"
+      },
+      "seed_topics": [
+        "cost-estimation",
+        "openai-agents"
+      ],
+      "seed_keywords": [
+        "monitoring",
+        "agents",
+        "tracking",
+        "costs",
+        "benchmarking",
+        "across"
+      ],
+      "expanded_topics": [
+        "cost-estimation",
+        "openai-agents"
+      ],
+      "queries": [
+        "topic:cost-estimation topic:openai-agents",
+        "topic:cost-estimation",
+        "topic:openai-agents",
+        "monitoring agents in:description",
+        "tracking costs in:description"
+      ],
+      "source_score": 1040.0,
+      "suggestions": [
+        {
+          "full_name": "infracost/infracost",
+          "html_url": "https://github.com/infracost/infracost",
+          "description": "Cloud cost estimates for Terraform in pull requests💰📉 Shift FinOps Left!",
+          "language": "Go",
+          "topics": [
+            "aws",
+            "azure",
+            "cloud",
+            "cloud-cost-estimates",
+            "cost-estimation",
+            "cost-management",
+            "cost-optimization",
+            "devops",
+            "finops",
+            "gcp",
+            "google",
+            "infrastructure-as-code",
+            "monthly-costs",
+            "terraform",
+            "terraform-cost-estimation"
+          ],
+          "stargazers_count": 12270,
+          "forks_count": 667,
+          "visibility": "public",
+          "score": 1112.3367,
+          "matched_topics": [
+            "cost-estimation"
+          ],
+          "query_terms": [
+            "topic:cost-estimation"
+          ]
+        },
+        {
+          "full_name": "vantage-sh/ec2instances.info",
+          "html_url": "https://github.com/vantage-sh/ec2instances.info",
+          "description": "Amazon EC2 instance comparison site",
+          "language": "TypeScript",
+          "topics": [
+            "amazon",
+            "aws",
+            "cloud",
+            "cloud-cost",
+            "cloud-cost-intelligence",
+            "cost-estimation",
+            "cost-optimization",
+            "ec2",
+            "finops",
+            "rds"
+          ],
+          "stargazers_count": 5706,
+          "forks_count": 619,
+          "visibility": "public",
+          "score": 1105.7678999999998,
+          "matched_topics": [
+            "cost-estimation"
+          ],
+          "query_terms": [
+            "topic:cost-estimation"
+          ]
+        },
+        {
+          "full_name": "TencentCloudADP/youtu-agent",
+          "html_url": "https://github.com/TencentCloudADP/youtu-agent",
+          "description": "A simple yet powerful agent framework that delivers with open-source models",
+          "language": "Python",
+          "topics": [
+            "agent-framework",
+            "agents",
+            "openai-agents",
+            "python"
+          ],
+          "stargazers_count": 4509,
+          "forks_count": 464,
+          "visibility": "public",
+          "score": 1104.5554,
+          "matched_topics": [
+            "openai-agents"
+          ],
+          "query_terms": [
+            "topic:openai-agents"
+          ]
+        },
+        {
+          "full_name": "gocrane/crane",
+          "html_url": "https://github.com/gocrane/crane",
+          "description": "Crane is a FinOps Platform for Cloud Resource Analytics and Economics in Kubernetes clusters. The goal is not only to help users to manage cloud cost easier but also ensure the quality of applications.  ",
+          "language": "Go",
+          "topics": [
+            "analytics",
+            "autoscaling",
+            "cloud-computing",
+            "cloud-native",
+            "cncf",
+            "cost-control",
+            "cost-estimation",
+            "cost-optimization",
+            "finops",
+            "kubernetes",
+            "monitoring",
+            "prediction",
+            "time-series"
+          ],
+          "stargazers_count": 2040,
+          "forks_count": 403,
+          "visibility": "public",
+          "score": 1102.0802999999999,
+          "matched_topics": [
+            "cost-estimation"
+          ],
+          "query_terms": [
+            "topic:cost-estimation"
+          ]
+        },
+        {
+          "full_name": "infracost/vscode-infracost",
+          "html_url": "https://github.com/infracost/vscode-infracost",
+          "description": "See cost estimates for Terraform right in your editor💰📉",
+          "language": "TypeScript",
+          "topics": [
+            "aws",
+            "azure",
+            "cloud-cost-estimates",
+            "cost-estimation",
+            "cost-management",
+            "cost-optimization",
+            "finops",
+            "gcp",
+            "google",
+            "infrastructure-as-code",
+            "shift-left",
+            "terraform",
+            "terraform-cost-estimation"
+          ],
+          "stargazers_count": 1845,
+          "forks_count": 55,
+          "visibility": "public",
+          "score": 1101.8505,
+          "matched_topics": [
+            "cost-estimation"
+          ],
+          "query_terms": [
+            "topic:cost-estimation"
+          ]
+        }
+      ]
+    },
+    {
+      "source": {
+        "full_name": "github/gh-aw",
+        "html_url": "https://github.com/github/gh-aw",
+        "description": "GitHub Agentic Workflows",
+        "language": "Go",
+        "topics": [
+          "actions",
+          "cai",
+          "ci",
+          "claude-code",
+          "codex",
+          "copilot",
+          "gh-extension",
+          "github-actions"
+        ],
+        "stargazers_count": 4317,
+        "forks_count": 353,
+        "visibility": "public"
+      },
+      "seed_topics": [
+        "gh-extension",
+        "github-actions"
+      ],
+      "seed_keywords": [
+        "extension",
+        "agentic",
+        "workflows",
+        "actions",
+        "integrations"
+      ],
+      "expanded_topics": [
+        "gh-extension",
+        "github-actions"
+      ],
+      "queries": [
+        "topic:gh-extension topic:github-actions",
+        "topic:gh-extension",
+        "topic:github-actions",
+        "extension agentic in:description",
+        "workflows actions in:description"
+      ],
+      "source_score": 1040.0,
+      "suggestions": [
+        {
+          "full_name": "github/gh-actions-importer",
+          "html_url": "https://github.com/github/gh-actions-importer",
+          "description": "GitHub Actions Importer helps you plan and automate the migration of Azure DevOps, Bamboo, Bitbucket, CircleCI, GitLab, Jenkins, and Travis CI pipelines to GitHub Actions.",
+          "language": "C#",
+          "topics": [
+            "gh-extension",
+            "github-actions"
+          ],
+          "stargazers_count": 1201,
+          "forks_count": 691,
+          "visibility": "public",
+          "score": 2201.2701,
+          "matched_topics": [
+            "gh-extension",
+            "github-actions"
+          ],
+          "query_terms": [
+            "topic:gh-extension",
+            "topic:gh-extension topic:github-actions"
+          ]
+        },
+        {
+          "full_name": "boostsecurityio/poutine",
+          "html_url": "https://github.com/boostsecurityio/poutine",
+          "description": "poutine, a supply chain vulnerability scanner for build pipelines",
+          "language": "Go",
+          "topics": [
+            "ci",
+            "cli",
+            "devops",
+            "devsecops",
+            "gh-extension",
+            "github",
+            "github-actions",
+            "golang",
+            "security",
+            "security-scanner",
+            "supply-chain",
+            "supply-chain-security"
+          ],
+          "stargazers_count": 417,
+          "forks_count": 32,
+          "visibility": "public",
+          "score": 2200.4202,
+          "matched_topics": [
+            "gh-extension",
+            "github-actions"
+          ],
+          "query_terms": [
+            "topic:gh-extension",
+            "topic:gh-extension topic:github-actions"
+          ]
+        },
+        {
+          "full_name": "fchimpan/gh-workflow-stats",
+          "html_url": "https://github.com/fchimpan/gh-workflow-stats",
+          "description": "A GitHub CLI extension to calculate the success rate and execution time of workflows and jobs.",
+          "language": "Go",
+          "topics": [
+            "actions",
+            "ci",
+            "cli",
+            "gh-extension",
+            "github",
+            "github-actions",
+            "golang"
+          ],
+          "stargazers_count": 109,
+          "forks_count": 11,
+          "visibility": "public",
+          "score": 2200.1101,
+          "matched_topics": [
+            "gh-extension",
+            "github-actions"
+          ],
+          "query_terms": [
+            "topic:gh-extension topic:github-actions"
+          ]
+        },
+        {
+          "full_name": "fchimpan/gh-slimify",
+          "html_url": "https://github.com/fchimpan/gh-slimify",
+          "description": "🚀 Automatically detect and migrate GitHub Actions workflows to `ubuntu-slim` for cost-efficient CI",
+          "language": "Go",
+          "topics": [
+            "ci",
+            "cli",
+            "gh-extension",
+            "gh-extensions",
+            "github-actions"
+          ],
+          "stargazers_count": 106,
+          "forks_count": 3,
+          "visibility": "public",
+          "score": 2200.1063000000004,
+          "matched_topics": [
+            "gh-extension",
+            "github-actions"
+          ],
+          "query_terms": [
+            "topic:gh-extension topic:github-actions"
+          ]
+        },
+        {
+          "full_name": "nektos/gh-act",
+          "html_url": "https://github.com/nektos/gh-act",
+          "description": "GitHub CLI Extension to run GitHub actions locally using nektos/act",
+          "language": null,
+          "topics": [
+            "gh-extension",
+            "github-actions"
+          ],
+          "stargazers_count": 103,
+          "forks_count": 12,
+          "visibility": "public",
+          "score": 2200.1042,
+          "matched_topics": [
+            "gh-extension",
+            "github-actions"
+          ],
+          "query_terms": [
+            "topic:gh-extension topic:github-actions"
+          ]
+        }
+      ]
+    },
+    {
+      "source": {
+        "full_name": "Agenta-AI/agenta",
+        "html_url": "https://github.com/Agenta-AI/agenta",
+        "description": "The open-source LLMOps platform: prompt playground, prompt management, LLM evaluation, and LLM observability all in one place.",
+        "language": "TypeScript",
+        "topics": [
+          "agents",
+          "evaluation",
+          "llm-as-a-judge",
+          "llm-evaluation",
+          "llm-framework",
+          "llm-monitoring",
+          "llm-observability",
+          "llm-platform",
+          "llm-playground",
+          "llm-tools",
+          "llmops",
+          "observability",
+          "prompt-engineering",
+          "prompt-management",
+          "rag-evaluation"
+        ],
+        "stargazers_count": 4033,
+        "forks_count": 510,
+        "visibility": "public"
+      },
+      "seed_topics": [
+        "llm-as-a-judge",
+        "llm-framework"
+      ],
+      "seed_keywords": [
+        "prompt",
+        "management",
+        "evaluation",
+        "observability"
+      ],
+      "expanded_topics": [
+        "llm-as-a-judge",
+        "llm-framework"
+      ],
+      "queries": [
+        "topic:llm-as-a-judge topic:llm-framework",
+        "topic:llm-as-a-judge",
+        "topic:llm-framework",
+        "prompt management in:description",
+        "evaluation observability in:description"
+      ],
+      "source_score": 1040.0,
+      "suggestions": [
+        {
+          "full_name": "microsoft/autogen",
+          "html_url": "https://github.com/microsoft/autogen",
+          "description": "A programming framework for agentic AI",
+          "language": "Python",
+          "topics": [
+            "agentic",
+            "agentic-agi",
+            "agents",
+            "ai",
+            "autogen",
+            "autogen-ecosystem",
+            "chatgpt",
+            "framework",
+            "llm-agent",
+            "llm-framework"
+          ],
+          "stargazers_count": 57148,
+          "forks_count": 8601,
+          "visibility": "public",
+          "score": 1158.0081,
+          "matched_topics": [
+            "llm-framework"
+          ],
+          "query_terms": [
+            "topic:llm-framework"
+          ]
+        },
+        {
+          "full_name": "The-Pocket/PocketFlow-Tutorial-Codebase-Knowledge",
+          "html_url": "https://github.com/The-Pocket/PocketFlow-Tutorial-Codebase-Knowledge",
+          "description": "Pocket Flow: Codebase to Tutorial",
+          "language": "Python",
+          "topics": [
+            "coding",
+            "large-language-model",
+            "large-language-models",
+            "llm",
+            "llm-agent",
+            "llm-agents",
+            "llm-application",
+            "llm-apps",
+            "llm-framework",
+            "llm-frameworks",
+            "llms",
+            "pocket-flow",
+            "pocketflow"
+          ],
+          "stargazers_count": 12219,
+          "forks_count": 1392,
+          "visibility": "public",
+          "score": 1112.3582000000001,
+          "matched_topics": [
+            "llm-framework"
+          ],
+          "query_terms": [
+            "topic:llm-framework"
+          ]
+        },
+        {
+          "full_name": "The-Pocket/PocketFlow",
+          "html_url": "https://github.com/The-Pocket/PocketFlow",
+          "description": "Pocket Flow: 100-line LLM framework. Let Agents build Agents!",
+          "language": "Python",
+          "topics": [
+            "agentic-ai",
+            "agentic-framework",
+            "agentic-workflow",
+            "agents",
+            "ai-framework",
+            "ai-frameworks",
+            "aiagent",
+            "aiagents",
+            "artificial-intelligence",
+            "flow-based-programming",
+            "flow-engineering",
+            "large-language-model",
+            "large-language-models",
+            "llm-agent",
+            "llm-framework",
+            "pocket-flow",
+            "pocketflow",
+            "retrieval-augmented-generation",
+            "workflow",
+            "workflow-orchestration"
+          ],
+          "stargazers_count": 10425,
+          "forks_count": 1126,
+          "visibility": "public",
+          "score": 1110.5375999999999,
+          "matched_topics": [
+            "llm-framework"
+          ],
+          "query_terms": [
+            "topic:llm-framework"
+          ]
+        },
+        {
+          "full_name": "langroid/langroid",
+          "html_url": "https://github.com/langroid/langroid",
+          "description": "Harness LLMs with Multi-Agent Programming",
+          "language": "Python",
+          "topics": [
+            "agents",
+            "ai",
+            "chatgpt",
+            "function-calling",
+            "gpt",
+            "gpt-4",
+            "gpt4",
+            "information-retrieval",
+            "language-model",
+            "llama",
+            "llm",
+            "llm-agent",
+            "llm-framework",
+            "local-llm",
+            "multi-agent-systems",
+            "openai-api",
+            "rag",
+            "retrieval-augmented-generation"
+          ],
+          "stargazers_count": 3970,
+          "forks_count": 370,
+          "visibility": "public",
+          "score": 1104.007,
+          "matched_topics": [
+            "llm-framework"
+          ],
+          "query_terms": [
+            "topic:llm-framework"
+          ]
+        },
+        {
+          "full_name": "microsoft/genaiscript",
+          "html_url": "https://github.com/microsoft/genaiscript",
+          "description": "Automatable GenAI Scripting",
+          "language": "TypeScript",
+          "topics": [
+            "agent",
+            "agents",
+            "ai",
+            "chatgpt",
+            "deepseek-r1",
+            "genai",
+            "genaistack",
+            "gpt",
+            "gpt4",
+            "javascript",
+            "llm",
+            "llm-framework",
+            "phi4",
+            "prompt-engineering",
+            "scripting",
+            "typescript",
+            "vscode-extension"
+          ],
+          "stargazers_count": 2895,
+          "forks_count": 223,
+          "visibility": "public",
+          "score": 1102.9173,
+          "matched_topics": [
+            "llm-framework"
+          ],
+          "query_terms": [
+            "topic:llm-framework"
           ]
         }
       ]
@@ -4992,13 +5907,21 @@
           "supermemory",
           "vector-database"
         ],
-        "stargazers_count": 3949,
-        "forks_count": 450,
+        "stargazers_count": 3959,
+        "forks_count": 449,
         "visibility": "public"
       },
       "seed_topics": [
         "ai-infrastructure",
         "memory-retrieval"
+      ],
+      "seed_keywords": [
+        "local",
+        "persistent",
+        "memory",
+        "store",
+        "applications",
+        "retrieval"
       ],
       "expanded_topics": [
         "ai-infrastructure",
@@ -5007,7 +5930,9 @@
       "queries": [
         "topic:ai-infrastructure topic:memory-retrieval",
         "topic:ai-infrastructure",
-        "topic:memory-retrieval"
+        "topic:memory-retrieval",
+        "local persistent in:description",
+        "memory store in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -5072,10 +5997,10 @@
             "skill-memory",
             "skills"
           ],
-          "stargazers_count": 8398,
+          "stargazers_count": 8400,
           "forks_count": 739,
           "visibility": "public",
-          "score": 1108.4719,
+          "score": 1108.4739000000002,
           "matched_topics": [
             "memory-retrieval"
           ],
@@ -5148,10 +6073,10 @@
             "token-compression",
             "tree-sitter"
           ],
-          "stargazers_count": 2179,
+          "stargazers_count": 2183,
           "forks_count": 194,
           "visibility": "public",
-          "score": 1102.1984,
+          "score": 1102.2024,
           "matched_topics": [
             "ai-infrastructure"
           ],
@@ -5201,6 +6126,219 @@
     },
     {
       "source": {
+        "full_name": "memodb-io/Acontext",
+        "html_url": "https://github.com/memodb-io/Acontext",
+        "description": "Agent Skills as a Memory Layer",
+        "language": "TypeScript",
+        "topics": [
+          "agent",
+          "agent-development-kit",
+          "agent-observability",
+          "ai-agent",
+          "anthropic",
+          "context-data-platform",
+          "context-engineering",
+          "data-platform",
+          "llm",
+          "llm-observability",
+          "llmops",
+          "memory",
+          "openai",
+          "self-evolving",
+          "self-learning"
+        ],
+        "stargazers_count": 3314,
+        "forks_count": 312,
+        "visibility": "public"
+      },
+      "seed_topics": [
+        "agent-development-kit",
+        "agent-observability"
+      ],
+      "seed_keywords": [
+        "toolkit",
+        "managing",
+        "agent",
+        "skills",
+        "memory",
+        "layer"
+      ],
+      "expanded_topics": [
+        "agent-development-kit",
+        "agent-observability"
+      ],
+      "queries": [
+        "topic:agent-development-kit topic:agent-observability",
+        "topic:agent-development-kit",
+        "topic:agent-observability",
+        "toolkit managing in:description",
+        "agent skills in:description"
+      ],
+      "source_score": 1040.0,
+      "suggestions": [
+        {
+          "full_name": "coze-dev/coze-loop",
+          "html_url": "https://github.com/coze-dev/coze-loop",
+          "description": "Next-generation AI Agent Optimization Platform: Cozeloop addresses challenges in AI agent development by providing full-lifecycle management capabilities from development, debugging, and evaluation to monitoring.  ",
+          "language": "Go",
+          "topics": [
+            "agent",
+            "agent-evaluation",
+            "agent-observability",
+            "agentops",
+            "ai",
+            "coze",
+            "eino",
+            "evaluation",
+            "langchain",
+            "llm-observability",
+            "llmops",
+            "monitoring",
+            "observability",
+            "open-source",
+            "openai",
+            "playground",
+            "prompt-management"
+          ],
+          "stargazers_count": 5412,
+          "forks_count": 748,
+          "visibility": "public",
+          "score": 1105.4868000000001,
+          "matched_topics": [
+            "agent-observability"
+          ],
+          "query_terms": [
+            "topic:agent-observability"
+          ]
+        },
+        {
+          "full_name": "pydantic/logfire",
+          "html_url": "https://github.com/pydantic/logfire",
+          "description": "AI observability platform for production LLM and agent systems.",
+          "language": "Python",
+          "topics": [
+            "agent-observability",
+            "ai",
+            "ai-observability",
+            "ai-tools",
+            "evals",
+            "fastapi",
+            "llm-observability",
+            "logging",
+            "metrics",
+            "observability",
+            "openai",
+            "opentelemetry",
+            "pydantic",
+            "pydantic-ai",
+            "python",
+            "trace"
+          ],
+          "stargazers_count": 4171,
+          "forks_count": 226,
+          "visibility": "public",
+          "score": 1104.1936,
+          "matched_topics": [
+            "agent-observability"
+          ],
+          "query_terms": [
+            "topic:agent-observability"
+          ]
+        },
+        {
+          "full_name": "lmnr-ai/lmnr",
+          "html_url": "https://github.com/lmnr-ai/lmnr",
+          "description": "Laminar - open-source observability platform purpose-built for AI agents. YC S24.",
+          "language": "TypeScript",
+          "topics": [
+            "agent-observability",
+            "agents",
+            "ai",
+            "ai-observability",
+            "aiops",
+            "analytics",
+            "developer-tools",
+            "evals",
+            "evaluation",
+            "llm-evaluation",
+            "llm-observability",
+            "llmops",
+            "monitoring",
+            "observability",
+            "open-source",
+            "rust",
+            "rust-lang",
+            "self-hosted",
+            "ts",
+            "typescript"
+          ],
+          "stargazers_count": 2788,
+          "forks_count": 191,
+          "visibility": "public",
+          "score": 1102.8071,
+          "matched_topics": [
+            "agent-observability"
+          ],
+          "query_terms": [
+            "topic:agent-observability"
+          ]
+        },
+        {
+          "full_name": "alirezarezvani/claude-code-tresor",
+          "html_url": "https://github.com/alirezarezvani/claude-code-tresor",
+          "description": "A world-class collection of Claude Code utilities: autonomous skills, expert agents, slash commands, and prompts that supercharge your development workflow",
+          "language": "Shell",
+          "topics": [
+            "agent-development-kit",
+            "agentic-ai",
+            "agentic-coding",
+            "agentic-workflow",
+            "agents",
+            "anthropic-claude",
+            "claude-code"
+          ],
+          "stargazers_count": 684,
+          "forks_count": 155,
+          "visibility": "public",
+          "score": 1100.6995,
+          "matched_topics": [
+            "agent-development-kit"
+          ],
+          "query_terms": [
+            "topic:agent-development-kit"
+          ]
+        },
+        {
+          "full_name": "traceroot-ai/traceroot",
+          "html_url": "https://github.com/traceroot-ai/traceroot",
+          "description": "TraceRoot - open-source observability and self-healing layer for AI agents. YC S25",
+          "language": "TypeScript",
+          "topics": [
+            "agent-observability",
+            "agentic",
+            "ai-observability",
+            "analytics",
+            "debugging-tool",
+            "developer-tools",
+            "llm-observability",
+            "observability",
+            "open-source"
+          ],
+          "stargazers_count": 502,
+          "forks_count": 102,
+          "visibility": "public",
+          "score": 1100.5122,
+          "matched_topics": [
+            "agent-observability"
+          ],
+          "query_terms": [
+            "topic:agent-observability"
+          ]
+        }
+      ]
+    },
+    {
+      "source": {
         "full_name": "QiuYannnn/Local-File-Organizer",
         "html_url": "https://github.com/QiuYannnn/Local-File-Organizer",
         "description": "An AI-powered file management tool that ensures privacy by organizing local texts, images. Using Llama3.2 3B and Llava v1.6 models with the Nexa SDK, it intuitively scans, restructures, and organizes files for quick, seamless access and easy retrieval.",
@@ -5220,6 +6358,14 @@
         "file-organizer",
         "on-device-ai"
       ],
+      "seed_keywords": [
+        "ai-powered",
+        "organizing",
+        "local",
+        "files",
+        "including",
+        "texts"
+      ],
       "expanded_topics": [
         "file-organizer",
         "on-device-ai"
@@ -5227,7 +6373,9 @@
       "queries": [
         "topic:file-organizer topic:on-device-ai",
         "topic:file-organizer",
-        "topic:on-device-ai"
+        "topic:on-device-ai",
+        "ai-powered organizing in:description",
+        "local files in:description"
       ],
       "source_score": 1040.0,
       "suggestions": [
@@ -5258,10 +6406,10 @@
             "web",
             "websdk"
           ],
-          "stargazers_count": 10340,
-          "forks_count": 353,
+          "stargazers_count": 10341,
+          "forks_count": 352,
           "visibility": "public",
-          "score": 1110.3753,
+          "score": 1110.3762,
           "matched_topics": [
             "on-device-ai"
           ],
@@ -5392,853 +6540,6 @@
           ],
           "query_terms": [
             "topic:on-device-ai"
-          ]
-        }
-      ]
-    },
-    {
-      "source": {
-        "full_name": "basicmachines-co/basic-memory",
-        "html_url": "https://github.com/basicmachines-co/basic-memory",
-        "description": "AI conversations that actually remember. Never re-explain your project to your AI again. Join our Discord: https://discord.gg/tyvKNccgqN",
-        "language": "Python",
-        "topics": [
-          "ai",
-          "claude",
-          "knowledge-management",
-          "knowlege-graph",
-          "llm",
-          "local-first",
-          "markdown",
-          "mcp",
-          "obsidian",
-          "obsidian-md",
-          "open-source",
-          "privacy-first",
-          "privacy-first-ai",
-          "productivity",
-          "python"
-        ],
-        "stargazers_count": 2870,
-        "forks_count": 185,
-        "visibility": "public"
-      },
-      "seed_topics": [
-        "knowlege-graph",
-        "privacy-first"
-      ],
-      "expanded_topics": [
-        "knowlege-graph",
-        "privacy-first"
-      ],
-      "queries": [
-        "topic:knowlege-graph topic:privacy-first",
-        "topic:knowlege-graph",
-        "topic:privacy-first"
-      ],
-      "source_score": 1040.0,
-      "suggestions": [
-        {
-          "full_name": "loro-dev/loro",
-          "html_url": "https://github.com/loro-dev/loro",
-          "description": "Make your JSON data collaborative and version-controlled with CRDTs",
-          "language": "Rust",
-          "topics": [
-            "collaborative-editing",
-            "crdt",
-            "local-first",
-            "offline-first",
-            "p2p",
-            "privacy-first",
-            "rich-text"
-          ],
-          "stargazers_count": 5517,
-          "forks_count": 138,
-          "visibility": "public",
-          "score": 1105.5308,
-          "matched_topics": [
-            "privacy-first"
-          ],
-          "query_terms": [
-            "topic:privacy-first"
-          ]
-        },
-        {
-          "full_name": "LazyAGI/LazyLLM",
-          "html_url": "https://github.com/LazyAGI/LazyLLM",
-          "description": "Easiest and laziest way for  building multi-agent LLMs applications.",
-          "language": "Python",
-          "topics": [
-            "agents",
-            "ai-agent",
-            "data",
-            "deep-learning",
-            "documentation-tool",
-            "finetuning",
-            "framework",
-            "knowlege-graph",
-            "langchain",
-            "lazyllm",
-            "llamaindex",
-            "llm",
-            "llms",
-            "rag"
-          ],
-          "stargazers_count": 3801,
-          "forks_count": 379,
-          "visibility": "public",
-          "score": 1103.8389,
-          "matched_topics": [
-            "knowlege-graph"
-          ],
-          "query_terms": [
-            "topic:knowlege-graph"
-          ]
-        },
-        {
-          "full_name": "oldwinter/knowledge-garden",
-          "html_url": "https://github.com/oldwinter/knowledge-garden",
-          "description": "我的第二大脑 second brain，我的数字花园 digital garden，用obsidian双链笔记软件写作而成",
-          "language": "TypeScript",
-          "topics": [
-            "anki-cards",
-            "base",
-            "canvas",
-            "digital-garden",
-            "evergreen-notes",
-            "knowledge-base",
-            "local-first",
-            "logseq",
-            "markdown",
-            "moc",
-            "notes",
-            "obsidian",
-            "para",
-            "pkm",
-            "privacy-first",
-            "second-brain",
-            "spaced-repetition",
-            "tana",
-            "vscode"
-          ],
-          "stargazers_count": 2425,
-          "forks_count": 139,
-          "visibility": "public",
-          "score": 1102.4388999999999,
-          "matched_topics": [
-            "privacy-first"
-          ],
-          "query_terms": [
-            "topic:privacy-first"
-          ]
-        },
-        {
-          "full_name": "yan5xu/ququ",
-          "html_url": "https://github.com/yan5xu/ququ",
-          "description": "开源免费的 Wispr Flow 替代方案 | 集成FunASR本地模型和可配置大语言模型的下一代中文桌面语音工作流",
-          "language": "JavaScript",
-          "topics": [
-            "ai-text-processing",
-            "chinese-speech-recognition",
-            "electron-app",
-            "funasr",
-            "local-processing",
-            "open-source",
-            "privacy-first",
-            "speech-to-text",
-            "voice-dictation",
-            "wispr-flow-alternative"
-          ],
-          "stargazers_count": 2106,
-          "forks_count": 216,
-          "visibility": "public",
-          "score": 1102.1276,
-          "matched_topics": [
-            "privacy-first"
-          ],
-          "query_terms": [
-            "topic:privacy-first"
-          ]
-        },
-        {
-          "full_name": "yoanbernabeu/grepai",
-          "html_url": "https://github.com/yoanbernabeu/grepai",
-          "description": "Semantic Search & Call Graphs for AI Agents (100% Local)",
-          "language": "C",
-          "topics": [
-            "ai",
-            "claude-code",
-            "cli",
-            "code-search",
-            "cursor",
-            "developer-tools",
-            "embeddings",
-            "golang",
-            "mcp",
-            "privacy-first",
-            "semantic-search",
-            "vector-search"
-          ],
-          "stargazers_count": 1618,
-          "forks_count": 128,
-          "visibility": "public",
-          "score": 1101.6308,
-          "matched_topics": [
-            "privacy-first"
-          ],
-          "query_terms": [
-            "topic:privacy-first"
-          ]
-        }
-      ]
-    },
-    {
-      "source": {
-        "full_name": "Mintplex-Labs/vector-admin",
-        "html_url": "https://github.com/Mintplex-Labs/vector-admin",
-        "description": "The universal tool suite for vector database management. Manage Pinecone, Chroma, Qdrant, Weaviate and more vector databases with ease.",
-        "language": "TypeScript",
-        "topics": [
-          "ai",
-          "ai-agents",
-          "aitools",
-          "chroma",
-          "database-management",
-          "document-retrieval",
-          "embeddings",
-          "flowise",
-          "langchain",
-          "langchain-js",
-          "llms",
-          "pinecone",
-          "qdrant",
-          "vector-data-management",
-          "vector-database",
-          "vector-database-embedding",
-          "vector-search",
-          "vectordatabase",
-          "vectorspace",
-          "weaviate"
-        ],
-        "stargazers_count": 2199,
-        "forks_count": 356,
-        "visibility": "public"
-      },
-      "seed_topics": [
-        "database-management",
-        "document-retrieval"
-      ],
-      "expanded_topics": [
-        "database-management",
-        "document-retrieval"
-      ],
-      "queries": [
-        "topic:database-management topic:document-retrieval",
-        "topic:database-management",
-        "topic:document-retrieval"
-      ],
-      "source_score": 1040.0,
-      "suggestions": [
-        {
-          "full_name": "flyway/flyway",
-          "html_url": "https://github.com/flyway/flyway",
-          "description": "Flyway by Redgate • Database Migrations Made Easy.",
-          "language": "Java",
-          "topics": [
-            "aurora",
-            "continuous-delivery",
-            "continuous-deployment",
-            "database",
-            "database-administration",
-            "database-deployment",
-            "database-management",
-            "database-migrations",
-            "db2",
-            "devops",
-            "flyway",
-            "java",
-            "java-library",
-            "mariadb",
-            "mysql",
-            "postgresql",
-            "redgate",
-            "sql",
-            "sqlserver"
-          ],
-          "stargazers_count": 9690,
-          "forks_count": 1604,
-          "visibility": "public",
-          "score": 1109.8504,
-          "matched_topics": [
-            "database-management"
-          ],
-          "query_terms": [
-            "topic:database-management"
-          ]
-        },
-        {
-          "full_name": "cloudnative-pg/cloudnative-pg",
-          "html_url": "https://github.com/cloudnative-pg/cloudnative-pg",
-          "description": "CloudNativePG is a comprehensive platform designed to seamlessly manage PostgreSQL databases within Kubernetes environments, covering the entire operational lifecycle from initial deployment to ongoing maintenance",
-          "language": "Go",
-          "topics": [
-            "automated-failover",
-            "business-continuity",
-            "database",
-            "database-management",
-            "devops",
-            "disaster-recovery",
-            "failover",
-            "high-availability",
-            "json-logging",
-            "k8s",
-            "kubectl-plugin",
-            "kubernetes",
-            "operator",
-            "postgres",
-            "postgresql",
-            "prometheus-exporter",
-            "replication",
-            "self-healing",
-            "sql",
-            "switchover"
-          ],
-          "stargazers_count": 8442,
-          "forks_count": 650,
-          "visibility": "public",
-          "score": 1108.507,
-          "matched_topics": [
-            "database-management"
-          ],
-          "query_terms": [
-            "topic:database-management"
-          ]
-        },
-        {
-          "full_name": "pawelsalawa/sqlitestudio",
-          "html_url": "https://github.com/pawelsalawa/sqlitestudio",
-          "description": "A free, open source, multi-platform SQLite database manager.",
-          "language": "C",
-          "topics": [
-            "cpp",
-            "database",
-            "database-management",
-            "qt",
-            "qt5",
-            "sqlcipher",
-            "sqlite",
-            "sqlite3-database",
-            "wxsqlite3"
-          ],
-          "stargazers_count": 6507,
-          "forks_count": 647,
-          "visibility": "public",
-          "score": 1106.5717,
-          "matched_topics": [
-            "database-management"
-          ],
-          "query_terms": [
-            "topic:database-management"
-          ]
-        },
-        {
-          "full_name": "liquibase/liquibase",
-          "html_url": "https://github.com/liquibase/liquibase",
-          "description": "Main Liquibase Source",
-          "language": "Java",
-          "topics": [
-            "continuous-delivery",
-            "continuous-deployment",
-            "database",
-            "database-administration",
-            "database-management",
-            "database-migrations",
-            "db2",
-            "devops",
-            "hacktoberfest",
-            "java",
-            "java-library",
-            "liquibase",
-            "mariadb",
-            "mysql",
-            "oracle",
-            "sql",
-            "sqlserver"
-          ],
-          "stargazers_count": 5484,
-          "forks_count": 1939,
-          "visibility": "public",
-          "score": 1105.6779,
-          "matched_topics": [
-            "database-management"
-          ],
-          "query_terms": [
-            "topic:database-management"
-          ]
-        },
-        {
-          "full_name": "mgramin/awesome-db-tools",
-          "html_url": "https://github.com/mgramin/awesome-db-tools",
-          "description": "Everything that makes working with databases easier",
-          "language": null,
-          "topics": [
-            "awesome",
-            "awesome-list",
-            "cross-database",
-            "database",
-            "database-management",
-            "ide",
-            "monitoring",
-            "sql-client",
-            "visualization"
-          ],
-          "stargazers_count": 5072,
-          "forks_count": 429,
-          "visibility": "public",
-          "score": 1105.1148999999998,
-          "matched_topics": [
-            "database-management"
-          ],
-          "query_terms": [
-            "topic:database-management"
-          ]
-        }
-      ]
-    },
-    {
-      "source": {
-        "full_name": "ai-for-developers/awesome-vibe-coding",
-        "html_url": "https://github.com/ai-for-developers/awesome-vibe-coding",
-        "description": "A hand-picked collection of tools and resources for Vibe Coding",
-        "language": null,
-        "topics": [
-          "ai",
-          "ai-agents",
-          "ai-app-builder",
-          "ai-ide",
-          "ai-tools",
-          "awesome-ai",
-          "awesome-ai-tools",
-          "awesome-list",
-          "awesome-vibe-coding",
-          "vibe",
-          "vibe-coding",
-          "vibecode",
-          "vibecoding",
-          "vibecoding-tool"
-        ],
-        "stargazers_count": 661,
-        "forks_count": 111,
-        "visibility": "public"
-      },
-      "seed_topics": [
-        "ai-app-builder",
-        "awesome-ai-tools"
-      ],
-      "expanded_topics": [
-        "ai-app-builder",
-        "awesome-ai-tools"
-      ],
-      "queries": [
-        "topic:ai-app-builder topic:awesome-ai-tools",
-        "topic:ai-app-builder",
-        "topic:awesome-ai-tools"
-      ],
-      "source_score": 1040.0,
-      "suggestions": [
-        {
-          "full_name": "ToolJet/ToolJet",
-          "html_url": "https://github.com/ToolJet/ToolJet",
-          "description": "ToolJet is the open-source foundation of ToolJet AI - the enterprise app generation platform for building internal tools, dashboard, business applications, workflows and AI agents 🚀",
-          "language": "JavaScript",
-          "topics": [
-            "ai-app-builder",
-            "docker",
-            "hacktoberfest",
-            "internal-applications",
-            "internal-project",
-            "internal-tool",
-            "internal-tools",
-            "javascript",
-            "kubernetes",
-            "low-code",
-            "low-code-development-platform",
-            "low-code-framework",
-            "no-code",
-            "nodejs",
-            "reactjs",
-            "self-hosted",
-            "typescript",
-            "web-development-tools",
-            "workflow-automation"
-          ],
-          "stargazers_count": 37744,
-          "forks_count": 5008,
-          "visibility": "public",
-          "score": 1138.2448,
-          "matched_topics": [
-            "ai-app-builder"
-          ],
-          "query_terms": [
-            "topic:ai-app-builder"
-          ]
-        },
-        {
-          "full_name": "Budibase/budibase",
-          "html_url": "https://github.com/Budibase/budibase",
-          "description": "AI agents, automations and apps that run your operations. Model agnostic.",
-          "language": "TypeScript",
-          "topics": [
-            "ai-app-builder",
-            "ai-applications",
-            "crud-app",
-            "crud-application",
-            "data-application",
-            "data-apps",
-            "internal-tools",
-            "it-workflows",
-            "low-code",
-            "low-code-no-code",
-            "low-code-platform",
-            "no-code",
-            "no-code-platform",
-            "open-source",
-            "rest-api-framework",
-            "sql-gui",
-            "workflow-apps",
-            "workflow-automation",
-            "workflow-engine"
-          ],
-          "stargazers_count": 27827,
-          "forks_count": 2119,
-          "visibility": "public",
-          "score": 1128.0389,
-          "matched_topics": [
-            "ai-app-builder"
-          ],
-          "query_terms": [
-            "topic:ai-app-builder"
-          ]
-        },
-        {
-          "full_name": "dyad-sh/dyad",
-          "html_url": "https://github.com/dyad-sh/dyad",
-          "description": "Local, open-source AI app builder for power users ✨ v0 / Lovable / Replit / Bolt alternative 🌟 Star if you like it!",
-          "language": "TypeScript",
-          "topics": [
-            "ai-app-builder",
-            "anthropic",
-            "artificial-intelligence",
-            "bolt",
-            "deepseek",
-            "gemini",
-            "generative-ai",
-            "github",
-            "llm",
-            "llms",
-            "lovable",
-            "nextjs",
-            "ollama",
-            "openai",
-            "qwen",
-            "react",
-            "typescript",
-            "v0",
-            "vercel"
-          ],
-          "stargazers_count": 20122,
-          "forks_count": 2332,
-          "visibility": "public",
-          "score": 1120.3552,
-          "matched_topics": [
-            "ai-app-builder"
-          ],
-          "query_terms": [
-            "topic:ai-app-builder"
-          ]
-        },
-        {
-          "full_name": "mahseema/awesome-ai-tools",
-          "html_url": "https://github.com/mahseema/awesome-ai-tools",
-          "description": "A curated list of Artificial Intelligence Top Tools",
-          "language": null,
-          "topics": [
-            "ai",
-            "ai-agent",
-            "ai-agents",
-            "ai-assistant",
-            "ai-tools",
-            "ai-tools-list",
-            "ai-top-tools",
-            "awesome",
-            "awesome-ai",
-            "awesome-ai-tools",
-            "awesome-list",
-            "bestofai",
-            "futuretools",
-            "machine-learning",
-            "ml",
-            "mlops",
-            "theresanaiforthat",
-            "top-ai-tools",
-            "vibe-coding",
-            "workflow"
-          ],
-          "stargazers_count": 4837,
-          "forks_count": 1328,
-          "visibility": "public",
-          "score": 1104.9698,
-          "matched_topics": [
-            "awesome-ai-tools"
-          ],
-          "query_terms": [
-            "topic:awesome-ai-tools"
-          ]
-        },
-        {
-          "full_name": "webfuse-com/awesome-claude",
-          "html_url": "https://github.com/webfuse-com/awesome-claude",
-          "description": "A curated list of awesome things related to Anthropic Claude",
-          "language": "TypeScript",
-          "topics": [
-            "agentic-ai",
-            "anthropic",
-            "anthropic-claude",
-            "awesome",
-            "awesome-ai",
-            "awesome-ai-directory",
-            "awesome-ai-tools",
-            "awesome-list",
-            "awesome-lists",
-            "awesome-resources",
-            "claude",
-            "claude-ai",
-            "claude-code",
-            "coding-agents"
-          ],
-          "stargazers_count": 1341,
-          "forks_count": 220,
-          "visibility": "public",
-          "score": 1101.3629999999998,
-          "matched_topics": [
-            "awesome-ai-tools"
-          ],
-          "query_terms": [
-            "topic:awesome-ai-tools"
-          ]
-        }
-      ]
-    },
-    {
-      "source": {
-        "full_name": "milisp/codexia",
-        "html_url": "https://github.com/milisp/codexia",
-        "description": "Agent Workstation for Codex CLI + Claude Code — with task scheduler, git worktree & remote control, skills management",
-        "language": "TypeScript",
-        "topics": [
-          "agentic-ai",
-          "ai",
-          "ai-agents",
-          "awesome",
-          "chatgpt",
-          "claude-code",
-          "codex",
-          "codex-cli",
-          "codex-desktop",
-          "codex-gui",
-          "codex-ide",
-          "codex-ui",
-          "gpt-5-codex",
-          "gpt-oss",
-          "mcp",
-          "mcp-client",
-          "ollama",
-          "openai",
-          "openai-codex",
-          "openai-codex-cli"
-        ],
-        "stargazers_count": 568,
-        "forks_count": 54,
-        "visibility": "public"
-      },
-      "seed_topics": [
-        "codex-desktop",
-        "openai-codex"
-      ],
-      "expanded_topics": [
-        "codex-desktop",
-        "openai-codex"
-      ],
-      "queries": [
-        "topic:codex-desktop topic:openai-codex",
-        "topic:codex-desktop",
-        "topic:openai-codex"
-      ],
-      "source_score": 1040.0,
-      "suggestions": [
-        {
-          "full_name": "PinkPig97/codex-desktop-thread-cron",
-          "html_url": "https://github.com/PinkPig97/codex-desktop-thread-cron",
-          "description": "Run native thread-local cron in Codex Desktop without touching the official app bundle.",
-          "language": "Shell",
-          "topics": [
-            "ai-agent",
-            "codex",
-            "codex-desktop",
-            "cron",
-            "desktop-app",
-            "electron",
-            "openai-codex"
-          ],
-          "stargazers_count": 1,
-          "forks_count": 0,
-          "visibility": "public",
-          "score": 2200.001,
-          "matched_topics": [
-            "codex-desktop",
-            "openai-codex"
-          ],
-          "query_terms": [
-            "topic:codex-desktop",
-            "topic:codex-desktop topic:openai-codex"
-          ]
-        },
-        {
-          "full_name": "jvogan/telegram-codex-bridge",
-          "html_url": "https://github.com/jvogan/telegram-codex-bridge",
-          "description": "Local-first bridge that connects your OpenAI Codex Desktop session to a Telegram bot. Talk to your coding agent from anywhere — text, files, voice notes, and optional live realtime calls.",
-          "language": "TypeScript",
-          "topics": [
-            "agentic-coding",
-            "ai-coding-assistant",
-            "bridge",
-            "codex",
-            "codex-desktop",
-            "coding-agent",
-            "developer-tools",
-            "local-first",
-            "mcp",
-            "model-context-protocol",
-            "nodejs",
-            "openai",
-            "openai-codex",
-            "openai-realtime",
-            "realtime-api",
-            "telegram",
-            "telegram-bot",
-            "telegram-mini-app",
-            "typescript",
-            "voice-agent"
-          ],
-          "stargazers_count": 0,
-          "forks_count": 0,
-          "visibility": "public",
-          "score": 2200.0,
-          "matched_topics": [
-            "codex-desktop",
-            "openai-codex"
-          ],
-          "query_terms": [
-            "topic:codex-desktop",
-            "topic:codex-desktop topic:openai-codex"
-          ]
-        },
-        {
-          "full_name": "alirezarezvani/claude-skills",
-          "html_url": "https://github.com/alirezarezvani/claude-skills",
-          "description": "232+ Claude Code skills & agent plugins for Claude Code, Codex, Gemini CLI, Cursor, and 8 more coding agents — engineering, marketing, product, compliance, C-level advisory.",
-          "language": "Python",
-          "topics": [
-            "agent-plugins",
-            "agent-skills",
-            "agentic-ai",
-            "ai-coding-agent",
-            "anthropic-claude",
-            "claude-ai",
-            "claude-code",
-            "claude-code-plugins",
-            "claude-code-skills",
-            "claude-skills",
-            "codex-skills",
-            "coding-agent-plugins",
-            "cursor-skills",
-            "developer-tools",
-            "gemini-cli-skills",
-            "openai-codex",
-            "openclaw",
-            "openclaw-plugins",
-            "openclaw-skills",
-            "prompt-engineering"
-          ],
-          "stargazers_count": 11379,
-          "forks_count": 1468,
-          "visibility": "public",
-          "score": 1111.5258,
-          "matched_topics": [
-            "openai-codex"
-          ],
-          "query_terms": [
-            "topic:openai-codex"
-          ]
-        },
-        {
-          "full_name": "Galaxy-Dawn/claude-scholar",
-          "html_url": "https://github.com/Galaxy-Dawn/claude-scholar",
-          "description": "Semi-automated research assistant for academic research and software development. Supports Claude Code, OpenCode, and Codex CLI across ideation, coding, experiments, writing, and publication.",
-          "language": "Python",
-          "topics": [
-            "academic-research",
-            "ai-agents",
-            "claude",
-            "claude-code",
-            "codex-cli",
-            "developer-tools",
-            "mcp",
-            "openai-codex",
-            "opencode",
-            "paper-writing",
-            "zotero"
-          ],
-          "stargazers_count": 3404,
-          "forks_count": 310,
-          "visibility": "public",
-          "score": 1103.435,
-          "matched_topics": [
-            "openai-codex"
-          ],
-          "query_terms": [
-            "topic:openai-codex"
-          ]
-        },
-        {
-          "full_name": "stravu/crystal",
-          "html_url": "https://github.com/stravu/crystal",
-          "description": "(Crystal is now Nimbalyst) Run multiple Codex and Claude Code AI sessions in parallel git worktrees. Test, compare approaches & manage AI-assisted development workflows in one desktop app.",
-          "language": "TypeScript",
-          "topics": [
-            "agentic-ai",
-            "ai",
-            "ai-coding",
-            "anthropic",
-            "claude",
-            "claude-code",
-            "codex",
-            "cursor",
-            "development-environment",
-            "ide",
-            "llm-coding",
-            "openai-codex",
-            "vibe-coding"
-          ],
-          "stargazers_count": 3020,
-          "forks_count": 192,
-          "visibility": "public",
-          "score": 1103.0392,
-          "matched_topics": [
-            "openai-codex"
-          ],
-          "query_terms": [
-            "topic:openai-codex"
           ]
         }
       ]
