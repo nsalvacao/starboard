@@ -31,6 +31,8 @@ PUBLIC_DISCOVERY_PATH = ROOT / "site" / "public" / "data" / "discoveries.json"
 SEARCH_PER_PAGE = 10
 MAX_QUERY_VARIANTS = 5
 MAX_SUGGESTIONS_PER_SOURCE = 5
+SOURCE_REPO_LIMIT = 12
+SEARCH_DELAY_SECONDS = 7.0
 GENERIC_TOPICS = {
     "ai",
     "application",
@@ -240,7 +242,7 @@ def build_discovery_entry(
 
     merged: dict[str, dict] = {}
     expanded_topic_set = set(expanded_topics)
-    for query in queries:
+    for index, query in enumerate(queries):
         for item in search_repositories(session, query):
             candidate = normalize_candidate(item, primary_topics, expanded_topic_set)
             if candidate is None:
@@ -264,6 +266,8 @@ def build_discovery_entry(
                 current["topics"] = candidate["topics"]
                 current["forks_count"] = candidate["forks_count"]
                 current["visibility"] = candidate["visibility"]
+        if index < len(queries) - 1:
+            time.sleep(SEARCH_DELAY_SECONDS)
 
     suggestions = sorted(
         merged.values(),
@@ -328,10 +332,28 @@ def build_discovery_dataset(repos: list[dict], session: requests.Session, cfg: d
     topic_groups = build_topic_groups(cfg.get("topic_synonyms", {}))
     starred_names = {repo["full_name"] for repo in repos if isinstance(repo.get("full_name"), str)}
 
-    entries: list[dict] = []
+    ranked_sources: list[tuple[float, dict]] = []
     for repo in repos:
         if not isinstance(repo, dict) or not isinstance(repo.get("full_name"), str):
             continue
+        primary_topics = select_primary_topics(repo, frequencies, topic_groups)
+        if not primary_topics:
+            continue
+        source_score = score_topic(primary_topics[0], frequencies, topic_groups)
+        if len(primary_topics) > 1:
+            source_score += score_topic(primary_topics[1], frequencies, topic_groups)
+        ranked_sources.append((source_score, repo))
+
+    ranked_sources.sort(
+        key=lambda item: (
+            -item[0],
+            -item[1].get("stargazers_count", 0),
+            item[1]["full_name"],
+        )
+    )
+
+    entries: list[dict] = []
+    for _, repo in ranked_sources[:SOURCE_REPO_LIMIT]:
         entry = build_discovery_entry(repo, session, frequencies, topic_groups, starred_names)
         if entry is not None:
             entries.append(entry)

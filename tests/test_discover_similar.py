@@ -6,9 +6,16 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 
 import discover_similar
+
+
+@pytest.fixture(autouse=True)
+def no_sleep(monkeypatch):
+    monkeypatch.setattr(discover_similar.time, "sleep", lambda _seconds: None)
 
 
 def make_repo(
