@@ -78,4 +78,14 @@ describe('TopNavigationBar', () => {
     expect(document.documentElement).toHaveAttribute('data-theme', 'light');
     expect(document.documentElement.style.colorScheme).toBe('light');
   });
+
+  it('navigates to the analytics workspace', async () => {
+    const user = userEvent.setup();
+
+    render(<Harness />);
+
+    await user.click(screen.getByRole('button', { name: /analytics/i }));
+
+    expect(useStore.getState().viewMode).toBe('analytics');
+  });
 });

@@ -45,7 +45,7 @@ export interface Repository {
 }
 
 export type Theme = 'dark' | 'light';
-export type ViewMode = 'all' | 'watch' | 'discover' | 'cleanup' | 'compare';
+export type ViewMode = 'all' | 'watch' | 'discover' | 'cleanup' | 'compare' | 'analytics';
 export type SortDirection = 'asc' | 'desc';
 export type SortKey =
   | 'full_name'

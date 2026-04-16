@@ -32,6 +32,16 @@ export interface PortfolioHealthScore {
   metadataDepth: number;
 }
 
+export type AnalyticsScope = 'visible' | 'portfolio';
+export type AnalyticsWindow = '7d' | '30d' | '90d' | 'all';
+
+export interface AnalyticsTimelinePoint {
+  date: string;
+  stars: number;
+  forks: number;
+  repos: number;
+}
+
 function clampPercent(value: number): number {
   if (Number.isNaN(value) || !Number.isFinite(value)) return 0;
   return Math.max(0, Math.min(100, value));
@@ -46,14 +56,113 @@ function average(values: number[]): number {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
-const METADATA_FIELDS = [
+type MetadataField =
+  | 'license_spdx'
+  | 'latest_release'
+  | 'readme_excerpt'
+  | 'contributor_count'
+  | 'commit_activity_52w'
+  | 'community_health';
+
+const METADATA_FIELDS: MetadataField[] = [
   'license_spdx',
   'latest_release',
   'readme_excerpt',
   'contributor_count',
   'commit_activity_52w',
   'community_health',
-] as const;
+];
+
+const WINDOW_DAYS: Record<Exclude<AnalyticsWindow, 'all'>, number> = {
+  '7d': 7,
+  '30d': 30,
+  '90d': 90,
+};
+
+function parseSnapshotDate(date: string): number {
+  return Date.parse(`${date}T00:00:00Z`);
+}
+
+function sumField<T>(items: T[], getter: (item: T) => number): number {
+  return items.reduce((sum, item) => sum + getter(item), 0);
+}
+
+export function normalizeHistorySnapshots(history: HistorySnapshot[]): HistorySnapshot[] {
+  const byDate = new Map<string, HistorySnapshot>();
+  for (const snapshot of history) {
+    byDate.set(snapshot.date, snapshot);
+  }
+
+  return [...byDate.values()].sort((a, b) => parseSnapshotDate(a.date) - parseSnapshotDate(b.date));
+}
+
+export function selectHistoryWindow(
+  history: HistorySnapshot[],
+  window: AnalyticsWindow
+): HistorySnapshot[] {
+  const normalized = normalizeHistorySnapshots(history);
+  if (window === 'all' || normalized.length === 0) return normalized;
+
+  const latest = normalized[normalized.length - 1];
+  const latestDate = parseSnapshotDate(latest.date);
+  const cutoff = latestDate - WINDOW_DAYS[window] * 24 * 60 * 60 * 1000;
+
+  return normalized.filter((snapshot) => parseSnapshotDate(snapshot.date) >= cutoff);
+}
+
+export function buildTimelineSeries(
+  history: HistorySnapshot[],
+  scopeRepoNames?: Set<string>
+): AnalyticsTimelinePoint[] {
+  return normalizeHistorySnapshots(history).map((snapshot) => {
+    const repos = scopeRepoNames
+      ? snapshot.repos.filter((repo) => scopeRepoNames.has(repo.full_name))
+      : snapshot.repos;
+
+    return {
+      date: snapshot.date,
+      stars: sumField(repos, (repo) => repo.stargazers_count),
+      forks: sumField(repos, (repo) => repo.forks_count),
+      repos: repos.length,
+    };
+  });
+}
+
+export function buildTrendingDeltas(
+  history: HistorySnapshot[],
+  scopeRepoNames?: Set<string>,
+  window: AnalyticsWindow = '30d'
+): TrendingDelta[] {
+  const windowHistory = selectHistoryWindow(history, window);
+  if (windowHistory.length < 2) return [];
+
+  const latest = windowHistory[windowHistory.length - 1];
+  const baseline = windowHistory[0];
+  const latestRepos = scopeRepoNames
+    ? latest.repos.filter((repo) => scopeRepoNames.has(repo.full_name))
+    : latest.repos;
+  const baselineByName = new Map(
+    baseline.repos.map((repo) => [repo.full_name, repo] as const)
+  );
+
+  return latestRepos
+    .map((repo) => {
+      const previous = baselineByName.get(repo.full_name);
+      return {
+        full_name: repo.full_name,
+        stargazers_count: repo.stargazers_count,
+        forks_count: repo.forks_count,
+        star_delta: repo.stargazers_count - (previous?.stargazers_count || 0),
+        fork_delta: repo.forks_count - (previous?.forks_count || 0),
+      };
+    })
+    .sort(
+      (a, b) =>
+        b.star_delta - a.star_delta ||
+        b.fork_delta - a.fork_delta ||
+        a.full_name.localeCompare(b.full_name)
+    );
+}
 
 export function bucketCounts<T>(
   items: T[],

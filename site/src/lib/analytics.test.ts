@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { bucketCounts, calculatePortfolioHealthScore, calculateTrendingDelta } from './analytics';
+import {
+  bucketCounts,
+  buildTimelineSeries,
+  buildTrendingDeltas,
+  calculatePortfolioHealthScore,
+  calculateTrendingDelta,
+  normalizeHistorySnapshots,
+  selectHistoryWindow,
+} from './analytics';
 import type { Repository } from '../types';
 
 function makeRepo(overrides: Partial<Repository>): Repository {
@@ -91,6 +99,79 @@ describe('calculateTrendingDelta', () => {
         stargazers_count: 18,
         forks_count: 5,
         star_delta: 6,
+        fork_delta: 1,
+      },
+    ]);
+  });
+});
+
+describe('history helpers', () => {
+  const history = [
+    {
+      date: '2026-04-01',
+      repos: [
+        { full_name: 'org/a', stargazers_count: 10, forks_count: 1 },
+        { full_name: 'org/b', stargazers_count: 5, forks_count: 2 },
+      ],
+    },
+    {
+      date: '2026-04-10',
+      repos: [
+        { full_name: 'org/a', stargazers_count: 12, forks_count: 1 },
+        { full_name: 'org/b', stargazers_count: 7, forks_count: 3 },
+      ],
+    },
+    {
+      date: '2026-04-16',
+      repos: [
+        { full_name: 'org/a', stargazers_count: 15, forks_count: 2 },
+        { full_name: 'org/b', stargazers_count: 11, forks_count: 4 },
+      ],
+    },
+  ];
+
+  it('normalizes history snapshots in chronological order', () => {
+    const normalized = normalizeHistorySnapshots([...history].reverse());
+
+    expect(normalized.map((snapshot) => snapshot.date)).toEqual([
+      '2026-04-01',
+      '2026-04-10',
+      '2026-04-16',
+    ]);
+  });
+
+  it('selects the requested time window', () => {
+    const window = selectHistoryWindow(history, '7d');
+
+    expect(window.map((snapshot) => snapshot.date)).toEqual(['2026-04-10', '2026-04-16']);
+  });
+
+  it('builds scoped timeline series from a repo subset', () => {
+    const series = buildTimelineSeries(history, new Set(['org/b']));
+
+    expect(series).toEqual([
+      { date: '2026-04-01', stars: 5, forks: 2, repos: 1 },
+      { date: '2026-04-10', stars: 7, forks: 3, repos: 1 },
+      { date: '2026-04-16', stars: 11, forks: 4, repos: 1 },
+    ]);
+  });
+
+  it('builds trending deltas for the selected time window', () => {
+    const deltas = buildTrendingDeltas(history, new Set(['org/a', 'org/b']), '30d');
+
+    expect(deltas).toEqual([
+      {
+        full_name: 'org/b',
+        stargazers_count: 11,
+        forks_count: 4,
+        star_delta: 6,
+        fork_delta: 2,
+      },
+      {
+        full_name: 'org/a',
+        stargazers_count: 15,
+        forks_count: 2,
+        star_delta: 5,
         fork_delta: 1,
       },
     ]);
