@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { ExternalLink, X } from 'lucide-react';
 import type { Repository } from '../../types';
 
@@ -13,14 +13,62 @@ function boolBadge(value: boolean): string {
 }
 
 export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!isOpen) return undefined;
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const focusableSelectors = [
+      'button:not([disabled])',
+      'a[href]',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ].join(',');
+
+    const focusFirstElement = () => {
+      const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(focusableSelectors);
+      focusable?.[0]?.focus();
+    };
+
+    focusFirstElement();
+
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
+      if (event.key !== 'Tab') return;
+
+      const focusable = Array.from(
+        dialogRef.current?.querySelectorAll<HTMLElement>(focusableSelectors) || []
+      );
+      if (focusable.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey) {
+        if (active === first || active === dialogRef.current) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (active === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
+
     window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen || !repo) return null;
@@ -31,9 +79,11 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
       onClick={onClose}
     >
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-label={`Repository details for ${repo.full_name}`}
+        tabIndex={-1}
         className="max-w-4xl mx-auto bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-lg shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >

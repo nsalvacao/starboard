@@ -54,6 +54,20 @@ describe('updateSortCriteria', () => {
       { key: 'forks_count', direction: 'desc' },
     ]);
   });
+
+  it('preserves sort priority when toggling an existing multi-sort criterion', () => {
+    const current: SortCriterion[] = [
+      { key: 'stargazers_count', direction: 'desc' },
+      { key: 'forks_count', direction: 'asc' },
+    ];
+
+    const next = updateSortCriteria(current, 'stargazers_count', true);
+
+    expect(next).toEqual([
+      { key: 'stargazers_count', direction: 'asc' },
+      { key: 'forks_count', direction: 'asc' },
+    ]);
+  });
 });
 
 describe('getVisibleRepos', () => {

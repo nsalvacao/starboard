@@ -137,6 +137,7 @@ export function RepoTable({ repos }: RepoTableProps) {
                   <input 
                     type="checkbox" 
                     checked={selectedRepos.includes(repo.full_name)}
+                    onClick={(event) => event.stopPropagation()}
                     onChange={(event) => {
                       event.stopPropagation();
                       toggleSelection(repo.full_name);

@@ -62,7 +62,8 @@ export function updateSortCriteria(
   key: SortKey,
   isMultiSort: boolean
 ): SortCriterion[] {
-  const existing = current.find((criterion) => criterion.key === key);
+  const existingIndex = current.findIndex((criterion) => criterion.key === key);
+  const existing = existingIndex >= 0 ? current[existingIndex] : null;
   const nextDirection = cycleSortDirection(existing?.direction || null);
 
   if (!isMultiSort) {
@@ -70,9 +71,18 @@ export function updateSortCriteria(
     return [{ key, direction: nextDirection }];
   }
 
-  const withoutKey = current.filter((criterion) => criterion.key !== key);
-  if (nextDirection === null) return withoutKey;
-  return [...withoutKey, { key, direction: nextDirection }];
+  if (existingIndex === -1) {
+    if (nextDirection === null) return current;
+    return [...current, { key, direction: nextDirection }];
+  }
+
+  if (nextDirection === null) {
+    return current.filter((criterion) => criterion.key !== key);
+  }
+
+  return current.map((criterion, index) =>
+    index === existingIndex ? { ...criterion, direction: nextDirection } : criterion
+  );
 }
 
 export function getVisibleRepos({
