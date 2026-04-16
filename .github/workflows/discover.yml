@@ -1,0 +1,39 @@
+name: Rebuild Discovery
+
+on:
+  workflow_dispatch:  # manual trigger only
+
+permissions:
+  contents: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: "pip"
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build discovery suggestions
+        env:
+          GH_STARS_PAT: ${{ secrets.GH_STARS_PAT }}
+        run: python scripts/discover_similar.py
+
+      - name: Commit updated discovery data
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/discoveries.json site/public/data/discoveries.json
+          git diff --cached --quiet || git commit -m "chore: rebuild discovery suggestions [skip ci]"
+          git pull --rebase
+          git push

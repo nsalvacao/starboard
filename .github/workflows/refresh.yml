@@ -46,6 +46,8 @@ jobs:
         run: python scripts/build_history.py
 
       - name: Build discovery suggestions
+        env:
+          GH_STARS_PAT: ${{ secrets.GH_STARS_PAT }}
         run: python scripts/discover_similar.py
 
       - name: Setup Node.js
