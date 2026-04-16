@@ -24,6 +24,7 @@ A dense dashboard with sidebar navigation and workspace tools:
 - **Search**: full-text across name, summary, description
 - **Row detail modal**: repository metadata, LLM fields, and Phase 1 extended GitHub data
 - **Compare**: select 2–4 repos for side-by-side comparison with aggregate metrics
+- **Analytics**: timeline, category and language breakdowns, portfolio health, and trending panels over public daily history snapshots
 
 Status chips:
 - **Watch** — active, non-archived repos with recent pushes

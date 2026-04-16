@@ -27,6 +27,7 @@ The dashboard reads `data/stars.json` at runtime from the Vite public directory 
 - Repository detail modal opened from table rows
 - Topic filters synced to the URL
 - Compare panel for selected repositories
+- Analytics workspace with history timeline, category and language breakdowns, portfolio health, and trending panels
 - Daily public history snapshots prepared for the analytics phase
 
 ## Local Development
