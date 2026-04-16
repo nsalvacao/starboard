@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { ExternalLink, X } from 'lucide-react';
+import { ExternalLink, GitCompare, X } from 'lucide-react';
+import { useStore } from '../../store/useStore';
 import type { Repository } from '../../types';
 
 interface RepoDetailModalProps {
@@ -14,6 +15,7 @@ function boolBadge(value: boolean): string {
 
 export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const { filters, setFilter, selectedRepos, toggleSelection } = useStore();
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -73,6 +75,17 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
 
   if (!isOpen || !repo) return null;
 
+  const selectedTopics = filters.topics;
+  const isCompared = selectedRepos.includes(repo.full_name);
+  const canAddToCompare = isCompared || selectedRepos.length < 6;
+
+  const toggleTopic = (topic: string) => {
+    const nextTopics = selectedTopics.includes(topic)
+      ? selectedTopics.filter((item) => item !== topic)
+      : [...selectedTopics, topic];
+    setFilter('topics', nextTopics);
+  };
+
   return (
     <div
       className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm p-4 md:p-8 overflow-y-auto"
@@ -84,7 +97,7 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
         aria-modal="true"
         aria-label={`Repository details for ${repo.full_name}`}
         tabIndex={-1}
-        className="max-w-4xl mx-auto bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-lg shadow-2xl"
+        className="max-w-4xl mx-auto bg-[var(--color-gh-card)] border border-[var(--color-gh-border)] rounded-md shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-4 p-5 border-b border-[var(--color-gh-border)]">
@@ -93,18 +106,27 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
             <p className="text-sm text-[var(--color-gh-muted)] mt-1">{repo.description || 'No description'}</p>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => toggleSelection(repo.full_name)}
+              disabled={!canAddToCompare}
+              className="inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)] disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-pressed={isCompared}
+            >
+              <GitCompare className="w-3 h-3" />
+              {isCompared ? 'Remove from compare' : 'Add to compare'}
+            </button>
             <a
               href={repo.html_url}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
+              className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
             >
               Open Repo
               <ExternalLink className="w-3 h-3" />
             </a>
             <button
               onClick={onClose}
-              className="inline-flex items-center justify-center w-8 h-8 rounded border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
               aria-label="Close details"
             >
               <X className="w-4 h-4" />
@@ -131,6 +153,43 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
               <p><span className="text-[var(--color-gh-muted)]">Watch note:</span> {repo.llm_watch_note || 'N/A'}</p>
               <p><span className="text-[var(--color-gh-muted)]">Model:</span> {repo.llm_model || 'N/A'} ({repo.llm_status || 'unknown'})</p>
             </div>
+          </section>
+
+          <section>
+            <div className="flex items-center justify-between gap-3 mb-2">
+              <h3 className="text-sm font-semibold text-white">Topics</h3>
+              {selectedTopics.length > 0 && (
+                <button
+                  onClick={() => setFilter('topics', [])}
+                  className="text-xs text-[var(--color-gh-danger)] hover:bg-[var(--color-gh-danger)]/10 px-2 py-1 rounded-md"
+                >
+                  Clear topic filters
+                </button>
+              )}
+            </div>
+            {repo.topics.length > 0 ? (
+              <div className="flex flex-wrap gap-2">
+                {repo.topics.map((topic) => {
+                  const isSelected = selectedTopics.includes(topic);
+                  return (
+                    <button
+                      key={topic}
+                      onClick={() => toggleTopic(topic)}
+                      className={`px-2.5 py-1 rounded-md border text-xs transition-colors ${
+                        isSelected
+                          ? 'border-[var(--color-gh-accent)] bg-[var(--color-gh-accent)]/15 text-[var(--color-gh-accent)]'
+                          : 'border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]'
+                      }`}
+                      aria-pressed={isSelected}
+                    >
+                      {topic}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="text-sm text-[var(--color-gh-muted)]">No topics available for this repository.</p>
+            )}
           </section>
 
           <section>

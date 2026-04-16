@@ -54,12 +54,24 @@ function makeRepo(): Repository {
 }
 
 beforeEach(() => {
-  useStore.setState({ activeRepoFullName: 'org/repo' });
+  useStore.setState({
+    repos: [],
+    viewMode: 'all',
+    searchQuery: '',
+    filters: { category: [], language: [], status: [], topics: [] },
+    sortCriteria: [],
+    selectedRepos: [],
+    activeRepoFullName: 'org/repo',
+  });
 });
 
 afterEach(() => {
   document.body.style.overflow = '';
-  useStore.setState({ activeRepoFullName: null });
+  useStore.setState({
+    activeRepoFullName: null,
+    selectedRepos: [],
+    filters: { category: [], language: [], status: [], topics: [] },
+  });
 });
 
 describe('RepoDetailModal', () => {
@@ -89,18 +101,50 @@ describe('RepoDetailModal', () => {
     const focusable = dialog.querySelectorAll<HTMLElement>(
       'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
     );
-    const openRepoLink = focusable[0];
-    const closeButton = focusable[1];
+    const compareButton = focusable[0];
+    const openRepoLink = focusable[1];
+    const closeButton = focusable[2];
+    const topicButton = focusable[3];
 
-    await waitFor(() => expect(openRepoLink).toHaveFocus());
+    await waitFor(() => expect(compareButton).toHaveFocus());
+    await user.tab();
+    expect(openRepoLink).toHaveFocus();
     await user.tab();
     expect(closeButton).toHaveFocus();
     await user.tab();
-    expect(focusable[2]).toHaveFocus();
-    await user.tab();
-    expect(openRepoLink).toHaveFocus();
+    expect(topicButton).toHaveFocus();
 
     await user.keyboard('{Escape}');
     await waitFor(() => expect(document.body.style.overflow).toBe(''));
+  });
+
+  it('toggles topic filters and compare selection from the modal', async () => {
+    const user = userEvent.setup();
+    const repo = makeRepo();
+
+    function Harness() {
+      const [isOpen, setIsOpen] = useState(true);
+      return (
+        <RepoDetailModal
+          repo={repo}
+          isOpen={isOpen}
+          onClose={() => {
+            setIsOpen(false);
+            useStore.setState({ activeRepoFullName: null });
+          }}
+        />
+      );
+    }
+
+    render(<Harness />);
+
+    await user.click(screen.getByRole('button', { name: 'cli' }));
+    expect(useStore.getState().filters.topics).toContain('cli');
+
+    await user.click(screen.getByRole('button', { name: /add to compare/i }));
+    expect(useStore.getState().selectedRepos).toContain('org/repo');
+
+    await user.click(screen.getByRole('button', { name: /remove from compare/i }));
+    expect(useStore.getState().selectedRepos).not.toContain('org/repo');
   });
 });
