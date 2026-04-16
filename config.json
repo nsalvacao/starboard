@@ -44,6 +44,9 @@
     "Mobile",
     "Other"
   ],
+  "discovery": {
+    "source_repo_limit": 30
+  },
   "topic_synonyms": {
     "claude-code": [
       "claude-code-plugins",

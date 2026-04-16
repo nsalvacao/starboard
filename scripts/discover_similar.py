@@ -31,7 +31,6 @@ PUBLIC_DISCOVERY_PATH = ROOT / "site" / "public" / "data" / "discoveries.json"
 SEARCH_PER_PAGE = 10
 MAX_QUERY_VARIANTS = 5
 MAX_SUGGESTIONS_PER_SOURCE = 5
-SOURCE_REPO_LIMIT = 12
 SEARCH_DELAY_SECONDS = 7.0
 GENERIC_TOPICS = {
     "ai",
@@ -325,7 +324,7 @@ def build_public_dataset(dataset: dict) -> dict:
 
     return {
         "generated_at": dataset["generated_at"],
-        "source_repo_count": public_source_repo_count,
+        "source_repo_count": dataset["source_repo_count"],
         "public_source_repo_count": public_source_repo_count,
         "entries": public_entries,
     }
@@ -356,8 +355,9 @@ def build_discovery_dataset(repos: list[dict], session: requests.Session, cfg: d
         )
     )
 
+    source_repo_limit = int(cfg.get("discovery", {}).get("source_repo_limit", 30))
     entries: list[dict] = []
-    for _, repo in ranked_sources[:SOURCE_REPO_LIMIT]:
+    for _, repo in ranked_sources[:source_repo_limit]:
         entry = build_discovery_entry(repo, session, frequencies, topic_groups, starred_names)
         if entry is not None:
             entries.append(entry)
