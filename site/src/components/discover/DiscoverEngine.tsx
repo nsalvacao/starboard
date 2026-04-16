@@ -44,7 +44,7 @@ export function DiscoverEngine() {
     <div className="flex flex-col gap-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-xl font-bold text-white tracking-tight">Discover Engine</h2>
+          <h2 className="text-xl font-bold text-[var(--color-gh-strong)] tracking-tight">Discover Engine</h2>
           <p className="text-sm text-[var(--color-gh-muted)] mt-1">Smart recommendations based on your starred network, calculated entirely in memory.</p>
         </div>
       </div>
@@ -53,7 +53,7 @@ export function DiscoverEngine() {
         {/* Topic Expansion Card */}
         <div className="bg-[var(--color-gh-card)] min-h-[400px] border border-[var(--color-gh-border)] rounded-xl p-6 shadow-sm flex flex-col transition-all hover:shadow-lg">
           <div className="mb-6">
-            <h3 className="text-lg font-bold text-white mb-1">Topic Expansion</h3>
+            <h3 className="text-lg font-bold text-[var(--color-gh-strong)] mb-1">Topic Expansion</h3>
             <p className="text-sm text-[var(--color-gh-muted)]">
               {topCategories.length > 0
                 ? <>Because you recently starred {topCategories.join(' and ')}.</>
@@ -85,14 +85,14 @@ export function DiscoverEngine() {
         {/* Trending Card */}
         <div className="bg-[var(--color-gh-card)] min-h-[400px] border border-[var(--color-gh-border)] rounded-xl p-6 shadow-sm flex flex-col transition-all hover:shadow-lg">
           <div className="mb-6">
-            <h3 className="text-lg font-bold text-white mb-1">High Velocity</h3>
+            <h3 className="text-lg font-bold text-[var(--color-gh-strong)] mb-1">High Velocity</h3>
             <p className="text-sm text-[var(--color-gh-muted)]">Massively starred repos with commits in the last 30 days.</p>
           </div>
           <div className="flex-1 space-y-4">
              {trending.map((repo) => (
                 <div key={repo.full_name} className="group p-4 bg-[var(--color-gh-bg)] border border-[var(--color-gh-border)] rounded-lg hover:border-[var(--color-gh-accent)] transition-colors flex items-center">
                   <div className="flex-1 min-w-0 pr-4">
-                    <a href={repo.html_url} target="_blank" rel="noreferrer" className="font-semibold text-white hover:text-[var(--color-gh-accent)] truncate block transition-colors">
+                    <a href={repo.html_url} target="_blank" rel="noreferrer" className="font-semibold text-[var(--color-gh-strong)] hover:text-[var(--color-gh-accent)] truncate block transition-colors">
                       {repo.full_name}
                     </a>
                     <div className="flex items-center gap-3 mt-2 text-xs text-[var(--color-gh-muted)]">
@@ -102,7 +102,7 @@ export function DiscoverEngine() {
                     </div>
                   </div>
                   <div className="flex-none">
-                    <ChevronRight className="w-5 h-5 text-[var(--color-gh-muted)] group-hover:text-white transition-colors group-hover:translate-x-1" />
+                    <ChevronRight className="w-5 h-5 text-[var(--color-gh-muted)] group-hover:text-[var(--color-gh-strong)] transition-colors group-hover:translate-x-1" />
                   </div>
                 </div>
              ))}

@@ -102,14 +102,14 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
       >
         <div className="flex items-start justify-between gap-4 p-5 border-b border-[var(--color-gh-border)]">
           <div>
-            <h2 className="text-lg font-semibold text-white">{repo.full_name}</h2>
+            <h2 className="text-lg font-semibold text-[var(--color-gh-strong)]">{repo.full_name}</h2>
             <p className="text-sm text-[var(--color-gh-muted)] mt-1">{repo.description || 'No description'}</p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => toggleSelection(repo.full_name)}
               disabled={!canAddToCompare}
-              className="inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-1.5 text-xs px-2 py-1 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:border-[var(--color-gh-muted)] disabled:opacity-50 disabled:cursor-not-allowed"
               aria-pressed={isCompared}
             >
               <GitCompare className="w-3 h-3" />
@@ -119,14 +119,14 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
               href={repo.html_url}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
+              className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:border-[var(--color-gh-muted)]"
             >
               Open Repo
               <ExternalLink className="w-3 h-3" />
             </a>
             <button
               onClick={onClose}
-              className="inline-flex items-center justify-center w-8 h-8 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]"
+              className="inline-flex items-center justify-center w-8 h-8 rounded-md border border-[var(--color-gh-border)] text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:border-[var(--color-gh-muted)]"
               aria-label="Close details"
             >
               <X className="w-4 h-4" />
@@ -136,7 +136,7 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
 
         <div className="p-5 space-y-6">
           <section>
-            <h3 className="text-sm font-semibold text-white mb-2">Core Metadata</h3>
+            <h3 className="text-sm font-semibold text-[var(--color-gh-strong)] mb-2">Core Metadata</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
               <div className="bg-[var(--color-gh-bg)] rounded p-3"><span className="text-[var(--color-gh-muted)] block text-xs">Language</span>{repo.language || 'Unknown'}</div>
               <div className="bg-[var(--color-gh-bg)] rounded p-3"><span className="text-[var(--color-gh-muted)] block text-xs">Stars</span>{repo.stargazers_count.toLocaleString()}</div>
@@ -146,7 +146,7 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
           </section>
 
           <section>
-            <h3 className="text-sm font-semibold text-white mb-2">LLM Enrichment</h3>
+            <h3 className="text-sm font-semibold text-[var(--color-gh-strong)] mb-2">LLM Enrichment</h3>
             <div className="space-y-2 text-sm">
               <p><span className="text-[var(--color-gh-muted)]">Category:</span> {repo.llm_category || 'Uncategorized'}</p>
               <p><span className="text-[var(--color-gh-muted)]">Summary:</span> {repo.llm_summary || 'N/A'}</p>
@@ -157,7 +157,7 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
 
           <section>
             <div className="flex items-center justify-between gap-3 mb-2">
-              <h3 className="text-sm font-semibold text-white">Topics</h3>
+              <h3 className="text-sm font-semibold text-[var(--color-gh-strong)]">Topics</h3>
               {selectedTopics.length > 0 && (
                 <button
                   onClick={() => setFilter('topics', [])}
@@ -178,7 +178,7 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
                       className={`px-2.5 py-1 rounded-md border text-xs transition-colors ${
                         isSelected
                           ? 'border-[var(--color-gh-accent)] bg-[var(--color-gh-accent)]/15 text-[var(--color-gh-accent)]'
-                          : 'border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]'
+                          : 'border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:border-[var(--color-gh-muted)]'
                       }`}
                       aria-pressed={isSelected}
                     >
@@ -193,7 +193,7 @@ export function RepoDetailModal({ repo, isOpen, onClose }: RepoDetailModalProps)
           </section>
 
           <section>
-            <h3 className="text-sm font-semibold text-white mb-2">Phase 1 Extended Metadata</h3>
+            <h3 className="text-sm font-semibold text-[var(--color-gh-strong)] mb-2">Phase 1 Extended Metadata</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
               <div className="bg-[var(--color-gh-bg)] rounded p-3">
                 <span className="text-[var(--color-gh-muted)] block text-xs mb-1">License</span>

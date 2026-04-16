@@ -40,7 +40,7 @@ export function TopicCloud({
       <div className="flex items-center justify-between gap-3 mb-3">
         <div className="flex items-center gap-2">
           <Hash className="w-4 h-4 text-[var(--color-gh-accent)]" />
-          <h3 className="text-sm font-semibold text-white">Topic Cloud</h3>
+          <h3 className="text-sm font-semibold text-[var(--color-gh-strong)]">Topic Cloud</h3>
         </div>
         {selectedTopics.length > 0 && (
           <button
@@ -66,7 +66,7 @@ export function TopicCloud({
                 scaleClass,
                 isSelected
                   ? 'border-[var(--color-gh-accent)] bg-[var(--color-gh-accent)]/15 text-[var(--color-gh-accent)]'
-                  : 'border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-[var(--color-gh-muted)] hover:text-white hover:border-[var(--color-gh-muted)]'
+                  : 'border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:border-[var(--color-gh-muted)]'
               )}
             >
               {topic} <span className="opacity-80">({count})</span>

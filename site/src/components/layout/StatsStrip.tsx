@@ -37,7 +37,7 @@ export function StatsStrip({ repos }: StatsStripProps) {
       label: 'Avg Push Age',
       value: `${avgDaysSincePush}d`,
       icon: Activity,
-      accent: 'text-white',
+      accent: 'text-[var(--color-gh-strong)]',
     },
   ];
 

@@ -26,7 +26,7 @@ function SortableHeader({ label, sortKey, className, onSort }: SortableHeaderPro
     <button
       onClick={(event) => onSort(sortKey, event.shiftKey)}
       className={cn(
-        'inline-flex items-center gap-1 hover:text-white transition-colors text-left',
+        'inline-flex items-center gap-1 hover:text-[var(--color-gh-strong)] transition-colors text-left',
         className
       )}
       title="Click to sort, Shift+Click for multi-sort"
@@ -179,10 +179,14 @@ export function RepoTable({ repos }: RepoTableProps) {
                 </div>
 
                 <div className="min-w-0 flex flex-col gap-1">
-                  <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full w-fit", 
-                    repo.llm_category === 'AI/ML' ? 'bg-purple-900/30 text-purple-400 border border-purple-800' :
-                    'bg-[var(--color-gh-border)] text-white'
-                  )}>
+                  <span
+                    className={cn(
+                      'text-xs font-medium px-2 py-0.5 rounded-full w-fit border',
+                      repo.llm_category === 'AI/ML'
+                        ? 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/30 dark:text-purple-400 dark:border-purple-800'
+                        : 'bg-[var(--color-gh-border)] text-[var(--color-gh-strong)] border-[var(--color-gh-border)]'
+                    )}
+                  >
                     {repo.llm_category || 'Uncategorized'}
                   </span>
                   {repo.language && <div className="text-xs text-[var(--color-gh-muted)] flex items-center gap-1">

@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react';
 import { useMemo } from 'react';
 import { useStore } from '../../store/useStore';
-import { Search, GitMerge, LayoutGrid, Eye, Sparkles, Trash2, GitCompare } from 'lucide-react';
+import { Search, GitMerge, LayoutGrid, Eye, Sparkles, Trash2, GitCompare, Moon, Sun } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import type { ViewMode } from '../../types';
 
 export function TopNavigationBar() {
-  const { viewMode, setViewMode, searchQuery, setSearchQuery, repos } = useStore();
+  const { viewMode, setViewMode, searchQuery, setSearchQuery, repos, preferences, setPreferences } = useStore();
+  const isDarkTheme = preferences.theme === 'dark';
 
   const watchCount = useMemo(() => repos.filter(r => r.watch_candidate).length, [repos]);
   const cleanupCount = useMemo(() => repos.filter(r => r.cleanup_candidate).length, [repos]);
@@ -26,8 +27,8 @@ export function TopNavigationBar() {
           
           {/* Brand */}
           <div className="flex items-center gap-2">
-            <GitMerge className="w-6 h-6 text-white" />
-            <span className="font-bold text-lg tracking-tight text-white hidden sm:block">Starboard</span>
+            <GitMerge className="w-6 h-6 text-[var(--color-gh-strong)]" />
+            <span className="font-bold text-lg tracking-tight text-[var(--color-gh-strong)] hidden sm:block">Starboard</span>
           </div>
 
           {/* Nav Tabs */}
@@ -39,8 +40,8 @@ export function TopNavigationBar() {
                 className={cn(
                   "flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors",
                   viewMode === tab.id 
-                    ? "bg-[var(--color-gh-hover)] text-white" 
-                    : "text-[var(--color-gh-muted)] hover:text-white hover:bg-[var(--color-gh-hover)]/50"
+                    ? "bg-[var(--color-gh-hover)] text-[var(--color-gh-strong)]"
+                    : "text-[var(--color-gh-muted)] hover:text-[var(--color-gh-strong)] hover:bg-[var(--color-gh-hover)]/50"
                 )}
               >
                 {tab.icon}
@@ -55,8 +56,8 @@ export function TopNavigationBar() {
           </nav>
 
           {/* Search & Actions */}
-          <div className="flex-1 md:flex-none flex justify-end items-center gap-4 hidden sm:flex">
-            <div className="relative w-full max-w-sm group">
+          <div className="flex-1 md:flex-none flex justify-end items-center gap-2 sm:gap-4">
+            <div className="relative w-full max-w-sm group hidden sm:block">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-[var(--color-gh-muted)] group-focus-within:text-[var(--color-gh-accent)]" />
               <input
                 id="search"
@@ -67,6 +68,16 @@ export function TopNavigationBar() {
                 className="w-full bg-[var(--color-gh-bg)] border border-[var(--color-gh-border)] rounded-md pl-9 pr-4 py-1.5 text-sm focus:outline-none focus:border-[var(--color-gh-accent)] focus:ring-1 focus:ring-[var(--color-gh-accent)] transition-all placeholder-[var(--color-gh-muted)] text-[var(--color-gh-text)]"
               />
             </div>
+            <button
+              type="button"
+              onClick={() => setPreferences({ theme: isDarkTheme ? 'light' : 'dark' })}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] text-sm text-[var(--color-gh-text)] hover:text-[var(--color-gh-strong)] hover:border-[var(--color-gh-muted)] transition-colors"
+              aria-label={isDarkTheme ? 'Switch to light theme' : 'Switch to dark theme'}
+              title={isDarkTheme ? 'Switch to light theme' : 'Switch to dark theme'}
+            >
+              {isDarkTheme ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              <span className="hidden lg:inline">{isDarkTheme ? 'Light' : 'Dark'}</span>
+            </button>
           </div>
 
         </div>

@@ -29,7 +29,7 @@ export function FilterPills() {
           className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--color-gh-bg)] border border-[var(--color-gh-border)] rounded-md text-sm hover:border-[var(--color-gh-muted)] transition-colors"
         >
           Category 
-          {filters.category.length > 0 && <span className="bg-[var(--color-gh-accent)] text-white text-xs px-1.5 rounded-full">{filters.category.length}</span>}
+          {filters.category.length > 0 && <span className="bg-[var(--color-gh-accent)] text-[var(--color-gh-strong)] text-xs px-1.5 rounded-full">{filters.category.length}</span>}
           <ChevronDown className="w-3 h-3 text-[var(--color-gh-muted)]" />
         </button>
         {openDropdown === 'category' && (
@@ -59,7 +59,7 @@ export function FilterPills() {
           className="flex items-center gap-1.5 px-3 py-1.5 bg-[var(--color-gh-bg)] border border-[var(--color-gh-border)] rounded-md text-sm hover:border-[var(--color-gh-muted)] transition-colors"
         >
           Language 
-          {filters.language.length > 0 && <span className="bg-[var(--color-gh-accent)] text-white text-xs px-1.5 rounded-full">{filters.language.length}</span>}
+          {filters.language.length > 0 && <span className="bg-[var(--color-gh-accent)] text-[var(--color-gh-strong)] text-xs px-1.5 rounded-full">{filters.language.length}</span>}
           <ChevronDown className="w-3 h-3 text-[var(--color-gh-muted)]" />
         </button>
         {openDropdown === 'language' && (

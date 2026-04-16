@@ -44,6 +44,7 @@ export interface Repository {
   llm_content_hash: string | null;
 }
 
+export type Theme = 'dark' | 'light';
 export type ViewMode = 'all' | 'watch' | 'discover' | 'cleanup' | 'compare';
 export type SortDirection = 'asc' | 'desc';
 export type SortKey =
@@ -62,6 +63,6 @@ export interface SortCriterion {
 }
 
 export interface Preferences {
-  theme: 'dark' | 'light';
+  theme: Theme;
   density: 'compact' | 'normal' | 'comfortable';
 }
