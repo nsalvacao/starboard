@@ -74,10 +74,6 @@ def write_json(path: Path, payload: dict) -> None:
         json.dump(payload, f, indent=2, ensure_ascii=False)
 
 
-def is_public_visibility(repo: dict) -> bool:
-    return repo.get("visibility") == "public"
-
-
 def build_topic_groups(topic_synonyms: dict[str, list[str]]) -> dict[str, list[str]]:
     groups: dict[str, list[str]] = {}
     for anchor, synonyms in topic_synonyms.items():
@@ -180,12 +176,16 @@ def search_repositories(session: requests.Session, topic_query: str) -> list[dic
     if not resp.ok:
         print(f"WARNING: search failed for {topic_query!r}: HTTP {resp.status_code}", file=sys.stderr)
         return []
-    payload = resp.json()
+    try:
+        payload = resp.json()
+    except ValueError:
+        print(f"WARNING: search returned invalid JSON for {topic_query!r}", file=sys.stderr)
+        return []
     items = payload.get("items", []) if isinstance(payload, dict) else []
     return [item for item in items if isinstance(item, dict)]
 
 
-def normalize_candidate(item: dict, query_terms: Iterable[str], source_topics: set[str]) -> dict | None:
+def normalize_candidate(item: dict, source_topics: set[str]) -> dict | None:
     full_name = item.get("full_name")
     html_url = item.get("html_url")
     if not isinstance(full_name, str) or not isinstance(html_url, str):
@@ -207,7 +207,7 @@ def normalize_candidate(item: dict, query_terms: Iterable[str], source_topics: s
         "visibility": item.get("visibility", "public"),
         "score": 0.0,
         "matched_topics": matched_topics,
-        "query_terms": list(query_terms),
+        "query_terms": [],
     }
 
 
@@ -244,7 +244,7 @@ def build_discovery_entry(
     expanded_topic_set = set(expanded_topics)
     for index, query in enumerate(queries):
         for item in search_repositories(session, query):
-            candidate = normalize_candidate(item, primary_topics, expanded_topic_set)
+            candidate = normalize_candidate(item, expanded_topic_set)
             if candidate is None:
                 continue
             if candidate["full_name"] == repo["full_name"] or candidate["full_name"] in starred_names:

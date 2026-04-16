@@ -50,6 +50,14 @@ class FakeResponse:
         return self._payload
 
 
+class BrokenJsonResponse(FakeResponse):
+    def __init__(self, payload: dict, status_code: int = 200, text: str | None = None):
+        super().__init__(payload, status_code=status_code, text=text)
+
+    def json(self) -> dict:
+        raise ValueError("invalid json")
+
+
 class FakeSession:
     def __init__(self, responses: dict[str, list[FakeResponse]]):
         self.responses = responses
@@ -160,6 +168,20 @@ def test_build_discovery_entry_merges_duplicate_candidates_and_skips_starred_rep
     assert entry["suggestions"][0]["full_name"] == "foo/first"
     assert all(suggestion["full_name"] != "owner/starred" for suggestion in entry["suggestions"])
     assert entry["suggestions"][0]["query_terms"]
+
+
+def test_search_repositories_handles_invalid_json_responses():
+    session = FakeSession(
+        {
+            "topic:claude-code fork:false archived:false": [
+                BrokenJsonResponse({}, text="<html>bad gateway</html>"),
+            ]
+        }
+    )
+
+    items = discover_similar.search_repositories(session, "topic:claude-code fork:false archived:false")
+
+    assert items == []
 
 
 def test_build_public_dataset_filters_private_sources_and_suggestions():

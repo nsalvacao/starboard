@@ -58,7 +58,11 @@ function isDiscoverySource(value: unknown): value is DiscoverySource {
     typeof value.stargazers_count === 'number' &&
     Number.isFinite(value.stargazers_count) &&
     typeof value.forks_count === 'number' &&
-    Number.isFinite(value.forks_count)
+    Number.isFinite(value.forks_count) &&
+    (value.visibility === undefined ||
+      value.visibility === 'public' ||
+      value.visibility === 'private' ||
+      value.visibility === 'internal')
   );
 }
 

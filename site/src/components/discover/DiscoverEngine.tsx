@@ -78,8 +78,6 @@ export function DiscoverEngine() {
     () => entries.reduce((sum, entry) => sum + entry.suggestions.length, 0),
     [entries]
   );
-  const topEntries = entries.slice(0, 4);
-
   return (
     <div className="flex min-h-0 flex-col gap-4">
       <section className="rounded-md border border-[var(--color-gh-border)] bg-[var(--color-gh-card)] p-5 shadow-sm">
@@ -145,11 +143,11 @@ export function DiscoverEngine() {
         </div>
       )}
 
-      {status === 'ready' && entries.length > 0 && (
+        {status === 'ready' && entries.length > 0 && (
         <div className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-[var(--color-gh-muted)]">
             <p>
-              Showing {formatCount(topEntries.length)} of {formatCount(entries.length)} discovery threads.
+              Showing {formatCount(entries.length)} discovery threads.
             </p>
             <p>
               {dataset?.public_source_repo_count !== undefined
@@ -159,16 +157,10 @@ export function DiscoverEngine() {
           </div>
 
           <div className="space-y-4">
-            {topEntries.map((entry, index) => (
+            {entries.map((entry, index) => (
               <DiscoverSuggestions key={entry.source.full_name} entry={entry} rank={index + 1} />
             ))}
           </div>
-
-          {entries.length > topEntries.length && (
-            <p className="text-sm text-[var(--color-gh-muted)]">
-              The pipeline generated {formatCount(entries.length - topEntries.length)} additional source threads not shown here.
-            </p>
-          )}
 
           <div className="flex flex-wrap items-center gap-3 rounded-md border border-[var(--color-gh-border)] bg-[var(--color-gh-bg)] p-3 text-xs text-[var(--color-gh-muted)]">
             <span className="inline-flex items-center gap-1">
