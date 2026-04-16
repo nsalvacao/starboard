@@ -254,21 +254,21 @@ def _github_get(session: requests.Session, url: str, params: dict[str, object] |
     return resp
 
 
-def search_repositories(session: requests.Session, topic_query: str) -> list[dict]:
+def search_repositories(session: requests.Session, search_query: str) -> list[dict]:
     params = {
-        "q": f"{topic_query} fork:false archived:false",
+        "q": f"{search_query} fork:false archived:false",
         "sort": "stars",
         "order": "desc",
         "per_page": SEARCH_PER_PAGE,
     }
     resp = _github_get(session, f"{GITHUB_API}/search/repositories", params=params)
     if not resp.ok:
-        print(f"WARNING: search failed for {topic_query!r}: HTTP {resp.status_code}", file=sys.stderr)
+        print(f"WARNING: search failed for {search_query!r}: HTTP {resp.status_code}", file=sys.stderr)
         return []
     try:
         payload = resp.json()
     except ValueError:
-        print(f"WARNING: search returned invalid JSON for {topic_query!r}", file=sys.stderr)
+        print(f"WARNING: search returned invalid JSON for {search_query!r}", file=sys.stderr)
         return []
     items = payload.get("items", []) if isinstance(payload, dict) else []
     return [item for item in items if isinstance(item, dict)]
@@ -421,11 +421,12 @@ def build_discovery_entry(
     if not suggestions:
         return None
 
-    source_score = 0.0
     if primary_topics:
         source_score = score_topic(primary_topics[0], frequencies, topic_groups)
         if len(primary_topics) > 1:
             source_score += score_topic(primary_topics[1], frequencies, topic_groups)
+    else:
+        source_score = -9999.0  # no topics: guaranteed below any score_topic result, JSON-serializable
 
     return {
         "source": {
