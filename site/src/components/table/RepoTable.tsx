@@ -49,6 +49,7 @@ function SortableHeader({ label, sortKey, className, onSort }: SortableHeaderPro
 }
 
 export function RepoTable({ repos }: RepoTableProps) {
+  'use no memo'; // useVirtualizer returns functions incompatible with React Compiler memoization
   const {
     selectedRepos,
     toggleSelection,
@@ -61,6 +62,7 @@ export function RepoTable({ repos }: RepoTableProps) {
 
   const parentRef = useRef<HTMLDivElement>(null);
 
+  // eslint-disable-next-line react-hooks/incompatible-library -- 'use no memo' already opts this component out of React Compiler
   const rowVirtualizer = useVirtualizer({
     count: filteredRepos.length,
     getScrollElement: () => parentRef.current,
