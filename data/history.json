@@ -16693,5 +16693,795 @@
         "forks_count": 493
       }
     ]
+  },
+  {
+    "date": "2026-05-08",
+    "repos": [
+      {
+        "full_name": "2FastLabs/agent-squad",
+        "stargazers_count": 7616,
+        "forks_count": 720
+      },
+      {
+        "full_name": "AgentOps-AI/agentops",
+        "stargazers_count": 5528,
+        "forks_count": 573
+      },
+      {
+        "full_name": "Agenta-AI/agenta",
+        "stargazers_count": 4103,
+        "forks_count": 517
+      },
+      {
+        "full_name": "AgriciDaniel/claude-obsidian",
+        "stargazers_count": 4506,
+        "forks_count": 506
+      },
+      {
+        "full_name": "AndyMik90/Aperant",
+        "stargazers_count": 14165,
+        "forks_count": 1918
+      },
+      {
+        "full_name": "Ar9av/obsidian-wiki",
+        "stargazers_count": 1028,
+        "forks_count": 128
+      },
+      {
+        "full_name": "AstrBotDevs/AstrBot",
+        "stargazers_count": 31585,
+        "forks_count": 2183
+      },
+      {
+        "full_name": "AutoMaker-Org/automaker",
+        "stargazers_count": 3143,
+        "forks_count": 598
+      },
+      {
+        "full_name": "BeehiveInnovations/pal-mcp-server",
+        "stargazers_count": 11520,
+        "forks_count": 995
+      },
+      {
+        "full_name": "BloopAI/vibe-kanban",
+        "stargazers_count": 26037,
+        "forks_count": 2692
+      },
+      {
+        "full_name": "CaviraOSS/OpenMemory",
+        "stargazers_count": 4075,
+        "forks_count": 467
+      },
+      {
+        "full_name": "ComposioHQ/agent-orchestrator",
+        "stargazers_count": 6876,
+        "forks_count": 926
+      },
+      {
+        "full_name": "ComposioHQ/awesome-claude-skills",
+        "stargazers_count": 58627,
+        "forks_count": 6343
+      },
+      {
+        "full_name": "CopilotKit/CopilotKit",
+        "stargazers_count": 31018,
+        "forks_count": 3997
+      },
+      {
+        "full_name": "CursorTouch/Windows-MCP",
+        "stargazers_count": 5494,
+        "forks_count": 709
+      },
+      {
+        "full_name": "Digital-Process-Tools/claude-remember",
+        "stargazers_count": 77,
+        "forks_count": 22
+      },
+      {
+        "full_name": "Empreiteiro/langflow-templates",
+        "stargazers_count": 32,
+        "forks_count": 5
+      },
+      {
+        "full_name": "Experiments-Nuno-Salvacao/notebooklm-skill",
+        "stargazers_count": 1,
+        "forks_count": 0
+      },
+      {
+        "full_name": "FoundationAgents/MetaGPT",
+        "stargazers_count": 67772,
+        "forks_count": 8624
+      },
+      {
+        "full_name": "HKUDS/CLI-Anything",
+        "stargazers_count": 33921,
+        "forks_count": 3318
+      },
+      {
+        "full_name": "HKUDS/RAG-Anything",
+        "stargazers_count": 19914,
+        "forks_count": 2279
+      },
+      {
+        "full_name": "JuliusBrussee/caveman",
+        "stargazers_count": 56225,
+        "forks_count": 3080
+      },
+      {
+        "full_name": "MemPalace/mempalace",
+        "stargazers_count": 51485,
+        "forks_count": 6776
+      },
+      {
+        "full_name": "MemoriLabs/Memori",
+        "stargazers_count": 14093,
+        "forks_count": 1907
+      },
+      {
+        "full_name": "Mintplex-Labs/anything-llm",
+        "stargazers_count": 59709,
+        "forks_count": 6457
+      },
+      {
+        "full_name": "Mintplex-Labs/anything-llm-cli",
+        "stargazers_count": 20,
+        "forks_count": 6
+      },
+      {
+        "full_name": "Mintplex-Labs/anythingllm-docs",
+        "stargazers_count": 331,
+        "forks_count": 119
+      },
+      {
+        "full_name": "Mintplex-Labs/vector-admin",
+        "stargazers_count": 2222,
+        "forks_count": 357
+      },
+      {
+        "full_name": "NirDiamant/GenAI_Agents",
+        "stargazers_count": 21835,
+        "forks_count": 3651
+      },
+      {
+        "full_name": "NirDiamant/Prompt_Engineering",
+        "stargazers_count": 7475,
+        "forks_count": 969
+      },
+      {
+        "full_name": "NirDiamant/agents-towards-production",
+        "stargazers_count": 19064,
+        "forks_count": 2544
+      },
+      {
+        "full_name": "NousResearch/hermes-agent",
+        "stargazers_count": 137972,
+        "forks_count": 21267
+      },
+      {
+        "full_name": "OpenHands/OpenHands",
+        "stargazers_count": 72868,
+        "forks_count": 9228
+      },
+      {
+        "full_name": "Piebald-AI/awesome-gemini-cli",
+        "stargazers_count": 438,
+        "forks_count": 64
+      },
+      {
+        "full_name": "Piebald-AI/claude-code-system-prompts",
+        "stargazers_count": 10018,
+        "forks_count": 1793
+      },
+      {
+        "full_name": "Piebald-AI/gemini-cli-desktop",
+        "stargazers_count": 431,
+        "forks_count": 48
+      },
+      {
+        "full_name": "Piebald-AI/tweakcc",
+        "stargazers_count": 1973,
+        "forks_count": 156
+      },
+      {
+        "full_name": "Pimzino/claude-code-spec-workflow",
+        "stargazers_count": 3714,
+        "forks_count": 261
+      },
+      {
+        "full_name": "PrefectHQ/fastmcp",
+        "stargazers_count": 25061,
+        "forks_count": 1993
+      },
+      {
+        "full_name": "QiuYannnn/Local-File-Organizer",
+        "stargazers_count": 3204,
+        "forks_count": 311
+      },
+      {
+        "full_name": "QwenLM/Qwen-Agent",
+        "stargazers_count": 16277,
+        "forks_count": 1597
+      },
+      {
+        "full_name": "RooCodeInc/Roo-Code",
+        "stargazers_count": 23920,
+        "forks_count": 3217
+      },
+      {
+        "full_name": "SakanaAI/AI-Scientist",
+        "stargazers_count": 13518,
+        "forks_count": 1940
+      },
+      {
+        "full_name": "Significant-Gravitas/AutoGPT",
+        "stargazers_count": 184069,
+        "forks_count": 46246
+      },
+      {
+        "full_name": "The-PR-Agent/pr-agent",
+        "stargazers_count": 11118,
+        "forks_count": 1491
+      },
+      {
+        "full_name": "UKPLab/llm-roleplay",
+        "stargazers_count": 47,
+        "forks_count": 4
+      },
+      {
+        "full_name": "Vvkmnn/awesome-ai-eval",
+        "stargazers_count": 75,
+        "forks_count": 13
+      },
+      {
+        "full_name": "Yeachan-Heo/oh-my-codex",
+        "stargazers_count": 27895,
+        "forks_count": 2239
+      },
+      {
+        "full_name": "abgulati/LARS",
+        "stargazers_count": 637,
+        "forks_count": 61
+      },
+      {
+        "full_name": "affaan-m/everything-claude-code",
+        "stargazers_count": 175467,
+        "forks_count": 27138
+      },
+      {
+        "full_name": "agent0ai/agent-zero",
+        "stargazers_count": 17588,
+        "forks_count": 3588
+      },
+      {
+        "full_name": "agno-agi/agno",
+        "stargazers_count": 39986,
+        "forks_count": 5354
+      },
+      {
+        "full_name": "ai-christianson/RA.Aid",
+        "stargazers_count": 2223,
+        "forks_count": 210
+      },
+      {
+        "full_name": "ai-for-developers/awesome-vibe-coding",
+        "stargazers_count": 694,
+        "forks_count": 127
+      },
+      {
+        "full_name": "anomalyco/opencode",
+        "stargazers_count": 156655,
+        "forks_count": 18223
+      },
+      {
+        "full_name": "anthropics/claude-code",
+        "stargazers_count": 121422,
+        "forks_count": 20072
+      },
+      {
+        "full_name": "atomicmemory/llm-wiki-compiler",
+        "stargazers_count": 1071,
+        "forks_count": 105
+      },
+      {
+        "full_name": "basicmachines-co/basic-memory",
+        "stargazers_count": 2991,
+        "forks_count": 192
+      },
+      {
+        "full_name": "browser-use/web-ui",
+        "stargazers_count": 15942,
+        "forks_count": 2711
+      },
+      {
+        "full_name": "bytedance/UI-TARS-desktop",
+        "stargazers_count": 30375,
+        "forks_count": 2990
+      },
+      {
+        "full_name": "bytedance/deer-flow",
+        "stargazers_count": 65973,
+        "forks_count": 8717
+      },
+      {
+        "full_name": "chirag127/BookmarkMind-AI-Powered-Browser-Bookmark-Organizer",
+        "stargazers_count": 3,
+        "forks_count": 0
+      },
+      {
+        "full_name": "clduab11/gemini-flow",
+        "stargazers_count": 382,
+        "forks_count": 70
+      },
+      {
+        "full_name": "coleam00/Archon",
+        "stargazers_count": 21017,
+        "forks_count": 3206
+      },
+      {
+        "full_name": "coze-dev/coze-studio",
+        "stargazers_count": 20713,
+        "forks_count": 3000
+      },
+      {
+        "full_name": "danielrosehill/Index",
+        "stargazers_count": 10,
+        "forks_count": 1
+      },
+      {
+        "full_name": "davila7/claude-code-templates",
+        "stargazers_count": 26980,
+        "forks_count": 2725
+      },
+      {
+        "full_name": "decolua/9router",
+        "stargazers_count": 4811,
+        "forks_count": 1011
+      },
+      {
+        "full_name": "enricoros/big-AGI",
+        "stargazers_count": 6964,
+        "forks_count": 1575
+      },
+      {
+        "full_name": "eyaltoledano/claude-task-master",
+        "stargazers_count": 27035,
+        "forks_count": 2520
+      },
+      {
+        "full_name": "fallenhaventech/Hybrid-Cloud-Observability-Security-Infrastructure",
+        "stargazers_count": 1,
+        "forks_count": 0
+      },
+      {
+        "full_name": "getzep/graphiti",
+        "stargazers_count": 25806,
+        "forks_count": 2566
+      },
+      {
+        "full_name": "giselles-ai/giselle",
+        "stargazers_count": 522,
+        "forks_count": 124
+      },
+      {
+        "full_name": "github/awesome-copilot",
+        "stargazers_count": 32418,
+        "forks_count": 3950
+      },
+      {
+        "full_name": "github/copilot-sdk",
+        "stargazers_count": 8618,
+        "forks_count": 1163
+      },
+      {
+        "full_name": "github/gh-aw",
+        "stargazers_count": 4426,
+        "forks_count": 375
+      },
+      {
+        "full_name": "github/github-mcp-server",
+        "stargazers_count": 29589,
+        "forks_count": 4134
+      },
+      {
+        "full_name": "github/spec-kit",
+        "stargazers_count": 93211,
+        "forks_count": 8086
+      },
+      {
+        "full_name": "githubnext/agentics",
+        "stargazers_count": 676,
+        "forks_count": 100
+      },
+      {
+        "full_name": "githubnext/awesome-continuous-ai",
+        "stargazers_count": 449,
+        "forks_count": 25
+      },
+      {
+        "full_name": "google-gemini/gemini-cli",
+        "stargazers_count": 103382,
+        "forks_count": 13535
+      },
+      {
+        "full_name": "google/A2UI",
+        "stargazers_count": 14573,
+        "forks_count": 1133
+      },
+      {
+        "full_name": "google/agents-cli",
+        "stargazers_count": 2130,
+        "forks_count": 249
+      },
+      {
+        "full_name": "googleapis/mcp-toolbox",
+        "stargazers_count": 15022,
+        "forks_count": 1516
+      },
+      {
+        "full_name": "gsscsd/big_model_radar",
+        "stargazers_count": 360,
+        "forks_count": 26
+      },
+      {
+        "full_name": "huggingface/sentence-transformers",
+        "stargazers_count": 18644,
+        "forks_count": 2784
+      },
+      {
+        "full_name": "iOfficeAI/AionUi",
+        "stargazers_count": 24014,
+        "forks_count": 2151
+      },
+      {
+        "full_name": "iamsrikanthnani/pluely",
+        "stargazers_count": 1917,
+        "forks_count": 403
+      },
+      {
+        "full_name": "iyaja/llama-fs",
+        "stargazers_count": 5727,
+        "forks_count": 378
+      },
+      {
+        "full_name": "jarrodwatts/claude-delegator",
+        "stargazers_count": 952,
+        "forks_count": 47
+      },
+      {
+        "full_name": "jeremylongshore/claude-code-plugins-plus-skills",
+        "stargazers_count": 2125,
+        "forks_count": 286
+      },
+      {
+        "full_name": "koala73/awesome-osint",
+        "stargazers_count": 25,
+        "forks_count": 2
+      },
+      {
+        "full_name": "koala73/deep-research",
+        "stargazers_count": 38,
+        "forks_count": 13
+      },
+      {
+        "full_name": "koala73/worldmonitor",
+        "stargazers_count": 53739,
+        "forks_count": 8635
+      },
+      {
+        "full_name": "langchain-ai/deepagents",
+        "stargazers_count": 22440,
+        "forks_count": 3155
+      },
+      {
+        "full_name": "langchain-ai/langchain",
+        "stargazers_count": 136088,
+        "forks_count": 22492
+      },
+      {
+        "full_name": "langchain-ai/langsmith-claude-code-plugins",
+        "stargazers_count": 48,
+        "forks_count": 9
+      },
+      {
+        "full_name": "langchain-ai/open-swe",
+        "stargazers_count": 9748,
+        "forks_count": 1095
+      },
+      {
+        "full_name": "langfuse/langfuse",
+        "stargazers_count": 26790,
+        "forks_count": 2716
+      },
+      {
+        "full_name": "lastmile-ai/mcp-agent",
+        "stargazers_count": 8312,
+        "forks_count": 837
+      },
+      {
+        "full_name": "letta-ai/letta",
+        "stargazers_count": 22519,
+        "forks_count": 2395
+      },
+      {
+        "full_name": "linagora/openrag",
+        "stargazers_count": 210,
+        "forks_count": 40
+      },
+      {
+        "full_name": "linkwarden/linkwarden",
+        "stargazers_count": 18192,
+        "forks_count": 744
+      },
+      {
+        "full_name": "mcp-router/mcp-router",
+        "stargazers_count": 1998,
+        "forks_count": 163
+      },
+      {
+        "full_name": "mem0ai/mem0",
+        "stargazers_count": 55048,
+        "forks_count": 6239
+      },
+      {
+        "full_name": "memodb-io/Acontext",
+        "stargazers_count": 3366,
+        "forks_count": 313
+      },
+      {
+        "full_name": "meta-llama/llama-cookbook",
+        "stargazers_count": 18323,
+        "forks_count": 2726
+      },
+      {
+        "full_name": "microsoft/Codex-CLI",
+        "stargazers_count": 2372,
+        "forks_count": 222
+      },
+      {
+        "full_name": "microsoft/TaskWeaver",
+        "stargazers_count": 6161,
+        "forks_count": 773
+      },
+      {
+        "full_name": "microsoft/agent-framework",
+        "stargazers_count": 10223,
+        "forks_count": 1671
+      },
+      {
+        "full_name": "microsoft/agent-governance-toolkit",
+        "stargazers_count": 1445,
+        "forks_count": 278
+      },
+      {
+        "full_name": "microsoft/ai-agents-for-beginners",
+        "stargazers_count": 60841,
+        "forks_count": 20591
+      },
+      {
+        "full_name": "microsoft/genaiscript",
+        "stargazers_count": 2899,
+        "forks_count": 225
+      },
+      {
+        "full_name": "microsoft/magentic-ui",
+        "stargazers_count": 9806,
+        "forks_count": 977
+      },
+      {
+        "full_name": "microsoft/work-iq",
+        "stargazers_count": 788,
+        "forks_count": 79
+      },
+      {
+        "full_name": "migsilva89/MarkMind",
+        "stargazers_count": 76,
+        "forks_count": 10
+      },
+      {
+        "full_name": "milisp/awesome-claude-dxt",
+        "stargazers_count": 171,
+        "forks_count": 23
+      },
+      {
+        "full_name": "milisp/codexia",
+        "stargazers_count": 668,
+        "forks_count": 64
+      },
+      {
+        "full_name": "milisp/mcp-linker",
+        "stargazers_count": 308,
+        "forks_count": 27
+      },
+      {
+        "full_name": "milisp/plux",
+        "stargazers_count": 26,
+        "forks_count": 3
+      },
+      {
+        "full_name": "modelcontextprotocol/mcpb",
+        "stargazers_count": 1903,
+        "forks_count": 187
+      },
+      {
+        "full_name": "modelcontextprotocol/registry",
+        "stargazers_count": 6784,
+        "forks_count": 800
+      },
+      {
+        "full_name": "modelcontextprotocol/servers",
+        "stargazers_count": 85240,
+        "forks_count": 10630
+      },
+      {
+        "full_name": "moeru-ai/airi",
+        "stargazers_count": 39051,
+        "forks_count": 3950
+      },
+      {
+        "full_name": "msitarzewski/agency-agents",
+        "stargazers_count": 94846,
+        "forks_count": 15635
+      },
+      {
+        "full_name": "n8n-io/n8n",
+        "stargazers_count": 187031,
+        "forks_count": 57450
+      },
+      {
+        "full_name": "obra/superpowers",
+        "stargazers_count": 182307,
+        "forks_count": 16193
+      },
+      {
+        "full_name": "onejune2018/Awesome-LLM-Eval",
+        "stargazers_count": 636,
+        "forks_count": 64
+      },
+      {
+        "full_name": "openai/codex",
+        "stargazers_count": 80784,
+        "forks_count": 11656
+      },
+      {
+        "full_name": "openai/codex-plugin-cc",
+        "stargazers_count": 17855,
+        "forks_count": 1045
+      },
+      {
+        "full_name": "openai/gpt-5-coding-examples",
+        "stargazers_count": 1882,
+        "forks_count": 287
+      },
+      {
+        "full_name": "openai/openai-agents-python",
+        "stargazers_count": 26039,
+        "forks_count": 3994
+      },
+      {
+        "full_name": "openai/whisper",
+        "stargazers_count": 99113,
+        "forks_count": 12158
+      },
+      {
+        "full_name": "potpie-ai/potpie",
+        "stargazers_count": 5367,
+        "forks_count": 612
+      },
+      {
+        "full_name": "public-apis/public-apis",
+        "stargazers_count": 433155,
+        "forks_count": 47376
+      },
+      {
+        "full_name": "roomi-fields/rtfm",
+        "stargazers_count": 8,
+        "forks_count": 2
+      },
+      {
+        "full_name": "run-llama/flow-maker",
+        "stargazers_count": 212,
+        "forks_count": 38
+      },
+      {
+        "full_name": "run-llama/llama_index",
+        "stargazers_count": 49230,
+        "forks_count": 7372
+      },
+      {
+        "full_name": "ruvnet/RuView",
+        "stargazers_count": 52032,
+        "forks_count": 6930
+      },
+      {
+        "full_name": "ruvnet/ruflo",
+        "stargazers_count": 46326,
+        "forks_count": 5133
+      },
+      {
+        "full_name": "safishamsi/graphify",
+        "stargazers_count": 44583,
+        "forks_count": 4845
+      },
+      {
+        "full_name": "samstill/kb-wiki",
+        "stargazers_count": 16,
+        "forks_count": 0
+      },
+      {
+        "full_name": "shibing624/TreeSearch",
+        "stargazers_count": 190,
+        "forks_count": 16
+      },
+      {
+        "full_name": "sindresorhus/awesome",
+        "stargazers_count": 463840,
+        "forks_count": 34807
+      },
+      {
+        "full_name": "soxoj/maigret",
+        "stargazers_count": 26337,
+        "forks_count": 1843
+      },
+      {
+        "full_name": "supermemoryai/supermemory",
+        "stargazers_count": 22454,
+        "forks_count": 2052
+      },
+      {
+        "full_name": "thedotmack/claude-mem",
+        "stargazers_count": 73461,
+        "forks_count": 6309
+      },
+      {
+        "full_name": "tobi/qmd",
+        "stargazers_count": 24331,
+        "forks_count": 1532
+      },
+      {
+        "full_name": "topoteretes/cognee",
+        "stargazers_count": 17106,
+        "forks_count": 1787
+      },
+      {
+        "full_name": "ultraworkers/claw-code",
+        "stargazers_count": 190622,
+        "forks_count": 109764
+      },
+      {
+        "full_name": "unclecode/crawl4ai",
+        "stargazers_count": 65187,
+        "forks_count": 6667
+      },
+      {
+        "full_name": "wagnersza/copilot-plugin-cc",
+        "stargazers_count": 42,
+        "forks_count": 1
+      },
+      {
+        "full_name": "warpdotdev/commands.dev",
+        "stargazers_count": 151,
+        "forks_count": 14
+      },
+      {
+        "full_name": "warpdotdev/do-things",
+        "stargazers_count": 47,
+        "forks_count": 13
+      },
+      {
+        "full_name": "warpdotdev/oz-for-oss",
+        "stargazers_count": 181,
+        "forks_count": 23
+      },
+      {
+        "full_name": "warpdotdev/warp",
+        "stargazers_count": 56465,
+        "forks_count": 4202
+      },
+      {
+        "full_name": "yuruotong1/autoMate",
+        "stargazers_count": 3913,
+        "forks_count": 493
+      }
+    ]
   }
 ]
