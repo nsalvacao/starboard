@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T09:27:34Z",
+  "generated_at": "2026-06-18T09:12:11Z",
   "source_repo_count": 165,
   "public_source_repo_count": 30,
   "entries": [
@@ -31,8 +31,8 @@
           "pkm",
           "second-brain"
         ],
-        "stargazers_count": 6982,
-        "forks_count": 826,
+        "stargazers_count": 7059,
+        "forks_count": 830,
         "visibility": "public"
       },
       "seed_topics": [
@@ -112,10 +112,10 @@
             "skills",
             "zed-extension"
           ],
-          "stargazers_count": 17628,
-          "forks_count": 1252,
+          "stargazers_count": 17702,
+          "forks_count": 1257,
           "visibility": "public",
-          "score": 1817.7531999999999,
+          "score": 1817.8277,
           "matched_topics": [
             "claude",
             "claude-code",
@@ -157,10 +157,10 @@
             "personal-knowledge-management",
             "second-brain"
           ],
-          "stargazers_count": 2505,
-          "forks_count": 293,
+          "stargazers_count": 2525,
+          "forks_count": 295,
           "visibility": "public",
-          "score": 1602.5343,
+          "score": 1602.5545000000002,
           "matched_topics": [
             "ai-agents",
             "anthropic",
@@ -190,10 +190,10 @@
             "godot4",
             "skills"
           ],
-          "stargazers_count": 3427,
-          "forks_count": 304,
+          "stargazers_count": 3432,
+          "forks_count": 305,
           "visibility": "public",
-          "score": 1503.4574,
+          "score": 1503.4625,
           "matched_topics": [
             "claude",
             "claude-code",
@@ -227,10 +227,10 @@
             "skillsmp",
             "uml"
           ],
-          "stargazers_count": 3700,
-          "forks_count": 265,
+          "stargazers_count": 3960,
+          "forks_count": 294,
           "visibility": "public",
-          "score": 1403.7265,
+          "score": 1403.9894,
           "matched_topics": [
             "agent-skills",
             "claude-code",
@@ -256,10 +256,10 @@
             "claude-leak",
             "claude-skills"
           ],
-          "stargazers_count": 2930,
-          "forks_count": 3488,
+          "stargazers_count": 2941,
+          "forks_count": 3494,
           "visibility": "public",
-          "score": 1303.2788,
+          "score": 1303.2904,
           "matched_topics": [
             "claude",
             "claude-code",
@@ -295,8 +295,8 @@
           "saas",
           "skills"
         ],
-        "stargazers_count": 2389,
-        "forks_count": 335,
+        "stargazers_count": 2390,
+        "forks_count": 338,
         "visibility": "public"
       },
       "seed_topics": [
@@ -349,51 +349,6 @@
       ],
       "source_score": 1140.0,
       "suggestions": [
-        {
-          "full_name": "netopsengineer/axiom",
-          "html_url": "https://github.com/netopsengineer/axiom",
-          "description": "A curated marketplace of plugins for Claude Code, built from first principles.",
-          "language": "Shell",
-          "topics": [
-            "agent-plugins",
-            "agent-skills",
-            "ai-agents",
-            "ai-coding-agent",
-            "anthropic",
-            "anthropic-claude",
-            "claude",
-            "claude-code",
-            "claude-code-marketplace",
-            "claude-code-plugins",
-            "claude-code-skills",
-            "claude-skills",
-            "developer-tools",
-            "evals",
-            "mcp",
-            "plugin-marketplace",
-            "prompt-engineering",
-            "skills"
-          ],
-          "stargazers_count": 1,
-          "forks_count": 0,
-          "visibility": "public",
-          "score": 3000.001,
-          "matched_topics": [
-            "agent-skills",
-            "ai-agents",
-            "anthropic",
-            "claude",
-            "claude-code",
-            "claude-code-plugins",
-            "developer-tools",
-            "mcp",
-            "plugin-marketplace",
-            "skills"
-          ],
-          "query_terms": [
-            "topic:claude-code-plugins topic:plugin-marketplace"
-          ]
-        },
         {
           "full_name": "theagenticguy/agentic-plugins",
           "html_url": "https://github.com/theagenticguy/agentic-plugins",
@@ -527,6 +482,51 @@
           ]
         },
         {
+          "full_name": "modu-ai/cowork-plugins",
+          "html_url": "https://github.com/modu-ai/cowork-plugins",
+          "description": "모두의 AI (MoAI) — Claude Cowork & Claude Code 한국 실무 도메인 AI 하네스·플러그인 마켓플레이스. 사업계획서·세무·법률·HR·마케팅·커머스·BI·콘텐츠 도메인 스킬·에이전트·워크플로우. Korean B2B + office docs (HWPX/DOCX/XLSX/PPTX/PDF) + AI media (image/video/voice). AI-slop 검수 + humanize-korean 내장.",
+          "language": "HTML",
+          "topics": [
+            "agents",
+            "ai-agents",
+            "ai-marketplace",
+            "ai-plugins",
+            "anthropic",
+            "anthropic-claude",
+            "b2b-ai",
+            "claude-code",
+            "claude-code-plugins",
+            "claude-cowork",
+            "claude-plugins",
+            "claude-skills",
+            "korean",
+            "korean-ai",
+            "korean-business",
+            "marketplace",
+            "mcp",
+            "plugin-marketplace",
+            "skill-marketplace",
+            "skills"
+          ],
+          "stargazers_count": 222,
+          "forks_count": 55,
+          "visibility": "public",
+          "score": 2700.2275000000004,
+          "matched_topics": [
+            "ai-agents",
+            "anthropic",
+            "claude-code",
+            "claude-code-plugins",
+            "mcp",
+            "plugin-marketplace",
+            "skills"
+          ],
+          "query_terms": [
+            "topic:claude-code-plugins topic:plugin-marketplace",
+            "topic:plugin-marketplace"
+          ]
+        },
+        {
           "full_name": "fakoli/fakoli-plugins",
           "html_url": "https://github.com/fakoli/fakoli-plugins",
           "description": "A curated collection of Claude Code plugins for enhanced productivity and development workflows",
@@ -584,8 +584,8 @@
           "token-counter",
           "tweak"
         ],
-        "stargazers_count": 2215,
-        "forks_count": 169,
+        "stargazers_count": 2221,
+        "forks_count": 170,
         "visibility": "public"
       },
       "seed_topics": [
@@ -807,10 +807,10 @@
             "react",
             "ui"
           ],
-          "stargazers_count": 11957,
-          "forks_count": 1625,
+          "stargazers_count": 11981,
+          "forks_count": 1632,
           "visibility": "public",
-          "score": 1412.1195,
+          "score": 1412.1442,
           "matched_topics": [
             "anthropic",
             "claude",
@@ -1092,8 +1092,8 @@
           "skills",
           "tmux"
         ],
-        "stargazers_count": 7578,
-        "forks_count": 1035,
+        "stargazers_count": 7591,
+        "forks_count": 1037,
         "visibility": "public"
       },
       "seed_topics": [
@@ -1174,10 +1174,10 @@
             "orchestration",
             "self-hosted"
           ],
-          "stargazers_count": 584,
-          "forks_count": 121,
+          "stargazers_count": 583,
+          "forks_count": 122,
           "visibility": "public",
-          "score": 1900.5961,
+          "score": 1900.5952,
           "matched_topics": [
             "agent-swarm",
             "agents",
@@ -1220,10 +1220,10 @@
             "ralph-wiggum",
             "vibe-coding"
           ],
-          "stargazers_count": 733,
+          "stargazers_count": 734,
           "forks_count": 82,
           "visibility": "public",
-          "score": 1600.7412,
+          "score": 1600.7422,
           "matched_topics": [
             "agent-swarm",
             "agentic-ai",
@@ -1264,9 +1264,9 @@
             "worktrees"
           ],
           "stargazers_count": 210,
-          "forks_count": 42,
+          "forks_count": 44,
           "visibility": "public",
-          "score": 1600.2142000000001,
+          "score": 1600.2144,
           "matched_topics": [
             "agentic-ai",
             "ai-agents",
@@ -1395,8 +1395,8 @@
           "workflow",
           "workflow-automation"
         ],
-        "stargazers_count": 192888,
-        "forks_count": 58614,
+        "stargazers_count": 192999,
+        "forks_count": 58643,
         "visibility": "public"
       },
       "seed_topics": [
@@ -1646,8 +1646,8 @@
           "sqlite",
           "supermemory"
         ],
-        "stargazers_count": 82880,
-        "forks_count": 7178,
+        "stargazers_count": 83068,
+        "forks_count": 7189,
         "visibility": "public"
       },
       "seed_topics": [
@@ -1700,10 +1700,10 @@
             "postgres",
             "rag"
           ],
-          "stargazers_count": 1246,
-          "forks_count": 74,
+          "stargazers_count": 1278,
+          "forks_count": 75,
           "visibility": "public",
-          "score": 2201.2534,
+          "score": 2201.2855,
           "matched_topics": [
             "claude-agent-sdk",
             "claude-agents"
@@ -1873,8 +1873,8 @@
           "wifi",
           "wifi-security"
         ],
-        "stargazers_count": 74294,
-        "forks_count": 9908,
+        "stargazers_count": 74468,
+        "forks_count": 9930,
         "visibility": "public"
       },
       "seed_topics": [
@@ -1921,10 +1921,10 @@
             "rtsp",
             "tensorflow"
           ],
-          "stargazers_count": 33789,
-          "forks_count": 3282,
+          "stargazers_count": 33813,
+          "forks_count": 3285,
           "visibility": "public",
-          "score": 2234.1172,
+          "score": 2234.1415,
           "matched_topics": [
             "home-assistant",
             "home-automation"
@@ -1962,10 +1962,10 @@
             "ubuntu",
             "vm"
           ],
-          "stargazers_count": 28586,
-          "forks_count": 2744,
+          "stargazers_count": 28600,
+          "forks_count": 2745,
           "visibility": "public",
-          "score": 2228.8603999999996,
+          "score": 2228.8745,
           "matched_topics": [
             "home-assistant",
             "home-automation"
@@ -2003,10 +2003,10 @@
             "ssh",
             "wireguard"
           ],
-          "stargazers_count": 21439,
-          "forks_count": 1077,
+          "stargazers_count": 21477,
+          "forks_count": 1079,
           "visibility": "public",
-          "score": 2221.5467,
+          "score": 2221.5849,
           "matched_topics": [
             "home-assistant",
             "home-automation"
@@ -2034,10 +2034,10 @@
             "python",
             "yaml"
           ],
-          "stargazers_count": 11257,
-          "forks_count": 5372,
+          "stargazers_count": 11260,
+          "forks_count": 5373,
           "visibility": "public",
-          "score": 2211.7942000000003,
+          "score": 2211.7973,
           "matched_topics": [
             "home-assistant",
             "home-automation"
@@ -2070,10 +2070,10 @@
             "internet-of-things",
             "smarthome"
           ],
-          "stargazers_count": 8146,
+          "stargazers_count": 8149,
           "forks_count": 416,
           "visibility": "public",
-          "score": 2208.1876,
+          "score": 2208.1906,
           "matched_topics": [
             "home-assistant",
             "home-automation"
@@ -2109,8 +2109,8 @@
           "tables",
           "xlsx"
         ],
-        "stargazers_count": 61729,
-        "forks_count": 4316,
+        "stargazers_count": 61791,
+        "forks_count": 4324,
         "visibility": "public"
       },
       "seed_topics": [
@@ -2165,10 +2165,10 @@
             "pdf-to-text",
             "preprocessing"
           ],
-          "stargazers_count": 14950,
+          "stargazers_count": 14960,
           "forks_count": 1256,
           "visibility": "public",
-          "score": 2215.0755999999997,
+          "score": 2215.0856,
           "matched_topics": [
             "document-parser",
             "document-parsing"
@@ -2236,10 +2236,10 @@
             "structured-data-capture",
             "tables"
           ],
-          "stargazers_count": 1488,
+          "stargazers_count": 1490,
           "forks_count": 135,
           "visibility": "public",
-          "score": 2201.5015,
+          "score": 2201.5035,
           "matched_topics": [
             "document-parser",
             "document-parsing"
@@ -2334,8 +2334,8 @@
           "self-hosted-ai",
           "vector-database"
         ],
-        "stargazers_count": 61708,
-        "forks_count": 6733,
+        "stargazers_count": 61761,
+        "forks_count": 6738,
         "visibility": "public"
       },
       "seed_topics": [
@@ -2385,10 +2385,10 @@
             "openai",
             "skills"
           ],
-          "stargazers_count": 78765,
+          "stargazers_count": 78804,
           "forks_count": 15447,
           "visibility": "public",
-          "score": 1180.3097,
+          "score": 1180.3487,
           "matched_topics": [
             "agent-harness"
           ],
@@ -2417,10 +2417,10 @@
             "self-hosted-ai",
             "vane"
           ],
-          "stargazers_count": 35327,
-          "forks_count": 3891,
+          "stargazers_count": 35339,
+          "forks_count": 3892,
           "visibility": "public",
-          "score": 1135.7161,
+          "score": 1135.7282,
           "matched_topics": [
             "self-hosted-ai"
           ],
@@ -2443,10 +2443,10 @@
             "skills",
             "super-agent"
           ],
-          "stargazers_count": 18645,
-          "forks_count": 2629,
+          "stargazers_count": 19147,
+          "forks_count": 2633,
           "visibility": "public",
-          "score": 1118.9079,
+          "score": 1119.4103,
           "matched_topics": [
             "agent-harness"
           ],
@@ -2481,10 +2481,10 @@
             "typescript",
             "workspace"
           ],
-          "stargazers_count": 5513,
-          "forks_count": 390,
+          "stargazers_count": 5514,
+          "forks_count": 388,
           "visibility": "public",
-          "score": 1105.552,
+          "score": 1105.5528,
           "matched_topics": [
             "agent-harness"
           ],
@@ -2500,10 +2500,10 @@
           "topics": [
             "agent-harness"
           ],
-          "stargazers_count": 2923,
-          "forks_count": 210,
+          "stargazers_count": 2925,
+          "forks_count": 211,
           "visibility": "public",
-          "score": 1102.944,
+          "score": 1102.9461,
           "matched_topics": [
             "agent-harness"
           ],
@@ -2532,8 +2532,8 @@
           "vrm",
           "vtuber"
         ],
-        "stargazers_count": 41063,
-        "forks_count": 4133,
+        "stargazers_count": 41077,
+        "forks_count": 4137,
         "visibility": "public"
       },
       "seed_topics": [
@@ -2580,10 +2580,10 @@
             "voice-assistant",
             "webrtc"
           ],
-          "stargazers_count": 1214,
-          "forks_count": 169,
+          "stargazers_count": 1227,
+          "forks_count": 170,
           "visibility": "public",
-          "score": 2201.2309,
+          "score": 2201.2439999999997,
           "matched_topics": [
             "ai-companion",
             "digital-life"
@@ -2737,8 +2737,8 @@
           "vision",
           "vlm"
         ],
-        "stargazers_count": 36571,
-        "forks_count": 3693,
+        "stargazers_count": 36781,
+        "forks_count": 3706,
         "visibility": "public"
       },
       "seed_topics": [
@@ -2784,10 +2784,10 @@
             "mcp",
             "qwen3-vl"
           ],
-          "stargazers_count": 3066,
-          "forks_count": 312,
+          "stargazers_count": 3067,
+          "forks_count": 313,
           "visibility": "public",
-          "score": 2203.0971999999997,
+          "score": 2203.0983,
           "matched_topics": [
             "computer-use",
             "gui-operator"
@@ -2823,10 +2823,10 @@
             "windows",
             "windows-sandbox"
           ],
-          "stargazers_count": 18389,
-          "forks_count": 1187,
+          "stargazers_count": 18417,
+          "forks_count": 1190,
           "visibility": "public",
-          "score": 1118.5076999999999,
+          "score": 1118.5359999999998,
           "matched_topics": [
             "computer-use"
           ],
@@ -2849,10 +2849,10 @@
             "phone-use",
             "testing"
           ],
-          "stargazers_count": 13753,
+          "stargazers_count": 13768,
           "forks_count": 1050,
           "visibility": "public",
-          "score": 1113.858,
+          "score": 1113.873,
           "matched_topics": [
             "computer-use"
           ],
@@ -2880,10 +2880,10 @@
             "planning",
             "retrieval-augmented-generation"
           ],
-          "stargazers_count": 11864,
+          "stargazers_count": 11873,
           "forks_count": 1401,
           "visibility": "public",
-          "score": 1112.0041,
+          "score": 1112.0131000000001,
           "matched_topics": [
             "computer-use"
           ],
@@ -2913,10 +2913,10 @@
             "rpa",
             "window"
           ],
-          "stargazers_count": 10727,
-          "forks_count": 956,
+          "stargazers_count": 10726,
+          "forks_count": 955,
           "visibility": "public",
-          "score": 1110.8226000000002,
+          "score": 1110.8215,
           "matched_topics": [
             "computer-use"
           ],
@@ -2954,8 +2954,8 @@
           "ts",
           "typescript"
         ],
-        "stargazers_count": 35234,
-        "forks_count": 4376,
+        "stargazers_count": 35279,
+        "forks_count": 4377,
         "visibility": "public"
       },
       "seed_topics": [
@@ -3005,10 +3005,10 @@
             "typescript",
             "visualization"
           ],
-          "stargazers_count": 1404,
-          "forks_count": 186,
+          "stargazers_count": 1407,
+          "forks_count": 187,
           "visibility": "public",
-          "score": 2201.4226,
+          "score": 2201.4257000000002,
           "matched_topics": [
             "agent-native",
             "assistant-chat-bots"
@@ -3071,10 +3071,10 @@
             "ui",
             "ui-components"
           ],
-          "stargazers_count": 11160,
+          "stargazers_count": 11159,
           "forks_count": 571,
           "visibility": "public",
-          "score": 1111.2171,
+          "score": 1111.2161,
           "matched_topics": [
             "assistant-chat-bots"
           ],
@@ -3102,10 +3102,10 @@
             "generative-text",
             "software-development"
           ],
-          "stargazers_count": 8997,
-          "forks_count": 994,
+          "stargazers_count": 8999,
+          "forks_count": 997,
           "visibility": "public",
-          "score": 1109.0964000000001,
+          "score": 1109.0987,
           "matched_topics": [
             "assistant-chat-bots"
           ],
@@ -3133,9 +3133,9 @@
             "ui"
           ],
           "stargazers_count": 4843,
-          "forks_count": 532,
+          "forks_count": 531,
           "visibility": "public",
-          "score": 1104.8962000000001,
+          "score": 1104.8961000000002,
           "matched_topics": [
             "assistant-chat-bots"
           ],
@@ -3161,8 +3161,8 @@
           "hacktoberfest",
           "prompt-engineering"
         ],
-        "stargazers_count": 35166,
-        "forks_count": 4341,
+        "stargazers_count": 35222,
+        "forks_count": 4346,
         "visibility": "public"
       },
       "seed_topics": [
@@ -3209,9 +3209,9 @@
             "vscode-copilot-chat"
           ],
           "stargazers_count": 536,
-          "forks_count": 84,
+          "forks_count": 85,
           "visibility": "public",
-          "score": 2200.5444,
+          "score": 2200.5445,
           "matched_topics": [
             "custom-agents",
             "github-copilot"
@@ -3366,8 +3366,8 @@
           "socmint",
           "username"
         ],
-        "stargazers_count": 33184,
-        "forks_count": 2458,
+        "stargazers_count": 33221,
+        "forks_count": 2465,
         "visibility": "public"
       },
       "seed_topics": [
@@ -3421,10 +3421,10 @@
             "threat-intelligence",
             "threatintel"
           ],
-          "stargazers_count": 18203,
-          "forks_count": 3029,
+          "stargazers_count": 18219,
+          "forks_count": 3036,
           "visibility": "public",
-          "score": 2218.5059,
+          "score": 2218.5226000000002,
           "matched_topics": [
             "information-gathering",
             "osint-framework"
@@ -3460,10 +3460,10 @@
             "username-checker",
             "windows"
           ],
-          "stargazers_count": 3598,
-          "forks_count": 535,
+          "stargazers_count": 3600,
+          "forks_count": 536,
           "visibility": "public",
-          "score": 2203.6515,
+          "score": 2203.6536,
           "matched_topics": [
             "information-gathering",
             "osint-framework"
@@ -3500,10 +3500,10 @@
             "username-scanner",
             "username-search"
           ],
-          "stargazers_count": 3437,
+          "stargazers_count": 3440,
           "forks_count": 314,
           "visibility": "public",
-          "score": 2203.4683999999997,
+          "score": 2203.4714,
           "matched_topics": [
             "information-gathering",
             "osint-framework"
@@ -3539,10 +3539,10 @@
             "python3",
             "script"
           ],
-          "stargazers_count": 2299,
+          "stargazers_count": 2303,
           "forks_count": 192,
           "visibility": "public",
-          "score": 2202.3182,
+          "score": 2202.3222,
           "matched_topics": [
             "information-gathering",
             "osint-framework"
@@ -3577,10 +3577,10 @@
             "typescript",
             "web-interface"
           ],
-          "stargazers_count": 818,
-          "forks_count": 78,
+          "stargazers_count": 821,
+          "forks_count": 79,
           "visibility": "public",
-          "score": 2200.8258,
+          "score": 2200.8289,
           "matched_topics": [
             "information-gathering",
             "osint-framework"
@@ -3611,8 +3611,8 @@
           "typescript",
           "vite"
         ],
-        "stargazers_count": 27129,
-        "forks_count": 2358,
+        "stargazers_count": 27171,
+        "forks_count": 2364,
         "visibility": "public"
       },
       "seed_topics": [
@@ -3811,8 +3811,8 @@
           "multi-modal-rag",
           "retrieval-augmented-generation"
         ],
-        "stargazers_count": 21397,
-        "forks_count": 2498,
+        "stargazers_count": 21429,
+        "forks_count": 2500,
         "visibility": "public"
       },
       "seed_topics": [
@@ -3895,10 +3895,10 @@
             "rag",
             "retrieval-augmented-generation"
           ],
-          "stargazers_count": 82999,
-          "forks_count": 9592,
+          "stargazers_count": 83095,
+          "forks_count": 9607,
           "visibility": "public",
-          "score": 1183.9582,
+          "score": 1184.0557000000001,
           "matched_topics": [
             "retrieval-augmented-generation"
           ],
@@ -3928,10 +3928,10 @@
             "vector-database",
             "vector-index"
           ],
-          "stargazers_count": 59337,
-          "forks_count": 1430,
+          "stargazers_count": 59325,
+          "forks_count": 1431,
           "visibility": "public",
-          "score": 1159.48,
+          "score": 1159.4681,
           "matched_topics": [
             "retrieval-augmented-generation"
           ],
@@ -3966,10 +3966,10 @@
             "streamlit",
             "xinference"
           ],
-          "stargazers_count": 38184,
-          "forks_count": 6216,
+          "stargazers_count": 38188,
+          "forks_count": 6218,
           "visibility": "public",
-          "score": 1138.8056,
+          "score": 1138.8098,
           "matched_topics": [
             "retrieval-augmented-generation"
           ],
@@ -3993,10 +3993,10 @@
             "rag",
             "retrieval-augmented-generation"
           ],
-          "stargazers_count": 36689,
-          "forks_count": 5180,
+          "stargazers_count": 36740,
+          "forks_count": 5184,
           "visibility": "public",
-          "score": 1137.207,
+          "score": 1137.2584,
           "matched_topics": [
             "retrieval-augmented-generation"
           ],
@@ -4031,8 +4031,8 @@
           "typescript",
           "workflow"
         ],
-        "stargazers_count": 21000,
-        "forks_count": 3054,
+        "stargazers_count": 20999,
+        "forks_count": 3055,
         "visibility": "public"
       },
       "seed_topics": [
@@ -4072,10 +4072,10 @@
             "voice",
             "voice-assistant"
           ],
-          "stargazers_count": 12863,
-          "forks_count": 2208,
+          "stargazers_count": 12877,
+          "forks_count": 2211,
           "visibility": "public",
-          "score": 1113.0838,
+          "score": 1113.0981,
           "matched_topics": [
             "chatbot-framework"
           ],
@@ -4098,10 +4098,10 @@
             "datahub",
             "metadata"
           ],
-          "stargazers_count": 12106,
-          "forks_count": 3516,
+          "stargazers_count": 12117,
+          "forks_count": 3517,
           "visibility": "public",
-          "score": 1112.4576,
+          "score": 1112.4687,
           "matched_topics": [
             "agent-platform"
           ],
@@ -4122,10 +4122,10 @@
             "chatbot-framework",
             "php"
           ],
-          "stargazers_count": 6161,
+          "stargazers_count": 6162,
           "forks_count": 816,
           "visibility": "public",
-          "score": 1106.2426,
+          "score": 1106.2436,
           "matched_topics": [
             "chatbot-framework"
           ],
@@ -4154,10 +4154,10 @@
             "state-management",
             "visibility"
           ],
-          "stargazers_count": 2420,
-          "forks_count": 166,
+          "stargazers_count": 2423,
+          "forks_count": 165,
           "visibility": "public",
-          "score": 1102.4366,
+          "score": 1102.4395,
           "matched_topics": [
             "chatbot-framework"
           ],
@@ -4205,7 +4205,7 @@
           "self-hosted",
           "typescript"
         ],
-        "stargazers_count": 18637,
+        "stargazers_count": 18649,
         "forks_count": 790,
         "visibility": "public"
       },
@@ -4248,10 +4248,10 @@
             "read-it-later",
             "self-hosted"
           ],
-          "stargazers_count": 26046,
-          "forks_count": 1254,
+          "stargazers_count": 26065,
+          "forks_count": 1256,
           "visibility": "public",
-          "score": 2226.1713999999997,
+          "score": 2226.1906,
           "matched_topics": [
             "bookmark-manager",
             "react-native"
@@ -4358,10 +4358,10 @@
             "react",
             "react-native"
           ],
-          "stargazers_count": 126021,
-          "forks_count": 25181,
+          "stargazers_count": 126022,
+          "forks_count": 25182,
           "visibility": "public",
-          "score": 1228.5391,
+          "score": 1228.5402,
           "matched_topics": [
             "react-native"
           ],
@@ -4398,8 +4398,8 @@
           "open-source",
           "vector-database"
         ],
-        "stargazers_count": 17868,
-        "forks_count": 1895,
+        "stargazers_count": 17892,
+        "forks_count": 1896,
         "visibility": "public"
       },
       "seed_topics": [
@@ -4445,10 +4445,10 @@
             "windows-terminal",
             "wsl"
           ],
-          "stargazers_count": 103633,
-          "forks_count": 9348,
+          "stargazers_count": 103639,
+          "forks_count": 9353,
           "visibility": "public",
-          "score": 1204.5678,
+          "score": 1204.5743,
           "matched_topics": [
             "contributions-welcome"
           ],
@@ -4473,10 +4473,10 @@
             "open-source",
             "tutorial"
           ],
-          "stargazers_count": 54510,
-          "forks_count": 104430,
+          "stargazers_count": 54522,
+          "forks_count": 104481,
           "visibility": "public",
-          "score": 1164.953,
+          "score": 1164.9701,
           "matched_topics": [
             "contributions-welcome"
           ],
@@ -4504,10 +4504,42 @@
             "responsive-web-design",
             "web-development"
           ],
-          "stargazers_count": 24977,
+          "stargazers_count": 24978,
           "forks_count": 1371,
           "visibility": "public",
-          "score": 1125.1141,
+          "score": 1125.1151,
+          "matched_topics": [
+            "contributions-welcome"
+          ],
+          "query_terms": [
+            "topic:contributions-welcome"
+          ]
+        },
+        {
+          "full_name": "The-Cool-Coders/Project-Ideas-And-Resources",
+          "html_url": "https://github.com/The-Cool-Coders/Project-Ideas-And-Resources",
+          "description": "A Collection of application ideas that can be used to improve your coding skills ❤.",
+          "language": null,
+          "topics": [
+            "beginner",
+            "contribution",
+            "contributions-welcome",
+            "css",
+            "frontend",
+            "hacktoberfest",
+            "html",
+            "javascript",
+            "open-source",
+            "opensource",
+            "php",
+            "projects",
+            "python",
+            "react"
+          ],
+          "stargazers_count": 14661,
+          "forks_count": 1282,
+          "visibility": "public",
+          "score": 1114.7892000000002,
           "matched_topics": [
             "contributions-welcome"
           ],
@@ -4542,42 +4574,10 @@
             "snap",
             "squirrel"
           ],
-          "stargazers_count": 14595,
+          "stargazers_count": 14594,
           "forks_count": 1851,
           "visibility": "public",
-          "score": 1114.7801,
-          "matched_topics": [
-            "contributions-welcome"
-          ],
-          "query_terms": [
-            "topic:contributions-welcome"
-          ]
-        },
-        {
-          "full_name": "The-Cool-Coders/Project-Ideas-And-Resources",
-          "html_url": "https://github.com/The-Cool-Coders/Project-Ideas-And-Resources",
-          "description": "A Collection of application ideas that can be used to improve your coding skills ❤.",
-          "language": null,
-          "topics": [
-            "beginner",
-            "contribution",
-            "contributions-welcome",
-            "css",
-            "frontend",
-            "hacktoberfest",
-            "html",
-            "javascript",
-            "open-source",
-            "opensource",
-            "php",
-            "projects",
-            "python",
-            "react"
-          ],
-          "stargazers_count": 14623,
-          "forks_count": 1282,
-          "visibility": "public",
-          "score": 1114.7512000000002,
+          "score": 1114.7791,
           "matched_topics": [
             "contributions-welcome"
           ],
@@ -4599,8 +4599,8 @@
           "browser-use-box",
           "cloud-browser"
         ],
-        "stargazers_count": 16099,
-        "forks_count": 2716,
+        "stargazers_count": 16100,
+        "forks_count": 2718,
         "visibility": "public"
       },
       "seed_topics": [
@@ -4646,10 +4646,10 @@
             "vps-agent",
             "web-automation"
           ],
-          "stargazers_count": 14985,
-          "forks_count": 1407,
+          "stargazers_count": 15040,
+          "forks_count": 1408,
           "visibility": "public",
-          "score": 2215.1257,
+          "score": 2215.1808,
           "matched_topics": [
             "browser-automation",
             "browser-use-box"
@@ -4670,10 +4670,10 @@
             "rpa",
             "telegram-automation"
           ],
-          "stargazers_count": 4053,
-          "forks_count": 330,
+          "stargazers_count": 4051,
+          "forks_count": 329,
           "visibility": "public",
-          "score": 2204.086,
+          "score": 2204.0839,
           "matched_topics": [
             "browser-automation",
             "browser-use-box"
@@ -4710,10 +4710,10 @@
             "vps-agent",
             "web-automation"
           ],
-          "stargazers_count": 385,
+          "stargazers_count": 387,
           "forks_count": 47,
           "visibility": "public",
-          "score": 2200.3897,
+          "score": 2200.3917,
           "matched_topics": [
             "browser-automation",
             "browser-use-box"
@@ -4808,8 +4808,8 @@
           "stateful",
           "typescript"
         ],
-        "stargazers_count": 15309,
-        "forks_count": 2594,
+        "stargazers_count": 15317,
+        "forks_count": 2601,
         "visibility": "public"
       },
       "seed_topics": [
@@ -5015,8 +5015,8 @@
           "pull-request",
           "pull-requests"
         ],
-        "stargazers_count": 11638,
-        "forks_count": 1561,
+        "stargazers_count": 11651,
+        "forks_count": 1566,
         "visibility": "public"
       },
       "seed_topics": [
@@ -5065,10 +5065,10 @@
             "template",
             "templates"
           ],
-          "stargazers_count": 4443,
-          "forks_count": 5586,
+          "stargazers_count": 4444,
+          "forks_count": 5587,
           "visibility": "public",
-          "score": 2205.0016,
+          "score": 2205.0027,
           "matched_topics": [
             "pull-request",
             "pull-requests"
@@ -5106,10 +5106,10 @@
             "pull-request",
             "pull-requests"
           ],
-          "stargazers_count": 1333,
+          "stargazers_count": 1334,
           "forks_count": 4993,
           "visibility": "public",
-          "score": 2201.8323,
+          "score": 2201.8333,
           "matched_topics": [
             "pull-request",
             "pull-requests"
@@ -5247,8 +5247,8 @@
           "python",
           "tutorials"
         ],
-        "stargazers_count": 7602,
-        "forks_count": 980,
+        "stargazers_count": 7608,
+        "forks_count": 981,
         "visibility": "public"
       },
       "seed_topics": [
@@ -5297,10 +5297,10 @@
             "prompt-tuning",
             "zero-shot-learning"
           ],
-          "stargazers_count": 3421,
+          "stargazers_count": 3420,
           "forks_count": 321,
           "visibility": "public",
-          "score": 2203.4530999999997,
+          "score": 2203.4521,
           "matched_topics": [
             "chain-of-thought",
             "few-shot-learning"
@@ -5474,7 +5474,7 @@
           "xai-api"
         ],
         "stargazers_count": 7003,
-        "forks_count": 1572,
+        "forks_count": 1571,
         "visibility": "public"
       },
       "seed_topics": [
@@ -5551,10 +5551,10 @@
             "react",
             "typescript"
           ],
-          "stargazers_count": 5742,
-          "forks_count": 865,
+          "stargazers_count": 5759,
+          "forks_count": 872,
           "visibility": "public",
-          "score": 1105.8284999999998,
+          "score": 1105.8462,
           "matched_topics": [
             "ai-workspace"
           ],
@@ -5584,10 +5584,10 @@
             "openai",
             "opencode"
           ],
-          "stargazers_count": 4325,
-          "forks_count": 544,
+          "stargazers_count": 4337,
+          "forks_count": 547,
           "visibility": "public",
-          "score": 1104.3794,
+          "score": 1104.3917,
           "matched_topics": [
             "anthropic-api"
           ],
@@ -5619,10 +5619,10 @@
             "typescript",
             "websearch"
           ],
-          "stargazers_count": 2532,
-          "forks_count": 217,
+          "stargazers_count": 2538,
+          "forks_count": 220,
           "visibility": "public",
-          "score": 1102.5537,
+          "score": 1102.56,
           "matched_topics": [
             "anthropic-api"
           ],
@@ -5644,10 +5644,10 @@
             "codex",
             "codex-cli"
           ],
-          "stargazers_count": 992,
+          "stargazers_count": 993,
           "forks_count": 121,
           "visibility": "public",
-          "score": 1101.0040999999999,
+          "score": 1101.0050999999999,
           "matched_topics": [
             "anthropic-api"
           ],
@@ -5672,7 +5672,7 @@
           "llm",
           "openai"
         ],
-        "stargazers_count": 6166,
+        "stargazers_count": 6165,
         "forks_count": 779,
         "visibility": "public"
       },
@@ -5784,10 +5784,10 @@
             "sql-editor",
             "superset"
           ],
-          "stargazers_count": 73329,
-          "forks_count": 17627,
+          "stargazers_count": 73351,
+          "forks_count": 17643,
           "visibility": "public",
-          "score": 1175.0917,
+          "score": 1175.1153000000002,
           "matched_topics": [
             "data-analysis"
           ],
@@ -5810,10 +5810,10 @@
             "code-interpreter",
             "developer-tools"
           ],
-          "stargazers_count": 72417,
-          "forks_count": 5614,
+          "stargazers_count": 72405,
+          "forks_count": 5616,
           "visibility": "public",
-          "score": 1172.9784,
+          "score": 1172.9666,
           "matched_topics": [
             "code-interpreter"
           ],
@@ -5833,10 +5833,10 @@
             "python",
             "statistics"
           ],
-          "stargazers_count": 66358,
-          "forks_count": 27066,
+          "stargazers_count": 66359,
+          "forks_count": 27073,
           "visibility": "public",
-          "score": 1169.0646,
+          "score": 1169.0663,
           "matched_topics": [
             "data-analysis"
           ],
@@ -5871,8 +5871,8 @@
           "openai",
           "openai-agents"
         ],
-        "stargazers_count": 5640,
-        "forks_count": 595,
+        "stargazers_count": 5641,
+        "forks_count": 597,
         "visibility": "public"
       },
       "seed_topics": [
@@ -5925,9 +5925,9 @@
             "terraform-cost-estimation"
           ],
           "stargazers_count": 12370,
-          "forks_count": 675,
+          "forks_count": 677,
           "visibility": "public",
-          "score": 1112.4375,
+          "score": 1112.4377,
           "matched_topics": [
             "cost-estimation"
           ],
@@ -5952,10 +5952,10 @@
             "finops",
             "rds"
           ],
-          "stargazers_count": 5729,
+          "stargazers_count": 5730,
           "forks_count": 622,
           "visibility": "public",
-          "score": 1105.7912000000001,
+          "score": 1105.7922,
           "matched_topics": [
             "cost-estimation"
           ],
@@ -5974,10 +5974,10 @@
             "openai-agents",
             "python"
           ],
-          "stargazers_count": 4574,
+          "stargazers_count": 4576,
           "forks_count": 467,
           "visibility": "public",
-          "score": 1104.6207000000002,
+          "score": 1104.6227000000001,
           "matched_topics": [
             "openai-agents"
           ],
@@ -6005,10 +6005,10 @@
             "vfs",
             "virtual-filesystem"
           ],
-          "stargazers_count": 3187,
+          "stargazers_count": 3190,
           "forks_count": 224,
           "visibility": "public",
-          "score": 1103.2094,
+          "score": 1103.2124000000001,
           "matched_topics": [
             "openai-agents"
           ],
@@ -6065,8 +6065,8 @@
           "gh-extension",
           "github-actions"
         ],
-        "stargazers_count": 4632,
-        "forks_count": 424,
+        "stargazers_count": 4640,
+        "forks_count": 421,
         "visibility": "public"
       },
       "seed_topics": [
@@ -6100,10 +6100,10 @@
             "gh-extension",
             "github-actions"
           ],
-          "stargazers_count": 1218,
-          "forks_count": 686,
+          "stargazers_count": 1219,
+          "forks_count": 687,
           "visibility": "public",
-          "score": 2201.2866,
+          "score": 2201.2877,
           "matched_topics": [
             "gh-extension",
             "github-actions"
@@ -6132,10 +6132,10 @@
             "supply-chain",
             "supply-chain-security"
           ],
-          "stargazers_count": 477,
+          "stargazers_count": 479,
           "forks_count": 39,
           "visibility": "public",
-          "score": 2200.4809,
+          "score": 2200.4829,
           "matched_topics": [
             "gh-extension",
             "github-actions"
@@ -6159,10 +6159,10 @@
             "github-actions",
             "golang"
           ],
-          "stargazers_count": 109,
+          "stargazers_count": 110,
           "forks_count": 11,
           "visibility": "public",
-          "score": 2200.1101,
+          "score": 2200.1111,
           "matched_topics": [
             "gh-extension",
             "github-actions"
@@ -6183,10 +6183,10 @@
             "gh-extensions",
             "github-actions"
           ],
-          "stargazers_count": 105,
+          "stargazers_count": 107,
           "forks_count": 3,
           "visibility": "public",
-          "score": 2200.1053,
+          "score": 2200.1073,
           "matched_topics": [
             "gh-extension",
             "github-actions"
@@ -6204,10 +6204,10 @@
             "gh-extension",
             "github-actions"
           ],
-          "stargazers_count": 103,
+          "stargazers_count": 104,
           "forks_count": 14,
           "visibility": "public",
-          "score": 2200.1044,
+          "score": 2200.1054,
           "matched_topics": [
             "gh-extension",
             "github-actions"
@@ -6246,7 +6246,7 @@
           "supermemory",
           "vector-database"
         ],
-        "stargazers_count": 4243,
+        "stargazers_count": 4244,
         "forks_count": 481,
         "visibility": "public"
       },
@@ -6338,10 +6338,10 @@
             "search-api",
             "semantic-search"
           ],
-          "stargazers_count": 6449,
+          "stargazers_count": 6448,
           "forks_count": 808,
           "visibility": "public",
-          "score": 1106.5298,
+          "score": 1106.5288,
           "matched_topics": [
             "ai-infrastructure"
           ],
@@ -6357,6 +6357,7 @@
           "topics": [
             "agent-framework",
             "ai-agent",
+            "ai-governance",
             "ai-infrastructure",
             "ai-orchestration",
             "audit-log",
@@ -6373,10 +6374,10 @@
             "skills",
             "version-control"
           ],
-          "stargazers_count": 3496,
+          "stargazers_count": 3511,
           "forks_count": 513,
           "visibility": "public",
-          "score": 1103.5473000000002,
+          "score": 1103.5623,
           "matched_topics": [
             "ai-infrastructure"
           ],
@@ -6440,10 +6441,10 @@
             "production",
             "terraform"
           ],
-          "stargazers_count": 1320,
-          "forks_count": 213,
+          "stargazers_count": 1332,
+          "forks_count": 215,
           "visibility": "public",
-          "score": 1101.3413,
+          "score": 1101.3535000000002,
           "matched_topics": [
             "ai-infrastructure"
           ],
@@ -6476,8 +6477,8 @@
           "prompt-management",
           "rag-evaluation"
         ],
-        "stargazers_count": 4212,
-        "forks_count": 548,
+        "stargazers_count": 4216,
+        "forks_count": 550,
         "visibility": "public"
       },
       "seed_topics": [
@@ -6519,10 +6520,10 @@
             "python",
             "vllm"
           ],
-          "stargazers_count": 1093,
+          "stargazers_count": 1092,
           "forks_count": 71,
           "visibility": "public",
-          "score": 1101.1001,
+          "score": 1101.0991000000001,
           "matched_topics": [
             "llm-as-a-judge"
           ],
@@ -6540,10 +6541,10 @@
             "llm-as-a-judge",
             "llms"
           ],
-          "stargazers_count": 781,
+          "stargazers_count": 783,
           "forks_count": 105,
           "visibility": "public",
-          "score": 1100.7915,
+          "score": 1100.7935,
           "matched_topics": [
             "llm-as-a-judge"
           ],
@@ -6578,10 +6579,10 @@
             "spark",
             "vlm"
           ],
-          "stargazers_count": 715,
+          "stargazers_count": 717,
           "forks_count": 75,
           "visibility": "public",
-          "score": 1100.7224999999999,
+          "score": 1100.7245,
           "matched_topics": [
             "llm-as-a-judge"
           ],
@@ -6603,10 +6604,10 @@
             "test-time-compute",
             "test-time-scaling"
           ],
-          "stargazers_count": 343,
+          "stargazers_count": 344,
           "forks_count": 28,
           "visibility": "public",
-          "score": 1100.3458,
+          "score": 1100.3468,
           "matched_topics": [
             "llm-as-a-judge"
           ],
@@ -6633,10 +6634,10 @@
             "opa",
             "opencode"
           ],
-          "stargazers_count": 269,
+          "stargazers_count": 270,
           "forks_count": 23,
           "visibility": "public",
-          "score": 1100.2713,
+          "score": 1100.2723,
           "matched_topics": [
             "llm-as-a-judge"
           ],
